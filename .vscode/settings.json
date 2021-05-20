@@ -1,0 +1,24 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        ".idea": true,
+        "**/*.iml": true,
+        "**/gradlew": true,
+        "**/gradlew.bat": true,
+        "**/*.properties": true,
+        "android/gradle": true,
+        ".packages": true,
+        "**/*.lock": true,
+        ".flutter-plugins": true,
+        ".flutter-plugins-dependencies": true,
+        ".metadata": true,
+        "build": true,
+        "ios": true
+    },
+    "explorerExclude.backup": null,
+    "licenser.license": "MPLv2"
+}
