@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:levelheadbrowser/di.dart';
 
 void main() {
+  setUpDI();
   runApp(MyApp());
 }
 
