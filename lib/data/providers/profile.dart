@@ -20,7 +20,7 @@ class RumpusProfileProvider
   static const String _BASE_URL = '/players';
   final Logger _logger = getIt.get();
   final Dio _client = getIt.get(instanceName: 'http.client.rumpus');
-  final Converter _converter = getIt.get(
+  final Converter<PlayersParams, Map<String, String>> _converter = getIt.get(
       instanceName: 'data.converters.players.toParamMap.fromPlayersParams');
 
   @override

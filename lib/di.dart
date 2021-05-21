@@ -10,6 +10,8 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:levelheadbrowser/data/converters/players.dart';
 import 'package:levelheadbrowser/data/converters/profile.dart';
+import 'package:levelheadbrowser/data/models/params/players.dart';
+import 'package:levelheadbrowser/data/models/profile.dart';
 import 'package:levelheadbrowser/data/providers/profile.dart';
 import 'package:levelheadbrowser/data/repositories/profile.dart';
 import 'package:logger/logger.dart';
@@ -24,23 +26,24 @@ void setUpDI() async {
   );
 
   // Converters
-  getIt.registerLazySingleton<Converter>(
+  getIt.registerLazySingleton<Converter<Map<String, dynamic>, Profile>>(
     () => RumpusMapToProfileConverter(),
     instanceName: 'data.converters.profile.toProfile.fromRumpusMap',
   );
-  getIt.registerLazySingleton<Converter>(
+  getIt.registerLazySingleton<Converter<PlayersParams, Map<String, String>>>(
     () => PlayersParamsToParameterMapConverter(),
     instanceName: 'data.converters.players.toParamMap.fromPlayersParams',
   );
 
   // Providers
-  getIt.registerLazySingleton<ProfileProvider>(
+  getIt.registerLazySingleton<
+      ProfileProvider<PlayersParams, Map<String, dynamic>>>(
     () => RumpusProfileProvider(),
     instanceName: 'data.providers.profile.rumpus',
   );
 
   // Repositories
-  getIt.registerLazySingleton<ProfileRepository>(
+  getIt.registerLazySingleton<ProfileRepository<PlayersParams, Profile>>(
     () => RumpusProfileRepository(),
     instanceName: 'data.repositories.profile.rumpus',
   );
