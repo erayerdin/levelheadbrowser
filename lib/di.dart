@@ -11,6 +11,7 @@ import 'package:get_it/get_it.dart';
 import 'package:levelheadbrowser/data/converters/players.dart';
 import 'package:levelheadbrowser/data/converters/profile.dart';
 import 'package:levelheadbrowser/data/providers/profile.dart';
+import 'package:levelheadbrowser/data/repositories/profile.dart';
 import 'package:logger/logger.dart';
 
 final getIt = GetIt.instance;
@@ -36,5 +37,11 @@ void setUpDI() async {
   getIt.registerLazySingleton<ProfileProvider>(
     () => RumpusProfileProvider(),
     instanceName: 'data.providers.profile.rumpus',
+  );
+
+  // Repositories
+  getIt.registerLazySingleton<ProfileRepository>(
+    () => RumpusProfileRepository(),
+    instanceName: 'data.repositories.profile.rumpus',
   );
 }
