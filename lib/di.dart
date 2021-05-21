@@ -6,15 +6,21 @@
 
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:levelheadbrowser/data/converters/players.dart';
 import 'package:levelheadbrowser/data/converters/profile.dart';
+import 'package:levelheadbrowser/data/providers/profile.dart';
 import 'package:logger/logger.dart';
 
 final getIt = GetIt.instance;
 
 void setUpDI() async {
   getIt.registerLazySingleton(() => Logger());
+  getIt.registerLazySingleton(
+    () => Dio(BaseOptions(baseUrl: 'https://www.bscotch.net/api/levelhead')),
+    instanceName: 'http.client.rumpus',
+  );
 
   // Converters
   getIt.registerLazySingleton<Converter>(
@@ -24,5 +30,11 @@ void setUpDI() async {
   getIt.registerLazySingleton<Converter>(
     () => PlayersParamsToParameterMapConverter(),
     instanceName: 'data.converters.players.toParamMap.fromPlayersParams',
+  );
+
+  // Providers
+  getIt.registerLazySingleton<ProfileProvider>(
+    () => RumpusProfileProvider(),
+    instanceName: 'data.providers.profile.rumpus',
   );
 }
