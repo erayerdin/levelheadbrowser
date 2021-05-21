@@ -7,6 +7,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:levelheadbrowser/data/converters/players.dart';
 import 'package:levelheadbrowser/data/converters/profile.dart';
@@ -46,5 +47,15 @@ void setUpDI() async {
   getIt.registerLazySingleton<ProfileRepository<PlayersParams, Profile>>(
     () => RumpusProfileRepository(),
     instanceName: 'data.repositories.profile.rumpus',
+  );
+
+  // Styles
+  getIt.registerLazySingleton(
+    () => EdgeInsets.all(10),
+    instanceName: 'style.space.10',
+  );
+  getIt.registerLazySingleton(
+    () => TextStyle(fontWeight: FontWeight.w600),
+    instanceName: 'style.font.bold',
   );
 }

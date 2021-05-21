@@ -37,24 +37,20 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: Text('LevelHead Browser'),
         ),
-        body: Container(
-          child: Center(
-            child: BlocBuilder<HomePageBloc, HomePageState>(
-              builder: (context, state) {
-                if (state is HomePageProfilesTabState) {
-                  return ProfilesPage();
-                } else if (state is HomePageTowerTrialTabState) {
-                  return TowerTrialsPage();
-                } else if (state is HomePageLevelsTabState) {
-                  return LevelsPage();
-                } else if (state is HomePageDailyBuildTabState) {
-                  return DailyBuildPage();
-                }
+        body: BlocBuilder<HomePageBloc, HomePageState>(
+          builder: (context, state) {
+            if (state is HomePageProfilesTabState) {
+              return ProfilesPage();
+            } else if (state is HomePageTowerTrialTabState) {
+              return TowerTrialsPage();
+            } else if (state is HomePageLevelsTabState) {
+              return LevelsPage();
+            } else if (state is HomePageDailyBuildTabState) {
+              return DailyBuildPage();
+            }
 
-                return ProfilesPage();
-              },
-            ),
-          ),
+            return ProfilesPage();
+          },
         ),
         bottomNavigationBar: Builder(
           builder: (context) => BottomNavigationBar(
