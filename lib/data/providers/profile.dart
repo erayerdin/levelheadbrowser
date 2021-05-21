@@ -37,7 +37,9 @@ class RumpusProfileProvider
     );
 
     Map<String, dynamic> body = response.data!;
-    List<Map<String, dynamic>> data = body['data'];
+    // for some reason, it does not work without body['data']
+    // it says it should be List<dynamic>, but it is not.
+    List<Map<String, dynamic>> data = List.from(body['data']);
     _logger.v('data: $data');
 
     return data;
