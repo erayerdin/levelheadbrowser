@@ -6,6 +6,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:levelheadbrowser/data/models/params/players.dart';
 import 'package:levelheadbrowser/di.dart';
 import 'package:levelheadbrowser/logic/profiles/profiles_bloc.dart';
 import 'package:levelheadbrowser/presentation/pages/profiles/components/profilecard.component.dart';
@@ -18,7 +19,12 @@ class ProfilesPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (blocCtx) => ProfilesBloc()..add(LoadProfilesEvent()),
+          create: (blocCtx) => ProfilesBloc()
+            ..add(
+              LoadProfilesEvent(
+                params: PlayersParams(), // TODO make dynamic with form
+              ),
+            ),
         ),
       ],
       child: Container(

@@ -30,7 +30,7 @@ class ProfilesBloc extends Bloc<ProfilesEvent, ProfilesState> {
       yield LoadingProfilesState();
 
       try {
-        List<Profile> profiles = await _repository.list(PlayersParams());
+        List<Profile> profiles = await _repository.list(event.params);
         _logger.d('ProfilesBloc state is LoadedProfilesState.');
         yield LoadedProfilesState(profiles: profiles);
       } on DioError catch (e) {
@@ -41,6 +41,7 @@ class ProfilesBloc extends Bloc<ProfilesEvent, ProfilesState> {
       } catch (e) {
         _logger.d('ProfilesBloc state is FailedProfileState.');
         _logger.e(e);
+        throw e;
         yield FailedProfilesState(message: 'An unknown error occured.');
       }
     }

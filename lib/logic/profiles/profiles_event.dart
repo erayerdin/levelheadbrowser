@@ -8,6 +8,12 @@ abstract class ProfilesEvent extends Equatable {
 }
 
 class LoadProfilesEvent implements ProfilesEvent {
+  final PlayersParams params;
+
+  LoadProfilesEvent({
+    required this.params,
+  });
+
   @override
   List<Object> get props => [];
 
