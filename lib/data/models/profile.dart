@@ -7,8 +7,8 @@
 import 'package:equatable/equatable.dart';
 
 class TipStats {
-  final int perLevel;
-  final int perDay;
+  final num perLevel;
+  final num perDay;
 
   TipStats({
     required this.perLevel,
