@@ -26,7 +26,7 @@ class ProfileStats {
   final TipStats tippedCount;
   final int hiddenGemCount;
   final int trophyCount;
-  final int perkPoints;
+  final int? perkPoints;
   final int campaignProgress;
   final int timeTrophyCount;
 
