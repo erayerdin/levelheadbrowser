@@ -10,8 +10,10 @@ import 'package:levelheadbrowser/data/models/params/players.dart';
 import 'package:levelheadbrowser/di.dart';
 import 'package:levelheadbrowser/logic/profiles/profiles_bloc.dart';
 import 'package:levelheadbrowser/presentation/pages/profiles/components/profilecard.component.dart';
+import 'package:logger/logger.dart';
 
 class ProfilesPage extends StatelessWidget {
+  final Logger _logger = getIt.get();
   final EdgeInsets _padding = getIt.get(instanceName: 'style.space.10');
 
   @override
@@ -35,7 +37,13 @@ class ProfilesPage extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(bottom: 10),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  showDialog(
+                      context: context,
+                      builder: (context) => Dialog(
+                            child: Text('hello'), // TODO impl later
+                          ));
+                },
                 child: Text('Filter'),
               ),
             ),
