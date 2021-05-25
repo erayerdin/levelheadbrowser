@@ -4,6 +4,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -13,8 +15,8 @@ import 'package:levelheadbrowser/logic/profiles/profiles_bloc.dart';
 import 'package:logger/logger.dart';
 import 'package:tuple/tuple.dart';
 
-const Tuple2<int, int> _SUBS_COUNT = Tuple2(0, 10000);
-const Tuple2<int, int> _PLAYTIME_SECS = Tuple2(0, 10000);
+const Tuple2<int, int> SUBS_COUNT = Tuple2(0, 10000);
+const Tuple2<int, int> PLAYTIME_SECS = Tuple2(0, 10000);
 
 const SORT_BY_DROPDOWN_ITEMS = [
   DropdownMenuItem(
@@ -100,6 +102,12 @@ Widget _buildSection(BuildContext context, String label, Widget widget) {
 
 class ProfileFilterDialog extends StatelessWidget {
   final Logger _logger = getIt.get();
+  final Converter<
+          Map<String, FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>,
+          PlayersParams> _converter =
+      getIt.get(
+          instanceName:
+              'data.converters.forms.fromProfileFilterForm.toPlayersParams');
 
   final _formKey = GlobalKey<FormBuilderState>();
 
@@ -125,11 +133,11 @@ class ProfileFilterDialog extends StatelessWidget {
                     'Subscribers',
                     FormBuilderRangeSlider(
                       name: 'subscriberCount',
-                      min: _SUBS_COUNT.item1.toDouble(),
-                      max: _SUBS_COUNT.item2.toDouble(),
+                      min: SUBS_COUNT.item1.toDouble(),
+                      max: SUBS_COUNT.item2.toDouble(),
                       initialValue: RangeValues(
-                        _SUBS_COUNT.item1.toDouble(),
-                        _SUBS_COUNT.item2.toDouble(),
+                        SUBS_COUNT.item1.toDouble(),
+                        SUBS_COUNT.item2.toDouble(),
                       ),
                     ),
                   ),
@@ -138,11 +146,11 @@ class ProfileFilterDialog extends StatelessWidget {
                     'Playtime (in secs)',
                     FormBuilderRangeSlider(
                       name: 'playtimeSeconds',
-                      min: _PLAYTIME_SECS.item1.toDouble(),
-                      max: _PLAYTIME_SECS.item2.toDouble(),
+                      min: PLAYTIME_SECS.item1.toDouble(),
+                      max: PLAYTIME_SECS.item2.toDouble(),
                       initialValue: RangeValues(
-                        _PLAYTIME_SECS.item1.toDouble(),
-                        _PLAYTIME_SECS.item2.toDouble(),
+                        PLAYTIME_SECS.item1.toDouble(),
+                        PLAYTIME_SECS.item2.toDouble(),
                       ),
                     ),
                   ),
@@ -182,44 +190,7 @@ class ProfileFilterDialog extends StatelessWidget {
                             _logger.d('Submitting form...');
                             var formState = _formKey.currentState;
                             formState?.save();
-
-                            var subscriberCountRange = formState
-                                ?.fields['subscriberCount']
-                                ?.value as RangeValues;
-                            var minSubscriberCount =
-                                subscriberCountRange.start == _SUBS_COUNT.item1
-                                    ? null
-                                    : subscriberCountRange.start.floor();
-                            var maxSubscriberCount =
-                                subscriberCountRange.end == _SUBS_COUNT.item2
-                                    ? null
-                                    : subscriberCountRange.end.floor();
-
-                            var playtimeSecondsRange = formState
-                                ?.fields['playtimeSeconds']
-                                ?.value as RangeValues;
-                            var minPlaytimeSeconds =
-                                playtimeSecondsRange.start ==
-                                        _PLAYTIME_SECS.item1
-                                    ? null
-                                    : playtimeSecondsRange.start.floor();
-                            var maxPlaytimeSeconds =
-                                playtimeSecondsRange.end == _PLAYTIME_SECS.item2
-                                    ? null
-                                    : playtimeSecondsRange.end.floor();
-
-                            var sortBy = formState?.fields['sortBy']?.value
-                                as Tuple2<bool, PlayerParamsSortField>?;
-
-                            var params = PlayersParams(
-                              minSubscriberCount: minSubscriberCount,
-                              maxSubscriberCount: maxSubscriberCount,
-                              minPlaytimeSeconds: minPlaytimeSeconds,
-                              maxPlaytimeSeconds: maxPlaytimeSeconds,
-                              sort: sortBy,
-                            );
-                            _logger.v('Form parameters: $params');
-
+                            var params = _converter.convert(formState!.fields);
                             var bloc = BlocProvider.of<ProfilesBloc>(context);
                             bloc.add(LoadProfilesEvent(params: params));
                             Navigator.pop(context);
