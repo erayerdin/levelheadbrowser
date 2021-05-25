@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
 import 'package:levelheadbrowser/di.dart';
 import 'package:levelheadbrowser/logic/profiles/profiles_bloc.dart';
+import 'package:levelheadbrowser/presentation/pages/profiles/components/filterdialog.component.dart';
 import 'package:levelheadbrowser/presentation/pages/profiles/components/profilecard.component.dart';
 import 'package:logger/logger.dart';
 
@@ -39,10 +40,11 @@ class ProfilesPage extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () async {
                   showDialog(
-                      context: context,
-                      builder: (context) => Dialog(
-                            child: Text('hello'), // TODO impl later
-                          ));
+                    context: context,
+                    builder: (context) => Dialog(
+                      child: ProfileFilterDialog(),
+                    ),
+                  );
                 },
                 child: Text('Filter'),
               ),
