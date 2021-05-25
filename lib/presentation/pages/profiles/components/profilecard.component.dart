@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 import 'package:levelheadbrowser/data/models/profile.dart';
 import 'package:levelheadbrowser/di.dart';
+import 'package:timeago/timeago.dart' as timezone;
 
 TableRow _mapProfileFieldToTableRow(dynamic field, String label) {
   final TextStyle _boldTextStyle = getIt.get(instanceName: 'style.font.bold');
@@ -49,7 +50,8 @@ class ProfileCardComponent extends StatelessWidget {
           },
           children: [
             _mapProfileFieldToTableRow(profile.alias, 'Alias'),
-            _mapProfileFieldToTableRow(profile.dateJoined, 'Joined on'),
+            _mapProfileFieldToTableRow(
+                timezone.format(profile.dateJoined), 'Joined on'),
             _mapProfileFieldToTableRow(
                 profile.stats.followingCount, 'Following'),
             _mapProfileFieldToTableRow(
