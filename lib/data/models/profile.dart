@@ -7,8 +7,8 @@
 import 'package:equatable/equatable.dart';
 
 class TipStats {
-  final num perLevel;
-  final num perDay;
+  final num? perLevel;
+  final num? perDay;
 
   TipStats({
     required this.perLevel,
@@ -17,18 +17,18 @@ class TipStats {
 }
 
 class ProfileStats {
-  final int subscriberCount;
-  final int followingCount;
-  final int crownCount;
-  final int shoeCount;
-  final int playtimeSeconds;
+  final int? subscriberCount;
+  final int? followingCount;
+  final int? crownCount;
+  final int? shoeCount;
+  final int? playtimeSeconds;
   final TipStats tipsCount;
   final TipStats tippedCount;
   final int hiddenGemCount;
   final int trophyCount;
   final int? perkPoints;
-  final int campaignProgress;
-  final int timeTrophyCount;
+  final int? campaignProgress;
+  final int? timeTrophyCount;
 
   ProfileStats({
     required this.subscriberCount,
