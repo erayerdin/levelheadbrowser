@@ -50,7 +50,8 @@ class ProfilesPage extends StatelessWidget {
                     onPressed: () async {
                       showDialog(
                         context: context,
-                        builder: (context) => Dialog(
+                        builder: (_) => BlocProvider.value(
+                          value: BlocProvider.of<ProfilesBloc>(context),
                           child: ProfileFilterDialog(),
                         ),
                       );
