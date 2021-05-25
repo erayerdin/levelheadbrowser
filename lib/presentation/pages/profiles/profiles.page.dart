@@ -37,16 +37,27 @@ class ProfilesPage extends StatelessWidget {
           children: [
             Container(
               margin: EdgeInsets.only(bottom: 10),
-              child: ElevatedButton(
-                onPressed: () async {
-                  showDialog(
-                    context: context,
-                    builder: (context) => Dialog(
-                      child: ProfileFilterDialog(),
-                    ),
+              child: BlocBuilder<ProfilesBloc, ProfilesState>(
+                builder: (context, state) {
+                  if (state is LoadingProfilesState) {
+                    return ElevatedButton(
+                      onPressed: null,
+                      child: Text('Filter'),
+                    );
+                  }
+
+                  return ElevatedButton(
+                    onPressed: () async {
+                      showDialog(
+                        context: context,
+                        builder: (context) => Dialog(
+                          child: ProfileFilterDialog(),
+                        ),
+                      );
+                    },
+                    child: Text('Filter'),
                   );
                 },
-                child: Text('Filter'),
               ),
             ),
             BlocBuilder<ProfilesBloc, ProfilesState>(
