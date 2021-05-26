@@ -39,6 +39,9 @@ class ProfileCardComponent extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
+        iconTheme: Theme.of(context).iconTheme.copyWith(
+              color: Colors.white,
+            ),
       ),
       child: Builder(
         builder: (context) => Card(
@@ -53,9 +56,23 @@ class ProfileCardComponent extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(
-                    profile.alias,
-                    style: Theme.of(context).textTheme.subtitle1,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          profile.alias,
+                          style: Theme.of(context).textTheme.subtitle1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.visibility),
+                        onPressed: () {
+                          // TODO implement view profile button
+                        },
+                      )
+                    ],
                   ),
                   Expanded(
                     child: Column(
