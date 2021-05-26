@@ -23,6 +23,12 @@ class ProfileCardComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Color.lerp(
+          Colors.red,
+          Colors.green,
+          profile.stats.subscriberCount == null
+              ? 0
+              : profile.stats.subscriberCount! / 7500),
       child: Container(
           margin: _margin,
           child: Column(
