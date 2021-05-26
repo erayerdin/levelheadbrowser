@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 import 'package:levelheadbrowser/data/models/profile.dart';
 import 'package:levelheadbrowser/di.dart';
+import 'package:levelheadbrowser/presentation/components/profiledialog/profiledialog.component.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 const _MAX_SUBS_LIMIT = 7500;
@@ -69,7 +70,12 @@ class ProfileCardComponent extends StatelessWidget {
                       IconButton(
                         icon: Icon(Icons.visibility),
                         onPressed: () {
-                          // TODO implement view profile button
+                          showDialog(
+                            context: context,
+                            builder: (context) => ProfileDialog(
+                              profile: profile,
+                            ),
+                          );
                         },
                       )
                     ],
