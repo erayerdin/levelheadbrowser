@@ -75,8 +75,7 @@ class ProfilesPage extends StatelessWidget {
                       builder: (context, orientation) => GridView.count(
                         crossAxisCount:
                             orientation == Orientation.landscape ? 4 : 2,
-                        childAspectRatio: 16 /
-                            9, // TODO implement aspect ratio of profile card grid
+                        childAspectRatio: 1.3,
                         children: state.profiles
                             .map((e) => ProfileCardComponent(profile: e))
                             .toList(),
