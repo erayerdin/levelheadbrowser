@@ -71,10 +71,16 @@ class ProfilesPage extends StatelessWidget {
                   );
                 } else if (state is LoadedProfilesState) {
                   return Expanded(
-                    child: ListView(
-                      children: state.profiles
-                          .map((e) => ProfileCardComponent(profile: e))
-                          .toList(),
+                    child: OrientationBuilder(
+                      builder: (context, orientation) => GridView.count(
+                        crossAxisCount:
+                            orientation == Orientation.landscape ? 4 : 2,
+                        childAspectRatio: 16 /
+                            9, // TODO implement aspect ratio of profile card grid
+                        children: state.profiles
+                            .map((e) => ProfileCardComponent(profile: e))
+                            .toList(),
+                      ),
                     ),
                   );
                 }
