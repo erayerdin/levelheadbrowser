@@ -22,44 +22,53 @@ class ProfileCardComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Color.lerp(
-          Colors.red,
-          Colors.green,
-          profile.stats.subscriberCount == null
-              ? 0
-              : profile.stats.subscriberCount! / 7500),
-      child: Container(
-          margin: _margin,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                profile.alias,
-                style: Theme.of(context).textTheme.subtitle1,
+    return Theme(
+      data: Theme.of(context).copyWith(
+        cardTheme: Theme.of(context).cardTheme.copyWith(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      'Joined ${timeago.format(profile.dateJoined)}',
-                      style: Theme.of(context).textTheme.caption,
-                    ),
-                    Text(
-                      'Has ${profile.stats.subscriberCount} subscribers',
-                      style: Theme.of(context).textTheme.caption,
-                    ),
-                    Text(
-                      'Following ${profile.stats.followingCount} people',
-                      style: Theme.of(context).textTheme.caption,
-                    ),
-                  ],
+            ),
+      ),
+      child: Card(
+        color: Color.lerp(
+            Colors.red,
+            Colors.green,
+            profile.stats.subscriberCount == null
+                ? 0
+                : profile.stats.subscriberCount! / 7500),
+        child: Container(
+            margin: _margin,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  profile.alias,
+                  style: Theme.of(context).textTheme.subtitle1,
                 ),
-              ),
-            ],
-          )),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        'Joined ${timeago.format(profile.dateJoined)}',
+                        style: Theme.of(context).textTheme.caption,
+                      ),
+                      Text(
+                        'Has ${profile.stats.subscriberCount} subscribers',
+                        style: Theme.of(context).textTheme.caption,
+                      ),
+                      Text(
+                        'Following ${profile.stats.followingCount} people',
+                        style: Theme.of(context).textTheme.caption,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            )),
+      ),
     );
   }
 }
