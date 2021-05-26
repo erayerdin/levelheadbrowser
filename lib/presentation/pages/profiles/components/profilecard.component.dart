@@ -10,6 +10,8 @@ import 'package:levelheadbrowser/data/models/profile.dart';
 import 'package:levelheadbrowser/di.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
+const _MAX_SUBS_LIMIT = 7500;
+
 class ProfileCardComponent extends StatelessWidget {
   final EdgeInsets _margin = getIt.get(instanceName: 'style.space.10');
 
@@ -29,45 +31,55 @@ class ProfileCardComponent extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
+        textTheme: Theme.of(context).textTheme.copyWith(
+              subtitle1: TextStyle(
+                color: Colors.white,
+              ),
+              caption: TextStyle(
+                color: Colors.white,
+              ),
+            ),
       ),
-      child: Card(
-        color: Color.lerp(
-            Colors.red,
-            Colors.green,
-            profile.stats.subscriberCount == null
-                ? 0
-                : profile.stats.subscriberCount! / 7500),
-        child: Container(
-            margin: _margin,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  profile.alias,
-                  style: Theme.of(context).textTheme.subtitle1,
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'Joined ${timeago.format(profile.dateJoined)}',
-                        style: Theme.of(context).textTheme.caption,
-                      ),
-                      Text(
-                        'Has ${profile.stats.subscriberCount} subscribers',
-                        style: Theme.of(context).textTheme.caption,
-                      ),
-                      Text(
-                        'Following ${profile.stats.followingCount} people',
-                        style: Theme.of(context).textTheme.caption,
-                      ),
-                    ],
+      child: Builder(
+        builder: (context) => Card(
+          color: Color.lerp(
+              Colors.red,
+              Colors.green,
+              profile.stats.subscriberCount == null
+                  ? 0
+                  : profile.stats.subscriberCount! / _MAX_SUBS_LIMIT),
+          child: Container(
+              margin: _margin,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    profile.alias,
+                    style: Theme.of(context).textTheme.subtitle1,
                   ),
-                ),
-              ],
-            )),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'Joined ${timeago.format(profile.dateJoined)}',
+                          style: Theme.of(context).textTheme.caption,
+                        ),
+                        Text(
+                          'Has ${profile.stats.subscriberCount} subscribers',
+                          style: Theme.of(context).textTheme.caption,
+                        ),
+                        Text(
+                          'Following ${profile.stats.followingCount} people',
+                          style: Theme.of(context).textTheme.caption,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              )),
+        ),
       ),
     );
   }
