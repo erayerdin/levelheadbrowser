@@ -8,26 +8,7 @@ import 'package:flutter/material.dart';
 
 import 'package:levelheadbrowser/data/models/profile.dart';
 import 'package:levelheadbrowser/di.dart';
-import 'package:timeago/timeago.dart' as timezone;
-
-TableRow _mapProfileFieldToTableRow(dynamic field, String label) {
-  final TextStyle _boldTextStyle = getIt.get(instanceName: 'style.font.bold');
-
-  return TableRow(children: [
-    Padding(
-      padding: EdgeInsets.fromLTRB(0, 5, 10, 5),
-      child: Text(
-        label,
-        style: _boldTextStyle,
-        textAlign: TextAlign.right,
-      ),
-    ),
-    Padding(
-      padding: EdgeInsets.fromLTRB(0, 5, 10, 5),
-      child: Text(field.toString()),
-    ),
-  ]);
-}
+import 'package:timeago/timeago.dart' as timeago;
 
 class ProfileCardComponent extends StatelessWidget {
   final EdgeInsets _margin = getIt.get(instanceName: 'style.space.10');
@@ -43,22 +24,36 @@ class ProfileCardComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Container(
-        margin: _margin,
-        child: Table(
-          columnWidths: {
-            0: FixedColumnWidth(100),
-          },
-          children: [
-            _mapProfileFieldToTableRow(profile.alias, 'Alias'),
-            _mapProfileFieldToTableRow(
-                timezone.format(profile.dateJoined), 'Joined on'),
-            _mapProfileFieldToTableRow(
-                profile.stats.followingCount, 'Following'),
-            _mapProfileFieldToTableRow(
-                profile.stats.subscriberCount, 'Subscribers'),
-          ],
-        ),
-      ),
+          margin: _margin,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                profile.alias,
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Joined ${timeago.format(profile.dateJoined)}',
+                      style: Theme.of(context).textTheme.caption,
+                    ),
+                    Text(
+                      'Has ${profile.stats.subscriberCount} subscribers',
+                      style: Theme.of(context).textTheme.caption,
+                    ),
+                    Text(
+                      'Following ${profile.stats.followingCount} people',
+                      style: Theme.of(context).textTheme.caption,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          )),
     );
   }
 }
