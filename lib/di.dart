@@ -18,6 +18,7 @@ import 'package:levelheadbrowser/data/converters/profile.dart';
 import 'package:levelheadbrowser/data/models/params/levels.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
 import 'package:levelheadbrowser/data/models/profile.dart';
+import 'package:levelheadbrowser/data/providers/level.dart';
 import 'package:levelheadbrowser/data/providers/profile.dart';
 import 'package:levelheadbrowser/data/repositories/profile.dart';
 import 'package:logger/logger.dart';
@@ -84,6 +85,11 @@ Future<void> setUpDI() async {
       ProfileProvider<PlayersParams, Map<String, dynamic>>>(
     () => RumpusProfileProvider(),
     instanceName: 'data.providers.profile.rumpus',
+  );
+  getIt
+      .registerLazySingleton<LevelProvider<LevelsParams, Map<String, dynamic>>>(
+    () => RumpusLevelProvider(),
+    instanceName: 'data.providers.level.rumpus',
   );
 
   // Repositories

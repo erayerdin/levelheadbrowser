@@ -29,7 +29,7 @@ class PlayersParamsToParameterMapConverter
     });
 
     ifNotNullDo<Tuple2<bool, PlayerParamsSortField>>(input.sort, (sort) {
-      var descChar = sort.item1 ? '-' : '';
+      var descChar = sort.item1 ? '-' : ''; // TODO here is a sorting bug
       var value = sort.item2.value;
 
       params['sort'] = '$descChar$value';
