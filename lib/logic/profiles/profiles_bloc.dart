@@ -33,15 +33,16 @@ class ProfilesBloc extends Bloc<ProfilesEvent, ProfilesState> {
         List<Profile> profiles = await _repository.list(event.params);
         _logger.d('ProfilesBloc state is LoadedProfilesState.');
         yield LoadedProfilesState(profiles: profiles);
-      } on DioError catch (e) {
+      } on DioError catch (e, stacktrace) {
         _logger.d('ProfilesBloc state is FailedProfileState.');
         _logger.e(e);
+        _logger.e(stacktrace);
         yield FailedProfilesState(
             message: 'An error occured while connecting to Rumpus service.');
-      } catch (e) {
+      } catch (e, stacktrace) {
         _logger.d('ProfilesBloc state is FailedProfileState.');
         _logger.e(e);
-        throw e;
+        _logger.e(stacktrace);
         yield FailedProfilesState(message: 'An unknown error occured.');
       }
     }
