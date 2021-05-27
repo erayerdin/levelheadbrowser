@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get_it/get_it.dart';
 import 'package:levelheadbrowser/data/converters/forms/profilefilterform.dart';
-import 'package:levelheadbrowser/data/converters/players.dart';
+import 'package:levelheadbrowser/data/converters/params/players.dart';
 import 'package:levelheadbrowser/data/converters/profile.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
 import 'package:levelheadbrowser/data/models/profile.dart';
