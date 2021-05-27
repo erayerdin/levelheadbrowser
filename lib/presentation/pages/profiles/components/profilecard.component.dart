@@ -62,7 +62,7 @@ class ProfileCardComponent extends StatelessWidget {
                     children: [
                       Flexible(
                         child: Text(
-                          profile.alias,
+                          profile.alias == null ? '<no alias>' : profile.alias!,
                           style: Theme.of(context).textTheme.subtitle1,
                           overflow: TextOverflow.ellipsis,
                         ),

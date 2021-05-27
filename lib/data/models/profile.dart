@@ -49,7 +49,7 @@ class ProfileStats {
 class Profile extends Equatable {
   final String id;
   final DateTime dateJoined;
-  final String alias;
+  final String? alias;
   final String? avatar;
   final ProfileStats stats;
 

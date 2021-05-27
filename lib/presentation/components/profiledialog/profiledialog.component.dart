@@ -55,7 +55,7 @@ class ProfileDialog extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    '${profile.alias} Info',
+                    '${profile.alias == null ? "<no alias>" : profile.alias} Info',
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   Divider(),
