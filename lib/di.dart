@@ -7,6 +7,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get_it/get_it.dart';
@@ -18,13 +19,40 @@ import 'package:levelheadbrowser/data/models/profile.dart';
 import 'package:levelheadbrowser/data/providers/profile.dart';
 import 'package:levelheadbrowser/data/repositories/profile.dart';
 import 'package:logger/logger.dart';
+import 'package:path_provider/path_provider.dart';
 
 final getIt = GetIt.instance;
 
 void setUpDI() async {
   getIt.registerLazySingleton(() => Logger());
+
+  // HTTP
+  getIt.registerSingletonAsync<CacheStore>(
+    () async => HiveCacheStore(
+      (await getApplicationDocumentsDirectory()).path,
+    ),
+    instanceName: 'http.client.cache.store',
+    signalsReady: false,
+  );
   getIt.registerLazySingleton(
-    () => Dio(BaseOptions(baseUrl: 'https://www.bscotch.net/api/levelhead')),
+    () => CacheOptions(
+      store: getIt.get(instanceName: 'http.client.cache.store'),
+      maxStale: Duration(minutes: 30),
+    ),
+    instanceName: 'http.client.cache.options',
+  );
+  getIt.registerLazySingleton<Interceptor>(
+    () => DioCacheInterceptor(
+      options: getIt.get(instanceName: 'http.client.cache.options'),
+    ),
+    instanceName: 'http.client.cache.interceptor',
+  );
+  getIt.registerLazySingleton(
+    () => Dio(
+      BaseOptions(baseUrl: 'https://www.bscotch.net/api/levelhead'),
+    )..interceptors.add(
+        getIt.get(instanceName: 'http.client.cache.interceptor'),
+      ),
     instanceName: 'http.client.rumpus',
   );
 
