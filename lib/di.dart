@@ -23,7 +23,7 @@ import 'package:path_provider/path_provider.dart';
 
 final getIt = GetIt.instance;
 
-void setUpDI() async {
+Future<void> setUpDI() async {
   getIt.registerLazySingleton(() => Logger());
 
   // HTTP

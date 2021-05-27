@@ -4,6 +4,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'package:dio/dio.dart';
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
 import 'package:levelheadbrowser/data/models/profile.dart';
@@ -15,8 +17,15 @@ void main() {
   group('rumpus', () {
     late ProfileRepository<PlayersParams, Profile> _repository;
 
-    setUpAll(() {
+    setUpAll(() async {
       setUpDI();
+      await getIt.allReady(); // wait for container to be ready
+
+      // remove cache interceptor, we're gonna mock it
+      Dio client = getIt.get(instanceName: 'http.client.rumpus');
+      client.interceptors
+          .removeWhere((element) => element is DioCacheInterceptor);
+
       nock.defaultBase = 'https://www.bscotch.net/api/levelhead';
       nock.init();
       _repository = getIt.get(instanceName: 'data.repositories.profile.rumpus');
