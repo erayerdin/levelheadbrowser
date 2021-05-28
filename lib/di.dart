@@ -16,13 +16,15 @@ import 'package:levelheadbrowser/data/converters/level.dart';
 import 'package:levelheadbrowser/data/converters/params/levels.dart';
 import 'package:levelheadbrowser/data/converters/params/players.dart';
 import 'package:levelheadbrowser/data/converters/profile.dart';
+import 'package:levelheadbrowser/data/models/level.dart';
 import 'package:levelheadbrowser/data/models/params/levels.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
 import 'package:levelheadbrowser/data/models/profile.dart';
 import 'package:levelheadbrowser/data/providers/level.dart';
 import 'package:levelheadbrowser/data/providers/profile.dart';
+import 'package:levelheadbrowser/data/repositories/level.dart';
 import 'package:levelheadbrowser/data/repositories/profile.dart';
-import 'package:logger/logger.dart';
+import 'package:logger/logger.dart' show Logger;
 import 'package:path_provider/path_provider.dart';
 
 final getIt = GetIt.instance;
@@ -103,6 +105,10 @@ Future<void> setUpDI() async {
   getIt.registerLazySingleton<ProfileRepository<PlayersParams, Profile>>(
     () => RumpusProfileRepository(),
     instanceName: 'data.repositories.profile.rumpus',
+  );
+  getIt.registerLazySingleton<LevelRepository<LevelsParams, Level>>(
+    () => RumpusLevelRepository(),
+    instanceName: 'data.repositories.level.rumpus',
   );
 
   // Styles
