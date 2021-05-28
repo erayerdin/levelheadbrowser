@@ -22,8 +22,8 @@ class RumpusMapToProfileConverter
     return Profile(
       id: input['userId'],
       dateJoined: DateTime.parse(input['createdAt']),
-      alias: input['alias']['alias'],
-      avatar: input['alias']['avatarId'],
+      alias: (input['alias'] ?? Map())['alias'],
+      avatar: (input['alias'] ?? Map())['avatarId'],
       stats: ProfileStats(
         subscriberCount: input['stats']['Subscribers'],
         followingCount: input['stats']['NumFollowing'],
