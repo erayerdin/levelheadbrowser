@@ -23,8 +23,9 @@ void main() {
 
       // remove cache interceptor, we're gonna mock it
       Dio client = getIt.get(instanceName: 'http.client.rumpus');
-      client.interceptors
-          .removeWhere((element) => element is DioCacheInterceptor);
+      client.interceptors.removeWhere(
+        (element) => element is DioCacheInterceptor,
+      );
 
       nock.defaultBase = 'https://www.bscotch.net/api/levelhead';
       nock.init();
@@ -51,6 +52,20 @@ void main() {
 
       expect(profile1.id, '6d2dmj');
       expect(profile2.id, 'tzgm0c');
+    });
+
+    test('getById', () async {
+      var mockResponseBody =
+          '{"data":[{"_id":"60b0a9ec2634240238bcffe0","userId":"nvj9n6","stats":{"Subscribers":0,"NumFollowing":0,"Crowns":0,"Shoes":0,"PlayTime":0,"TipsPerLevel":0,"TipsPerDay":0,"TippedPerLevelPlayed":0,"TippedPerDay":0,"HiddenGem":0,"Trophies":0,"PerkPoints":5,"CampaignProg":0,"TimeTrophies":0},"createdAt":"2021-05-28T08:29:32.538Z","updatedAt":"2021-05-28T08:29:34.784Z"}]}';
+      nock.get(startsWith('/players'))
+        ..reply(
+          200,
+          mockResponseBody,
+          headers: {'Content-Type': 'application/json'},
+        );
+
+      Profile profile = await _repository.getById('nvj9n6');
+      expect(profile.id, 'nvj9n6');
     });
   });
 }

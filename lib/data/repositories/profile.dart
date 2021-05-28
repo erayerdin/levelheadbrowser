@@ -14,6 +14,7 @@ import 'package:logger/logger.dart';
 
 abstract class ProfileRepository<ParamModel, LocalModel> {
   Future<List<LocalModel>> list(ParamModel params);
+  Future<LocalModel> getById(String id);
 }
 
 class RumpusProfileRepository
@@ -35,5 +36,17 @@ class RumpusProfileRepository
     _logger.v('profiles: $profiles');
 
     return profiles;
+  }
+
+  @override
+  Future<Profile> getById(String id) async {
+    _logger.d('Getting profile using Rumpus Profile Repository...');
+    _logger.v('id: $id');
+
+    Map<String, dynamic> data = await _provider.getById(id);
+    Profile profile = _converter.convert(data);
+    _logger.v('profile: $profile');
+
+    return profile;
   }
 }
