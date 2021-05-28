@@ -13,6 +13,7 @@ import 'package:logger/logger.dart';
 
 abstract class ProfileProvider<ParamModel, ResponseType> {
   Future<List<ResponseType>> list(ParamModel params);
+  Future<ResponseType> getById(String id);
 }
 
 class RumpusProfileProvider
@@ -40,6 +41,32 @@ class RumpusProfileProvider
     // for some reason, it does not work without body['data']
     // it says it should be List<dynamic>, but it is not.
     List<Map<String, dynamic>> data = List.from(body['data']);
+    _logger.v('data: $data');
+
+    return data;
+  }
+
+  @override
+  Future<Map<String, dynamic>> getById(String id) async {
+    _logger.d('Getting profile using Rumpus Profile Provider...');
+    _logger.v('id: $id');
+
+    Response<Map<String, dynamic>> response = await _client.get(
+      _BASE_URL,
+      queryParameters: _converter.convert(
+        PlayersParams(
+          ids: {id},
+        ),
+      ),
+      options: Options(
+        validateStatus: (status) => status == 200,
+      ),
+    );
+
+    Map<String, dynamic> body = response.data!;
+    // for some reason, it does not work without body['data']
+    // it says it should be List<dynamic>, but it is not.
+    Map<String, dynamic> data = body['data'][0];
     _logger.v('data: $data');
 
     return data;
