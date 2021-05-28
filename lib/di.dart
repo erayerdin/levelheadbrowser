@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get_it/get_it.dart';
 import 'package:levelheadbrowser/data/converters/forms/profilefilterform.dart';
+import 'package:levelheadbrowser/data/converters/level.dart';
 import 'package:levelheadbrowser/data/converters/params/levels.dart';
 import 'package:levelheadbrowser/data/converters/params/players.dart';
 import 'package:levelheadbrowser/data/converters/profile.dart';
@@ -63,6 +64,11 @@ Future<void> setUpDI() async {
   getIt.registerLazySingleton<Converter<Map<String, dynamic>, Profile>>(
     () => RumpusMapToProfileConverter(),
     instanceName: 'data.converters.profile.toProfile.fromRumpusMap',
+  );
+  // TODO Converter<Map<String, dynamic>, Future<Level>> does not work.
+  getIt.registerLazySingleton<Converter>(
+    () => RumpusMapToLevelConverter(),
+    instanceName: 'data.converters.level.toLevel.fromRumpusMap',
   );
   getIt.registerLazySingleton<Converter<PlayersParams, Map<String, String>>>(
     () => PlayersParamsToParameterMapConverter(),
