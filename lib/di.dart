@@ -73,12 +73,13 @@ Future<void> setUpDI() async {
     instanceName: 'data.converters.players.toParamMap.fromLevelsParams',
   );
   getIt.registerLazySingleton<
-          Converter<
-              Map<String,
-                  FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>,
-              PlayersParams>>(() => ProfileFilterFormToPlayersParamsConverter(),
-      instanceName:
-          'data.converters.forms.fromProfileFilterForm.toPlayersParams');
+      Converter<
+          Map<String,
+              FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>,
+          PlayersParams>>(
+    () => ProfileFilterFormToPlayersParamsConverter(),
+    instanceName: 'data.converters.forms.fromProfileFilterForm.toPlayersParams',
+  );
 
   // Providers
   getIt.registerLazySingleton<
