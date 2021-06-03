@@ -68,7 +68,7 @@ Future<void> setUpDI() async {
     instanceName: 'data.converters.profile.toProfile.fromRumpusMap',
   );
   // TODO Converter<Map<String, dynamic>, Future<Level>> does not work.
-  getIt.registerLazySingleton<Converter>(
+  getIt.registerLazySingleton<Converter<Map<String, dynamic>, Future<Level>>>(
     () => RumpusMapToLevelConverter(),
     instanceName: 'data.converters.level.toLevel.fromRumpusMap',
   );
