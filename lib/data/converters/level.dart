@@ -83,6 +83,7 @@ class RumpusMapToLevelConverter
       creator: await _profileRepository.getById(input['userId']),
       title: input['title'],
       createdAt: DateTime.parse(input['createdAt']),
+      avatar: input['avatarId'],
       gameVersion: input['gameVersion'],
       inTower: input['tower'],
       inTowerTrial: input['towerTrial'],

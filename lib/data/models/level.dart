@@ -75,6 +75,7 @@ class Level extends Equatable {
   final Profile creator;
   final String title;
   final DateTime createdAt;
+  final String avatar;
   final String gameVersion;
   final bool inTower;
   final bool inTowerTrial;
@@ -92,6 +93,7 @@ class Level extends Equatable {
     required this.creator,
     required this.title,
     required this.createdAt,
+    required this.avatar,
     required this.gameVersion,
     required this.inTower,
     required this.inTowerTrial,
@@ -104,6 +106,9 @@ class Level extends Equatable {
     required this.highScoreRecords,
     required this.fastestTimeRecords,
   });
+
+  String getAvatarURL({int height = 50, bool isWebP = true}) =>
+      'https://img.bscotch.net/fit-in/${height}x$height/avatars/$avatar.${isWebP ? "webp" : "png"}';
 
   @override
   List<Object?> get props => [id];
