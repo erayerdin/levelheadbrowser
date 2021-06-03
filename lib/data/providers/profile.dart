@@ -58,9 +58,6 @@ class RumpusProfileProvider
           ids: {id},
         ),
       ),
-      options: Options(
-        validateStatus: (status) => status == 200,
-      ),
     );
 
     Map<String, dynamic> body = response.data!;
