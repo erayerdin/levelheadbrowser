@@ -21,7 +21,7 @@ class RumpusLevelRepository implements LevelRepository<LevelsParams, Level> {
   final LevelProvider<LevelsParams, Map<String, dynamic>> _provider =
       getIt.get(instanceName: 'data.providers.level.rumpus');
   final Converter<Map<String, dynamic>, Future<Level>> _converter =
-      getIt.get(instanceName: 'data.converters.profile.toLevel.fromRumpusMap');
+      getIt.get(instanceName: 'data.converters.level.toLevel.fromRumpusMap');
 
   @override
   Future<List<Level>> list(LevelsParams params) async {
