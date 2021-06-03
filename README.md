@@ -19,7 +19,7 @@ It is also possible to build Levelhead Browser as native Linux application. We c
 
 This is how profile page looks like:
 
-![](screenshots/profilespage.gif)
+![](screenshots/app.gif)
 
 ## License
 
