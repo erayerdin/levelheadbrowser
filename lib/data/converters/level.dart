@@ -46,7 +46,7 @@ class RumpusMapToLevelConverter
     List<Record> records = [];
     if (isFastestTime) {
       List<Map<String, dynamic>> fastestTimeRecords =
-          input['records']['FastestTime'];
+          List.from(input['records']['FastestTime']);
       for (var record in fastestTimeRecords) {
         records.add(
           Record(
@@ -58,7 +58,7 @@ class RumpusMapToLevelConverter
       }
     } else {
       List<Map<String, dynamic>> highScoreRecords =
-          input['records']['HighScore'];
+          List.from(input['records']['HighScore']);
       for (var record in highScoreRecords) {
         records.add(
           Record(
@@ -100,7 +100,7 @@ class RumpusMapToLevelConverter
       ),
       stats: LevelStats(
         attemptCount: input['stats']['Attempts'],
-        diamondCount: input['stats']['Diamons'],
+        diamondCount: input['stats']['Diamonds'],
         playerCount: input['stats']['Players'],
         successCount: input['stats']['Successes'],
         clearRate: input['stats']['ClearRate'],
