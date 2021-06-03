@@ -4,6 +4,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:levelheadbrowser/data/models/profile.dart';
@@ -54,8 +55,15 @@ class ProfileDialog extends StatelessWidget {
               margin: _margin,
               child: Column(
                 children: [
+                  CachedNetworkImage(
+                    imageUrl: profile.getAvatarURL(),
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Text(
-                    '${profile.alias == null ? "<no alias>" : profile.alias} Info',
+                    '${profile.alias == null ? "<no alias>" : profile.alias}',
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   Divider(),
