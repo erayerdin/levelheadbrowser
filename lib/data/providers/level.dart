@@ -17,7 +17,7 @@ abstract class LevelProvider<ParamModel, ResponseType> {
 
 class RumpusLevelProvider
     implements LevelProvider<LevelsParams, Map<String, dynamic>> {
-  static const String _BASE_URL = '/players';
+  static const String _BASE_URL = '/levels';
   final Logger _logger = getIt.get();
   final Dio _client = getIt.get(instanceName: 'http.client.rumpus');
   final Converter<LevelsParams, Map<String, String>> _converter = getIt.get(
