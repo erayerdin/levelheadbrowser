@@ -58,6 +58,10 @@ class ProfileDialog extends StatelessWidget {
                   CachedNetworkImage(
                     imageUrl: profile.getAvatarURL(),
                     placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(
+                      Icons.error,
+                      color: Colors.black,
+                    ),
                   ),
                   SizedBox(
                     height: 10,

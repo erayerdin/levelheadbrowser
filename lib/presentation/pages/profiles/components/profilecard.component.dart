@@ -4,6 +4,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:levelheadbrowser/data/models/profile.dart';
@@ -45,63 +46,71 @@ class ProfileCardComponent extends StatelessWidget {
             ),
       ),
       child: Builder(
-        builder: (context) => Card(
-          color: Color.lerp(
-              Colors.red,
-              Colors.green,
-              profile.stats.subscriberCount == null
-                  ? 0
-                  : profile.stats.subscriberCount! / _MAX_SUBS_LIMIT),
-          child: Container(
-              margin: _margin,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Flexible(
-                        child: Text(
-                          profile.alias == null ? '<no alias>' : profile.alias!,
-                          style: Theme.of(context).textTheme.subtitle1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.visibility),
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) => ProfileDialog(
-                              profile: profile,
-                            ),
-                          );
-                        },
-                      )
-                    ],
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.end,
+        builder: (context) => GestureDetector(
+          onTap: () => {
+            showDialog(
+              context: context,
+              builder: (context) => ProfileDialog(
+                profile: profile,
+              ),
+            )
+          },
+          child: Card(
+            color: Color.lerp(
+                Colors.red,
+                Colors.green,
+                profile.stats.subscriberCount == null
+                    ? 0
+                    : profile.stats.subscriberCount! / _MAX_SUBS_LIMIT),
+            child: Container(
+                margin: _margin,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'Joined ${timeago.format(profile.dateJoined)}',
-                          style: Theme.of(context).textTheme.caption,
+                        Flexible(
+                          child: Text(
+                            profile.alias == null
+                                ? '<no alias>'
+                                : profile.alias!,
+                            style: Theme.of(context).textTheme.subtitle1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
-                        Text(
-                          'Has ${profile.stats.subscriberCount} subscribers',
-                          style: Theme.of(context).textTheme.caption,
-                        ),
-                        Text(
-                          'Following ${profile.stats.followingCount} people',
-                          style: Theme.of(context).textTheme.caption,
-                        ),
+                        CachedNetworkImage(
+                          imageUrl: profile.getAvatarURL(),
+                          placeholder: (context, url) =>
+                              CircularProgressIndicator(),
+                          errorWidget: (context, url, error) =>
+                              Icon(Icons.error),
+                        )
                       ],
                     ),
-                  ),
-                ],
-              )),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            'Joined ${timeago.format(profile.dateJoined)}',
+                            style: Theme.of(context).textTheme.caption,
+                          ),
+                          Text(
+                            'Has ${profile.stats.subscriberCount} subscribers',
+                            style: Theme.of(context).textTheme.caption,
+                          ),
+                          Text(
+                            'Following ${profile.stats.followingCount} people',
+                            style: Theme.of(context).textTheme.caption,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )),
+          ),
         ),
       ),
     );
