@@ -61,9 +61,8 @@ class Profile extends Equatable {
     required this.stats,
   });
 
-  String getAvatarURL({int height = 50, bool isWebP = true}) {
-    return 'https://img.bscotch.net/fit-in/${height}x$height/avatars/$avatar.${isWebP ? "webp" : "png"}';
-  }
+  String getAvatarURL({int height = 50, bool isWebP = true}) =>
+      'https://img.bscotch.net/fit-in/${height}x$height/avatars/$avatar.${isWebP ? "webp" : "png"}';
 
   @override
   List<Object?> get props => [id];
