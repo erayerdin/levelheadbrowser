@@ -59,23 +59,37 @@ class LevelCardComponent extends StatelessWidget {
                               Icon(Icons.error),
                         ),
                         SizedBox(width: 10),
-                        Text(
-                          level.title,
-                          style: Theme.of(context).textTheme.subtitle1,
-                          overflow: TextOverflow.ellipsis,
+                        SizedBox(
+                          width: 170,
+                          child: Text(
+                            level.title,
+                            style: Theme.of(context).textTheme.subtitle1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ],
                     ),
-                    Row(
-                      children: [
-                        Icon(Icons.favorite_border),
-                        SizedBox(width: 5),
-                        Text(level.stats.likeCount.toString()),
-                        SizedBox(width: 10),
-                        Icon(Icons.star_outline_outlined),
-                        SizedBox(width: 5),
-                        Text(level.stats.favoriteCount.toString()),
-                      ],
+                    SizedBox(
+                      width: 120,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.favorite_border),
+                              SizedBox(width: 5),
+                              Text(level.stats.likeCount.toString()),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.star_outline_outlined),
+                              SizedBox(width: 5),
+                              Text(level.stats.favoriteCount.toString()),
+                            ],
+                          ),
+                        ],
+                      ),
                     )
                   ],
                 )
