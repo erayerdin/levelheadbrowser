@@ -45,7 +45,7 @@ class LevelStats {
   final int successCount;
   final double clearRate;
   final double failureRate;
-  final double timePerWin;
+  final num timePerWin;
   final int favoriteCount;
   final int likeCount;
   final int playTimeSeconds;
