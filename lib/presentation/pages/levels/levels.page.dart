@@ -21,20 +21,50 @@ class LevelsPage extends StatelessWidget {
       ],
       child: Container(
         padding: _padding,
-        child: BlocBuilder<LevelsBloc, LevelsState>(
-          builder: (context, state) {
-            if (state is LoadedLevelsState) {
-              return ListView(
-                children: state.levels
-                    .map((e) => LevelCardComponent(level: e))
-                    .toList(),
-              );
-            } else if (state is FailedLoadingLevelsState) {
-              return Center(child: Text(state.message));
-            } else {
-              return Center(child: CircularProgressIndicator());
-            }
-          },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            BlocBuilder<LevelsBloc, LevelsState>(
+              builder: (context, state) {
+                if (state is LoadingLevelsState) {
+                  return ElevatedButton(
+                    onPressed: null,
+                    child: Text('Filter'),
+                  );
+                }
+
+                return ElevatedButton(
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Not Implemented Yet'),
+                      ),
+                    );
+                  },
+                  child: Text('Filter'),
+                );
+              },
+            ),
+            SizedBox(height: 10),
+            Expanded(
+              child: BlocBuilder<LevelsBloc, LevelsState>(
+                builder: (context, state) {
+                  if (state is LoadedLevelsState) {
+                    return ListView(
+                      children: state.levels
+                          .map((e) => LevelCardComponent(level: e))
+                          .toList(),
+                    );
+                  } else if (state is FailedLoadingLevelsState) {
+                    return Center(child: Text(state.message));
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
