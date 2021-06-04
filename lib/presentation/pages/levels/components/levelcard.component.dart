@@ -76,15 +76,31 @@ class LevelCardComponent extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.favorite_border),
-                              SizedBox(width: 5),
+                              IconButton(
+                                icon: Icon(Icons.favorite_border),
+                                onPressed: () {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('Not Implement Yet'),
+                                    ),
+                                  );
+                                }, // TODO implement like button
+                              ),
                               Text(level.stats.likeCount.toString()),
                             ],
                           ),
                           Row(
                             children: [
-                              Icon(Icons.star_outline_outlined),
-                              SizedBox(width: 5),
+                              IconButton(
+                                icon: Icon(Icons.star_outline_outlined),
+                                onPressed: () {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('Not Implement Yet'),
+                                    ),
+                                  );
+                                }, // TODO implement favorite button
+                              ),
                               Text(level.stats.favoriteCount.toString()),
                             ],
                           ),
