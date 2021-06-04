@@ -8,6 +8,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:levelheadbrowser/data/models/level.dart';
 import 'package:levelheadbrowser/di.dart';
+import 'package:levelheadbrowser/presentation/components/leveldialog/leveldialog.component.dart';
 
 class LevelCardComponent extends StatelessWidget {
   final EdgeInsets _margin = getIt.get(instanceName: 'style.space.10');
@@ -41,14 +42,10 @@ class LevelCardComponent extends StatelessWidget {
       ),
       child: Builder(
         builder: (context) => GestureDetector(
-          onTap: () {
-            // TODO implement card press
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Not Implemented Yet'),
-              ),
-            );
-          },
+          onTap: () => showDialog(
+            context: context,
+            builder: (context) => LevelDialog(level: level),
+          ),
           child: Card(
             color: Color.lerp(Colors.red, Colors.green, level.stats.clearRate),
             child: Container(
