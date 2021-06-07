@@ -26,10 +26,10 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
         case 0:
           yield HomePageProfilesTabState();
           break;
-        case 1:
+        case 2:
           yield HomePageTowerTrialTabState();
           break;
-        case 2:
+        case 1:
           yield HomePageLevelsTabState();
           break;
         case 3:

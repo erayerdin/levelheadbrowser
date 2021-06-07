@@ -71,11 +71,11 @@ class _HomePageState extends State<HomePage> {
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.help), // TODO change icon
-                label: 'Tower Trial',
+                label: 'Levels',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.help), // TODO change icon
-                label: 'Levels',
+                label: 'Tower Trial',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.help), // TODO change icon
