@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:levelheadbrowser/data/models/params/levels.dart';
+import 'package:levelheadbrowser/data/models/params/players.dart';
 import 'package:levelheadbrowser/di.dart';
 import 'package:logger/logger.dart';
 
@@ -34,9 +36,9 @@ extension HomePageTabExtension on HomePageTab {
   HomePageState toState(dynamic params) {
     switch (this) {
       case HomePageTab.Profiles:
-        return HomePageProfilesTabState();
+        return HomePageProfilesTabState(params);
       case HomePageTab.Levels:
-        return HomePageLevelsTabState();
+        return HomePageLevelsTabState(params);
       case HomePageTab.TowerTrial:
         return HomePageTowerTrialTabState();
       case HomePageTab.DailyBuild:
@@ -48,7 +50,7 @@ extension HomePageTabExtension on HomePageTab {
 class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
   final Logger _logger = getIt.get();
 
-  HomePageBloc() : super(HomePageProfilesTabState());
+  HomePageBloc() : super(HomePageProfilesTabState(null));
 
   @override
   Stream<HomePageState> mapEventToState(

@@ -7,11 +7,13 @@ abstract class HomePageEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class LoadHomePageEvent implements HomePageEvent {
+class LoadHomePageEvent<T> implements HomePageEvent {
   final int pageId;
+  final T? params;
 
   LoadHomePageEvent({
     required this.pageId,
+    this.params,
   });
 
   @override
