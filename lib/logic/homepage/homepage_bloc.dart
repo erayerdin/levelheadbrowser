@@ -8,6 +8,43 @@ import 'package:logger/logger.dart';
 part 'homepage_event.dart';
 part 'homepage_state.dart';
 
+enum HomePageTab {
+  Profiles,
+  Levels,
+  TowerTrial,
+  DailyBuild,
+}
+
+HomePageTab fromIndexToHomePageTab(int index) {
+  switch (index) {
+    case 0:
+      return HomePageTab.Profiles;
+    case 1:
+      return HomePageTab.Levels;
+    case 2:
+      return HomePageTab.TowerTrial;
+    case 3:
+      return HomePageTab.DailyBuild;
+    default:
+      return HomePageTab.Profiles;
+  }
+}
+
+extension HomePageTabExtension on HomePageTab {
+  HomePageState toState(dynamic params) {
+    switch (this) {
+      case HomePageTab.Profiles:
+        return HomePageProfilesTabState();
+      case HomePageTab.Levels:
+        return HomePageLevelsTabState();
+      case HomePageTab.TowerTrial:
+        return HomePageTowerTrialTabState();
+      case HomePageTab.DailyBuild:
+        return HomePageDailyBuildTabState();
+    }
+  }
+}
+
 class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
   final Logger _logger = getIt.get();
 
@@ -22,23 +59,7 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
       int pageId = event.pageId;
       _logger.v('page id: $pageId');
 
-      switch (pageId) {
-        case 0:
-          yield HomePageProfilesTabState();
-          break;
-        case 2:
-          yield HomePageTowerTrialTabState();
-          break;
-        case 1:
-          yield HomePageLevelsTabState();
-          break;
-        case 3:
-          yield HomePageDailyBuildTabState();
-          break;
-        default:
-          yield HomePageProfilesTabState();
-          break;
-      }
+      yield fromIndexToHomePageTab(pageId).toState(null);
     }
   }
 }
