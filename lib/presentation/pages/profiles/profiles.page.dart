@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
 import 'package:levelheadbrowser/di.dart';
+import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
 import 'package:levelheadbrowser/logic/profiles/profiles_bloc.dart';
 import 'package:levelheadbrowser/presentation/pages/profiles/components/filterdialog.component.dart';
 import 'package:levelheadbrowser/presentation/pages/profiles/components/profilecard.component.dart';
@@ -25,7 +26,8 @@ class ProfilesPage extends StatelessWidget {
           create: (blocCtx) => ProfilesBloc()
             ..add(
               LoadProfilesEvent(
-                params: PlayersParams(), // TODO make dynamic with form
+                params: BlocProvider.of<HomePageBloc>(context).state.params ??
+                    PlayersParams(),
               ),
             ),
         ),
