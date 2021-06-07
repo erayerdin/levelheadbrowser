@@ -1,9 +1,11 @@
 part of 'homepage_bloc.dart';
 
 abstract class HomePageState<T> extends Equatable {
+  final int index;
   final T? params;
 
   const HomePageState(
+    this.index,
     this.params,
   );
 
@@ -12,6 +14,7 @@ abstract class HomePageState<T> extends Equatable {
 }
 
 class HomePageProfilesTabState implements HomePageState<PlayersParams> {
+  final int index = HomePageBottomNavbarTab.Profiles.index;
   final PlayersParams? params;
 
   HomePageProfilesTabState(this.params);
@@ -27,6 +30,8 @@ class HomePageProfilesTabState implements HomePageState<PlayersParams> {
 }
 
 class HomePageTowerTrialTabState implements HomePageState {
+  final int index = HomePageBottomNavbarTab.TowerTrial.index;
+
   @override
   List<Object> get props => [];
 
@@ -39,6 +44,7 @@ class HomePageTowerTrialTabState implements HomePageState {
 }
 
 class HomePageLevelsTabState implements HomePageState<LevelsParams> {
+  final int index = HomePageBottomNavbarTab.Levels.index;
   final LevelsParams? params;
 
   HomePageLevelsTabState(this.params);
@@ -54,6 +60,7 @@ class HomePageLevelsTabState implements HomePageState<LevelsParams> {
 }
 
 class HomePageDailyBuildTabState implements HomePageState {
+  final int index = HomePageBottomNavbarTab.DailyBuild.index;
   @override
   List<Object> get props => [];
 

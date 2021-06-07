@@ -39,33 +39,25 @@ extension HomePageBottomNavbarTabExtension on HomePageBottomNavbarTab {
   }
 }
 
-class _BottomNavbarComponent extends StatefulWidget {
+class _BottomNavbarComponent extends StatelessWidget {
   const _BottomNavbarComponent({Key? key}) : super(key: key);
 
   @override
-  _BottomNavbarComponentState createState() => _BottomNavbarComponentState();
-}
-
-class _BottomNavbarComponentState extends State<_BottomNavbarComponent> {
-  final Logger _logger = getIt.get();
-  int _currentIndex = 0;
-
-  @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      onTap: (index) {
-        _logger.d('Pressed $index on bottom navbar.');
-        BlocProvider.of<HomePageBloc>(context)
-            .add(LoadHomePageEvent(index: index));
-        setState(() {
-          _currentIndex = index;
-        });
+    return BlocBuilder<HomePageBloc, HomePageState>(
+      builder: (context, state) {
+        return BottomNavigationBar(
+          onTap: (index) {
+            BlocProvider.of<HomePageBloc>(context)
+                .add(LoadHomePageEvent(index: index));
+          },
+          currentIndex: state.index,
+          type: BottomNavigationBarType.fixed,
+          items: HomePageBottomNavbarTab.values
+              .map((e) => e.toBottomNavbarItem())
+              .toList(),
+        );
       },
-      currentIndex: _currentIndex,
-      type: BottomNavigationBarType.fixed,
-      items: HomePageBottomNavbarTab.values
-          .map((e) => e.toBottomNavbarItem())
-          .toList(),
     );
   }
 }

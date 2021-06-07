@@ -13,9 +13,13 @@ extension HomePageBottomNavbarTabBlocExtension on HomePageBottomNavbarTab {
   HomePageState toState<T>(T? params) {
     switch (this) {
       case HomePageBottomNavbarTab.Profiles:
-        return HomePageProfilesTabState(params as PlayersParams);
+        return HomePageProfilesTabState(
+          params == null ? PlayersParams() : params as PlayersParams,
+        );
       case HomePageBottomNavbarTab.Levels:
-        return HomePageLevelsTabState(params as LevelsParams);
+        return HomePageLevelsTabState(
+          params == null ? LevelsParams() : params as LevelsParams,
+        );
       case HomePageBottomNavbarTab.TowerTrial:
         return HomePageTowerTrialTabState();
       case HomePageBottomNavbarTab.DailyBuild:
@@ -31,9 +35,8 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
   Stream<HomePageState> mapEventToState(
     HomePageEvent event,
   ) async* {
-    if (event is LoadHomePageEvent<PlayersParams>) {
-      int index = event.index;
-      yield HomePageBottomNavbarTab.values[index].toState(event.params);
+    if (event is LoadHomePageEvent) {
+      yield HomePageBottomNavbarTab.values[event.index].toState(event.params);
     }
   }
 }
