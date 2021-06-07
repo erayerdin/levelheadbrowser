@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 import 'package:levelheadbrowser/data/models/profile.dart';
 import 'package:levelheadbrowser/di.dart';
-import 'package:levelheadbrowser/presentation/components/profiledialog/profiledialog.component.dart';
+import 'package:levelheadbrowser/presentation/pages/profiles/components/profiledialog/profiledialog.component.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 const _MAX_SUBS_LIMIT = 7500;
