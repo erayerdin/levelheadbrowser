@@ -8,16 +8,16 @@ abstract class HomePageEvent extends Equatable {
 }
 
 class LoadHomePageEvent<T> implements HomePageEvent {
-  final int pageId;
+  final int index;
   final T? params;
 
   LoadHomePageEvent({
-    required this.pageId,
+    required this.index,
     this.params,
   });
 
   @override
-  List<Object> get props => [pageId];
+  List<Object> get props => [index];
 
   @override
   bool? get stringify => true;

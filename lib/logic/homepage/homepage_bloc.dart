@@ -5,43 +5,22 @@ import 'package:equatable/equatable.dart';
 import 'package:levelheadbrowser/data/models/params/levels.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
 import 'package:levelheadbrowser/di.dart';
+import 'package:levelheadbrowser/presentation/pages/home/home.page.dart';
 import 'package:logger/logger.dart';
 
 part 'homepage_event.dart';
 part 'homepage_state.dart';
 
-enum HomePageTab {
-  Profiles,
-  Levels,
-  TowerTrial,
-  DailyBuild,
-}
-
-HomePageTab fromIndexToHomePageTab(int index) {
-  switch (index) {
-    case 0:
-      return HomePageTab.Profiles;
-    case 1:
-      return HomePageTab.Levels;
-    case 2:
-      return HomePageTab.TowerTrial;
-    case 3:
-      return HomePageTab.DailyBuild;
-    default:
-      return HomePageTab.Profiles;
-  }
-}
-
-extension HomePageTabExtension on HomePageTab {
-  HomePageState toState(dynamic params) {
+extension HomePageBottomNavbarTabBlocExtension on HomePageBottomNavbarTab {
+  HomePageState toState<T>(T? params) {
     switch (this) {
-      case HomePageTab.Profiles:
-        return HomePageProfilesTabState(params);
-      case HomePageTab.Levels:
-        return HomePageLevelsTabState(params);
-      case HomePageTab.TowerTrial:
+      case HomePageBottomNavbarTab.Profiles:
+        return HomePageProfilesTabState(params as PlayersParams);
+      case HomePageBottomNavbarTab.Levels:
+        return HomePageLevelsTabState(params as LevelsParams);
+      case HomePageBottomNavbarTab.TowerTrial:
         return HomePageTowerTrialTabState();
-      case HomePageTab.DailyBuild:
+      case HomePageBottomNavbarTab.DailyBuild:
         return HomePageDailyBuildTabState();
     }
   }
@@ -56,12 +35,10 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
   Stream<HomePageState> mapEventToState(
     HomePageEvent event,
   ) async* {
-    if (event is LoadHomePageEvent) {
-      _logger.d('HomePageBloc event is LoadHomePageEvent.');
-      int pageId = event.pageId;
-      _logger.v('page id: $pageId');
+    if (event is LoadHomePageEvent<PlayersParams>) {
+      int index = event.index;
 
-      yield fromIndexToHomePageTab(pageId).toState(null);
+      yield HomePageBottomNavbarTab.values[index].toState(event.params);
     }
   }
 }

@@ -56,7 +56,7 @@ class _BottomNavbarComponentState extends State<_BottomNavbarComponent> {
       onTap: (index) {
         _logger.d('Pressed $index on bottom navbar.');
         BlocProvider.of<HomePageBloc>(context)
-            .add(LoadHomePageEvent(pageId: index));
+            .add(LoadHomePageEvent(index: index));
         setState(() {
           _currentIndex = index;
         });
