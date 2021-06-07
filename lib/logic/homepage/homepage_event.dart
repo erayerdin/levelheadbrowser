@@ -21,4 +21,7 @@ class LoadHomePageEvent<T> implements HomePageEvent {
 
   @override
   bool? get stringify => true;
+
+  @override
+  String toString() => 'LoadHomePageEvent(index: $index, params: $params)';
 }

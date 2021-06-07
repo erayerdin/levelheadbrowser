@@ -27,6 +27,9 @@ class LoadedProfilesState implements ProfilesState {
 
   @override
   bool? get stringify => true;
+
+  @override
+  String toString() => 'LoadedProfilesState(profiles: $profiles)';
 }
 
 class FailedProfilesState implements ProfilesState {
@@ -41,4 +44,7 @@ class FailedProfilesState implements ProfilesState {
 
   @override
   bool? get stringify => true;
+
+  @override
+  String toString() => 'FailedProfilesState(message: $message)';
 }

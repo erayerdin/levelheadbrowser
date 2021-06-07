@@ -18,6 +18,9 @@ class LoadedLevelsState extends LevelsState {
 
   @override
   List<Object> get props => [levels];
+
+  @override
+  String toString() => 'LoadedLevelsState(levels: $levels)';
 }
 
 class FailedLoadingLevelsState extends LevelsState {
@@ -29,4 +32,7 @@ class FailedLoadingLevelsState extends LevelsState {
 
   @override
   List<Object> get props => [message];
+
+  @override
+  String toString() => 'FailedLoadingLevelsState(message: $message)';
 }

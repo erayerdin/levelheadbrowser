@@ -21,6 +21,9 @@ class HomePageProfilesTabState implements HomePageState<PlayersParams> {
 
   @override
   bool? get stringify => true;
+
+  @override
+  String toString() => 'HomePageProfilesTabState(params: $params)';
 }
 
 class HomePageTowerTrialTabState implements HomePageState {
@@ -45,6 +48,9 @@ class HomePageLevelsTabState implements HomePageState<LevelsParams> {
 
   @override
   bool? get stringify => true;
+
+  @override
+  String toString() => 'HomePageLevelsTabState(params: $params)';
 }
 
 class HomePageDailyBuildTabState implements HomePageState {

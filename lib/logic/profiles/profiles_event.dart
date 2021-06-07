@@ -19,4 +19,7 @@ class LoadProfilesEvent implements ProfilesEvent {
 
   @override
   bool? get stringify => true;
+
+  @override
+  String toString() => 'LoadProfilesEvent(params: $params)';
 }
