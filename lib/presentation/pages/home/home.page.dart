@@ -14,16 +14,9 @@ import 'package:levelheadbrowser/presentation/pages/profiles/profiles.page.dart'
 import 'package:levelheadbrowser/presentation/pages/towertrials/towertrials.page.dart';
 import 'package:logger/logger.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
+part 'bottomnavbar.component.dart';
 
-class _HomePageState extends State<HomePage> {
-  final Logger _logger = getIt.get();
-
-  int _currentIndexBottomNavbar = 0;
-
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -52,38 +45,7 @@ class _HomePageState extends State<HomePage> {
             return ProfilesPage();
           },
         ),
-        bottomNavigationBar: Builder(
-          builder: (context) => BottomNavigationBar(
-            onTap: (pageId) {
-              _logger.d('Pressed $pageId on bottom navbar.');
-              BlocProvider.of<HomePageBloc>(context)
-                  .add(LoadHomePageEvent(pageId: pageId));
-              setState(() {
-                _currentIndexBottomNavbar = pageId;
-              });
-            },
-            currentIndex: _currentIndexBottomNavbar,
-            type: BottomNavigationBarType.fixed,
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: 'Profiles',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.help), // TODO change icon
-                label: 'Levels',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.help), // TODO change icon
-                label: 'Tower Trial',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.help), // TODO change icon
-                label: 'Daily Build Items',
-              ),
-            ],
-          ),
-        ),
+        bottomNavigationBar: _BottomNavbarComponent(),
       ),
     );
   }
