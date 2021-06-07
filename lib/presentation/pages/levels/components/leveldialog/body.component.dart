@@ -33,6 +33,16 @@ class _BodyComponent extends StatelessWidget {
     required this.level,
   }) : super(key: key);
 
+  void _redirectToProfilesPage(BuildContext context, String id) {
+    BlocProvider.of<HomePageBloc>(context).add(
+      LoadHomePageEvent(
+        index: HomePageBottomNavbarTab.Profiles.index,
+        params: PlayersParams(ids: {id}),
+      ),
+    );
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -61,7 +71,8 @@ class _BodyComponent extends StatelessWidget {
                 margin: _TABLE_ROW_MARGIN,
                 child: LinkComponent(
                   level.creator.alias ?? '<no-alias>',
-                  onTap: () {}, // TODO impl onTap for level creator
+                  onTap: () =>
+                      _redirectToProfilesPage(context, level.creator.id),
                 ),
               ),
             ],
@@ -102,8 +113,10 @@ class _BodyComponent extends StatelessWidget {
                             LinkComponent(
                               level.fastestTimeRecords[0].profile.alias ??
                                   '<no-alias>',
-                              onTap:
-                                  () {}, // TODO impl onTap for fastest time record holder
+                              onTap: () => _redirectToProfilesPage(
+                                context,
+                                level.fastestTimeRecords[0].profile.id,
+                              ),
                             )
                           ],
                         ),
@@ -137,8 +150,10 @@ class _BodyComponent extends StatelessWidget {
                             LinkComponent(
                               level.highScoreRecords[0].profile.alias ??
                                   '<no-alias>',
-                              onTap:
-                                  () {}, // TODO impl onTap for highest score record holder
+                              onTap: () => _redirectToProfilesPage(
+                                context,
+                                level.highScoreRecords[0].profile.id,
+                              ),
                             )
                           ],
                         ),

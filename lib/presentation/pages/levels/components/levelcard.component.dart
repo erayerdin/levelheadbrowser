@@ -6,8 +6,10 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:levelheadbrowser/data/models/level.dart';
 import 'package:levelheadbrowser/di.dart';
+import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
 import 'package:levelheadbrowser/presentation/pages/levels/components/leveldialog/leveldialog.component.dart';
 
 class LevelCardComponent extends StatelessWidget {
@@ -44,7 +46,10 @@ class LevelCardComponent extends StatelessWidget {
         builder: (context) => GestureDetector(
           onTap: () => showDialog(
             context: context,
-            builder: (context) => LevelDialog(level: level),
+            builder: (_) => BlocProvider.value(
+              value: BlocProvider.of<HomePageBloc>(context),
+              child: LevelDialog(level: level),
+            ),
           ),
           child: Card(
             color: Color.lerp(Colors.red, Colors.green, level.stats.clearRate),
