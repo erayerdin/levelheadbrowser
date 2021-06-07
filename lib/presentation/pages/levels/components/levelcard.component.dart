@@ -8,7 +8,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:levelheadbrowser/data/models/level.dart';
 import 'package:levelheadbrowser/di.dart';
-import 'package:levelheadbrowser/presentation/components/leveldialog/leveldialog.component.dart';
+import 'package:levelheadbrowser/presentation/pages/levels/components/leveldialog/leveldialog.component.dart';
 
 class LevelCardComponent extends StatelessWidget {
   final EdgeInsets _margin = getIt.get(instanceName: 'style.space.10');
