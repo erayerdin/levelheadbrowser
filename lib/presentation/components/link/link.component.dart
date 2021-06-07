@@ -22,6 +22,7 @@ class LinkComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RichText(
+      overflow: TextOverflow.ellipsis,
       text: TextSpan(
         text: text,
         style: TextStyle(color: color),
