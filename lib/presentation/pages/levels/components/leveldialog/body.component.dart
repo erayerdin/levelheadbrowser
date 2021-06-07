@@ -47,11 +47,24 @@ class _BodyComponent extends StatelessWidget {
         children: [
           _mapLevelFieldToTableRow(context, 'ID:', level.id),
           _mapLevelFieldToTableRow(context, 'Title:', level.title),
-          _mapLevelFieldToTableRow(
-            // TODO add a button to view creator details
-            context,
-            'Creator:',
-            level.creator.alias,
+          TableRow(
+            children: [
+              Container(
+                margin: _TABLE_ROW_MARGIN,
+                child: Text(
+                  'Creator',
+                  style: Theme.of(context).textTheme.bodyText1,
+                  textAlign: TextAlign.right,
+                ),
+              ),
+              Container(
+                margin: _TABLE_ROW_MARGIN,
+                child: LinkComponent(
+                  level.creator.alias ?? '<no-alias>',
+                  onTap: () {}, // TODO impl onTap for level creator
+                ),
+              ),
+            ],
           ),
           _mapLevelFieldToTableRow(
             context,
@@ -71,10 +84,31 @@ class _BodyComponent extends StatelessWidget {
                     'Fastest Time Record:',
                     '${level.fastestTimeRecords[0].value} seconds',
                   ),
-                  _mapLevelFieldToTableRow(
-                    context,
-                    '',
-                    'by ${level.fastestTimeRecords[0].profile.alias}', // TODO implement button for record holder profiles
+                  TableRow(
+                    children: [
+                      Container(
+                        margin: _TABLE_ROW_MARGIN,
+                        child: Text(
+                          '',
+                          style: Theme.of(context).textTheme.bodyText1,
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
+                      Container(
+                        margin: _TABLE_ROW_MARGIN,
+                        child: Row(
+                          children: [
+                            Text('by '),
+                            LinkComponent(
+                              level.fastestTimeRecords[0].profile.alias ??
+                                  '<no-alias>',
+                              onTap:
+                                  () {}, // TODO impl onTap for fastest time record holder
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
                   )
                 ]
               : [],
@@ -85,10 +119,31 @@ class _BodyComponent extends StatelessWidget {
                     'Highest Score Record:',
                     '${level.highScoreRecords[0].value} points',
                   ),
-                  _mapLevelFieldToTableRow(
-                    context,
-                    '',
-                    'by ${level.highScoreRecords[0].profile.alias}', // TODO implement button for record holder profiles
+                  TableRow(
+                    children: [
+                      Container(
+                        margin: _TABLE_ROW_MARGIN,
+                        child: Text(
+                          '',
+                          style: Theme.of(context).textTheme.bodyText1,
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
+                      Container(
+                        margin: _TABLE_ROW_MARGIN,
+                        child: Row(
+                          children: [
+                            Text('by '),
+                            LinkComponent(
+                              level.highScoreRecords[0].profile.alias ??
+                                  '<no-alias>',
+                              onTap:
+                                  () {}, // TODO impl onTap for highest score record holder
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
                   )
                 ]
               : [],

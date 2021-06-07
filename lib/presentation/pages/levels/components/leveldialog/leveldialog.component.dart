@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:levelheadbrowser/data/models/level.dart';
 import 'package:levelheadbrowser/di.dart';
 import 'package:levelheadbrowser/presentation/components/badge/badge.component.dart';
+import 'package:levelheadbrowser/presentation/components/link/link.component.dart';
 
 part 'header.component.dart';
 part 'body.component.dart';
