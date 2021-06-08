@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
         BlocProvider(
           create: (blocCtx) => HomePageBloc()
             ..add(
-              LoadHomePageEvent(index: HomePageBottomNavbarTab.Levels.index),
+              LoadHomePageEvent(index: HomePageBottomNavbarTab.Profiles.index),
             ),
         ),
       ],
