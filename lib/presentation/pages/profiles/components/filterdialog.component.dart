@@ -12,6 +12,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
 import 'package:levelheadbrowser/di.dart';
 import 'package:levelheadbrowser/logic/profiles/profiles_bloc.dart';
+import 'package:levelheadbrowser/utils/presentation.dart';
 import 'package:logger/logger.dart';
 import 'package:tuple/tuple.dart';
 
@@ -85,29 +86,13 @@ const SORT_BY_DROPDOWN_ITEMS = [
   ),
 ];
 
-Widget _buildSection(BuildContext context, String label, Widget widget) {
-  return Container(
-    margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-    child: Column(
-      children: [
-        Text(
-          label,
-          style: Theme.of(context).textTheme.headline6,
-        ),
-        widget,
-      ],
-    ),
-  );
-}
-
 class ProfileFilterDialog extends StatelessWidget {
   final Logger _logger = getIt.get();
   final Converter<
-          Map<String, FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>,
-          PlayersParams> _converter =
-      getIt.get(
-          instanceName:
-              'data.converters.forms.fromProfileFilterForm.toPlayersParams');
+      Map<String, FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>,
+      PlayersParams> _converter = getIt.get(
+    instanceName: 'data.converters.forms.fromProfileFilterForm.toPlayersParams',
+  );
 
   final _formKey = GlobalKey<FormBuilderState>();
 
@@ -128,7 +113,7 @@ class ProfileFilterDialog extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline5,
                   ),
                   Divider(),
-                  _buildSection(
+                  buildSection(
                     context,
                     'Subscribers',
                     FormBuilderRangeSlider(
@@ -141,7 +126,7 @@ class ProfileFilterDialog extends StatelessWidget {
                       ),
                     ),
                   ),
-                  _buildSection(
+                  buildSection(
                     context,
                     'Playtime (in secs)',
                     FormBuilderRangeSlider(
@@ -154,7 +139,7 @@ class ProfileFilterDialog extends StatelessWidget {
                       ),
                     ),
                   ),
-                  _buildSection(
+                  buildSection(
                     context,
                     'Sort by',
                     FormBuilderDropdown(
