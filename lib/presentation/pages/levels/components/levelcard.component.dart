@@ -97,7 +97,11 @@ class LevelCardComponent extends StatelessWidget {
                                     );
                                   }, // TODO implement like button
                                 ),
-                                Text(level.stats.likeCount.toString()),
+                                Text(
+                                  level.stats.likeCount == null
+                                      ? '0'
+                                      : level.stats.likeCount.toString(),
+                                ),
                               ],
                             ),
                             Row(
@@ -112,7 +116,11 @@ class LevelCardComponent extends StatelessWidget {
                                     );
                                   }, // TODO implement favorite button
                                 ),
-                                Text(level.stats.favoriteCount.toString()),
+                                Text(
+                                  level.stats.favoriteCount == null
+                                      ? '0'
+                                      : level.stats.favoriteCount.toString(),
+                                ),
                               ],
                             ),
                           ],

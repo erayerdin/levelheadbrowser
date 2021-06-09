@@ -89,8 +89,7 @@ class RumpusMapToLevelConverter
       inTowerTrial: input['towerTrial'],
       inDailyBuild: input['dailyBuild'],
       requiredPlayerCount: input['requiredPlayers'],
-      creatorRecord:
-          Duration(seconds: (input['creatorTime'] as double).floor()),
+      creatorRecord: Duration(seconds: (input['creatorTime'] as num).floor()),
       tags: await _buildTags(input),
       content: LevelContent(
         worldContentCount: input['content']['World'],

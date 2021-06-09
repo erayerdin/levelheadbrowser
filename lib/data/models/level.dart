@@ -46,8 +46,8 @@ class LevelStats {
   final double clearRate;
   final double failureRate;
   final num timePerWin;
-  final int favoriteCount;
-  final int likeCount;
+  final int? favoriteCount;
+  final int? likeCount;
   final int playTimeSeconds;
   final int replayValue;
   final int hiddenGemCount;
