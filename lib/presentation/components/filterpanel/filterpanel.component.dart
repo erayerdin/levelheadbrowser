@@ -56,7 +56,8 @@ class FilterPanel extends StatelessWidget {
                   Expanded(
                     child: OutlinedButton(
                       onPressed: () async {
-                        await _panelController.close();
+                        if (_panelController.isAttached)
+                          await _panelController.close();
                       },
                       child: Text('Close'),
                     ),
@@ -73,7 +74,8 @@ class FilterPanel extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () async {
                         onApply(_formKey);
-                        if (onApplyPop) await _panelController.close();
+                        if (onApplyPop && _panelController.isAttached)
+                          await _panelController.close();
                       },
                       child: Text('Apply'),
                     ),
