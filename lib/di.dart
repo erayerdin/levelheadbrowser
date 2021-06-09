@@ -11,6 +11,7 @@ import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get_it/get_it.dart';
+import 'package:levelheadbrowser/data/converters/forms/levelfilterform.dart';
 import 'package:levelheadbrowser/data/converters/forms/profilefilterform.dart';
 import 'package:levelheadbrowser/data/converters/level.dart';
 import 'package:levelheadbrowser/data/converters/params/levels.dart';
@@ -87,6 +88,14 @@ Future<void> setUpDI() async {
           PlayersParams>>(
     () => ProfileFilterFormToPlayersParamsConverter(),
     instanceName: 'data.converters.forms.fromProfileFilterForm.toPlayersParams',
+  );
+  getIt.registerLazySingleton<
+      Converter<
+          Map<String,
+              FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>,
+          LevelsParams>>(
+    () => LevelFilterFormToLevelsParamsConverter(),
+    instanceName: 'data.converters.forms.fromLevelFilterForm.toLevelsParams',
   );
 
   // Providers
