@@ -30,13 +30,12 @@ class LevelsParamsToParameterMapConverter
     });
 
     ifNotNullDo<Tuple2<bool, LevelsParamsSortField>>(input.sort, (sort) {
-      var descChar = sort.item1 ? '-' : ''; // TODO here is a sorting bug
+      var descChar = sort.item1 ? '' : '-';
       var value = sort.item2.value;
 
       params['sort'] = '$descChar$value';
     });
 
-    // TODO user ids
     // TODO limit
 
     ifNotNullDo<Set<String>>(input.tags, (tags) {
