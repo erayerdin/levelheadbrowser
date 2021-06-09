@@ -52,7 +52,11 @@ class LevelCardComponent extends StatelessWidget {
             ),
           ),
           child: Card(
-            color: Color.lerp(Colors.red, Colors.green, level.stats.clearRate),
+            color: Color.lerp(
+              Colors.red,
+              Colors.green,
+              level.stats.clearRate.toDouble(),
+            ),
             child: Container(
               margin: _margin,
               child: Column(
