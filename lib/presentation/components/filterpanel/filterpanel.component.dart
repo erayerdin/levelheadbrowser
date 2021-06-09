@@ -32,6 +32,7 @@ class FilterPanel extends StatelessWidget {
     return SlidingUpPanel(
       collapsed: Icon(Icons.expand_less),
       minHeight: 25,
+      maxHeight: 400,
       backdropEnabled: true,
       margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
       borderRadius: BorderRadius.only(
@@ -86,7 +87,10 @@ class FilterPanel extends StatelessWidget {
           ),
         ),
       ),
-      body: body,
+      body: Container(
+        padding: EdgeInsets.all(10),
+        child: body,
+      ),
     );
   }
 }

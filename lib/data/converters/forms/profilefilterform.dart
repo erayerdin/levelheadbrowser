@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
 import 'package:levelheadbrowser/di.dart';
-import 'package:levelheadbrowser/presentation/pages/profiles/components/filterdialog.component.dart';
+import 'package:levelheadbrowser/presentation/pages/profiles/profiles.page.dart';
 import 'package:logger/logger.dart';
 import 'package:tuple/tuple.dart';
 
