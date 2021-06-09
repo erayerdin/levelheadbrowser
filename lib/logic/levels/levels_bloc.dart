@@ -25,7 +25,7 @@ class LevelsBloc extends Bloc<LevelsEvent, LevelsState> {
       yield LoadingLevelsState();
 
       try {
-        List<Level> levels = await _repository.list(LevelsParams());
+        List<Level> levels = await _repository.list(event.params);
         yield LoadedLevelsState(levels: levels);
       } on DioError catch (e, stacktrace) {
         addError(e, stacktrace);

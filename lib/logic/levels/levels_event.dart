@@ -8,6 +8,12 @@ abstract class LevelsEvent extends Equatable {
 }
 
 class LoadLevelsEvent implements LevelsEvent {
+  final LevelsParams params;
+
+  LoadLevelsEvent({
+    required this.params,
+  });
+
   @override
   List<Object> get props => [];
 

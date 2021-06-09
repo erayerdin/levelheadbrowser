@@ -4,40 +4,131 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:levelheadbrowser/data/models/level.dart';
+import 'package:levelheadbrowser/data/models/params/levels.dart';
+import 'package:levelheadbrowser/data/repositories/level.dart';
 import 'package:levelheadbrowser/di.dart';
 import 'package:levelheadbrowser/logic/levels/levels_bloc.dart';
-import 'package:levelheadbrowser/presentation/pages/levels/components/filterpanel.component.dart';
+import 'package:levelheadbrowser/presentation/components/filterpanel/filterpanel.component.dart';
 import 'package:levelheadbrowser/presentation/pages/levels/components/levelcard.component.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:tuple/tuple.dart';
+
+const Tuple2<int, int> PLAYTIME_SECS = Tuple2(0, 100000);
+const Tuple2<int, int> BUCKS = Tuple2(0, 1000000);
+const Tuple2<int, int> REPLAY = Tuple2(0, 10000);
 
 class LevelsPage extends StatelessWidget {
-  final EdgeInsets _padding = getIt.get(instanceName: 'style.space.10');
+  final LevelRepository<LevelsParams, Level> _repository =
+      getIt.get(instanceName: 'data.repositories.level.rumpus');
+  final Converter<
+      Map<String, FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>,
+      LevelsParams> _formConverter = getIt.get(
+    instanceName: 'data.converters.forms.fromLevelFilterForm.toLevelsParams',
+  );
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (blocCtx) => LevelsBloc()..add(LoadLevelsEvent()))
+        BlocProvider(
+          create: (blocCtx) => LevelsBloc()
+            ..add(
+              LoadLevelsEvent(
+                params: LevelsParams(),
+              ),
+            ),
+        ),
       ],
       child: BlocBuilder<LevelsBloc, LevelsState>(
         builder: (context, state) {
           if (state is LoadedLevelsState) {
-            return SlidingUpPanel(
-              backdropEnabled: true,
-              minHeight: 25,
-              collapsed: Icon(Icons.keyboard_arrow_up),
-              panel: LevelFilterPanel(),
-              body: Container(
-                // TODO fix, body is not fully visible because panel covers it
-                padding: _padding,
-                child: ListView(
-                  children: state.levels
-                      .map((e) => LevelCardComponent(level: e))
-                      .toList(),
-                ),
+            return FilterPanel(
+              body: ListView(
+                children: state.levels
+                    .map((e) => LevelCardComponent(level: e))
+                    .toList(),
               ),
+              formHeader: Text(
+                'Filter Levels',
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              formChildren: [
+                Text(
+                  'Where Its Located',
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                FormBuilderCheckboxGroup(
+                  name: 'locations',
+                  options: [
+                    FormBuilderFieldOption(
+                      value: 'inTower',
+                      child: Text('In Tower'),
+                    ),
+                    FormBuilderFieldOption(
+                      value: 'inMarketingDepartment',
+                      child: Text('In Marketing Department'),
+                    ),
+                    FormBuilderFieldOption(
+                      value: 'inDailyBuild',
+                      child: Text('In Daily Build'),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                Text(
+                  'Playtime',
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                FormBuilderRangeSlider(
+                  name: 'playtimeSeconds',
+                  min: PLAYTIME_SECS.item1.toDouble(),
+                  max: PLAYTIME_SECS.item2.toDouble(),
+                  initialValue: RangeValues(
+                    PLAYTIME_SECS.item1.toDouble(),
+                    PLAYTIME_SECS.item2.toDouble(),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  'Bucks',
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                FormBuilderRangeSlider(
+                  name: 'exposureBucks',
+                  min: BUCKS.item1.toDouble(),
+                  max: BUCKS.item2.toDouble(),
+                  initialValue: RangeValues(
+                    BUCKS.item1.toDouble(),
+                    BUCKS.item2.toDouble(),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  'Replay',
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                FormBuilderRangeSlider(
+                  name: 'replayValue',
+                  min: REPLAY.item1.toDouble(),
+                  max: REPLAY.item2.toDouble(),
+                  initialValue: RangeValues(
+                    REPLAY.item1.toDouble(),
+                    REPLAY.item2.toDouble(),
+                  ),
+                ),
+              ],
+              onApply: (form) {
+                var formState = form.currentState;
+                formState?.save();
+                var params = _formConverter.convert(formState!.fields);
+                BlocProvider.of<LevelsBloc>(context)
+                  ..add(LoadLevelsEvent(params: params));
+              },
             );
           } else if (state is FailedLoadingLevelsState) {
             return Center(child: Text(state.message));
