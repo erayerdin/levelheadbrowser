@@ -84,51 +84,48 @@ class LevelCardComponent extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
-                        width: 120,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Row(
-                              children: [
-                                IconButton(
-                                  icon: Icon(Icons.favorite_border),
-                                  onPressed: () {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text('Not Implement Yet'),
-                                      ),
-                                    );
-                                  }, // TODO implement like button
-                                ),
-                                Text(
-                                  level.stats.likeCount == null
-                                      ? '0'
-                                      : level.stats.likeCount.toString(),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                IconButton(
-                                  icon: Icon(Icons.star_outline_outlined),
-                                  onPressed: () {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text('Not Implement Yet'),
-                                      ),
-                                    );
-                                  }, // TODO implement favorite button
-                                ),
-                                Text(
-                                  level.stats.favoriteCount == null
-                                      ? '0'
-                                      : level.stats.favoriteCount.toString(),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Row(
+                            children: [
+                              IconButton(
+                                icon: Icon(Icons.favorite_border),
+                                onPressed: () {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('Not Implement Yet'),
+                                    ),
+                                  );
+                                }, // TODO implement like button
+                              ),
+                              Text(
+                                level.stats.likeCount == null
+                                    ? '0'
+                                    : level.stats.likeCount.toString(),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              IconButton(
+                                icon: Icon(Icons.star_outline_outlined),
+                                onPressed: () {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('Not Implement Yet'),
+                                    ),
+                                  );
+                                }, // TODO implement favorite button
+                              ),
+                              Text(
+                                level.stats.favoriteCount == null
+                                    ? '0'
+                                    : level.stats.favoriteCount.toString(),
+                              ),
+                            ],
+                          ),
+                        ],
                       )
                     ],
                   )
