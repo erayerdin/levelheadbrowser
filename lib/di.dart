@@ -17,14 +17,19 @@ import 'package:levelheadbrowser/data/converters/level.dart';
 import 'package:levelheadbrowser/data/converters/params/levels.dart';
 import 'package:levelheadbrowser/data/converters/params/players.dart';
 import 'package:levelheadbrowser/data/converters/profile.dart';
+import 'package:levelheadbrowser/data/converters/towertrial.dart';
 import 'package:levelheadbrowser/data/models/level.dart';
 import 'package:levelheadbrowser/data/models/params/levels.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
+import 'package:levelheadbrowser/data/models/params/towertrials.dart';
 import 'package:levelheadbrowser/data/models/profile.dart';
+import 'package:levelheadbrowser/data/models/towertrial.dart';
 import 'package:levelheadbrowser/data/providers/level.dart';
 import 'package:levelheadbrowser/data/providers/profile.dart';
+import 'package:levelheadbrowser/data/providers/towertrial.dart';
 import 'package:levelheadbrowser/data/repositories/level.dart';
 import 'package:levelheadbrowser/data/repositories/profile.dart';
+import 'package:levelheadbrowser/data/repositories/towertrial.dart';
 import 'package:logger/logger.dart' show Logger;
 import 'package:path_provider/path_provider.dart';
 
@@ -73,6 +78,11 @@ Future<void> setUpDI() async {
     () => RumpusMapToLevelConverter(),
     instanceName: 'data.converters.level.toLevel.fromRumpusMap',
   );
+  getIt.registerLazySingleton<
+      Converter<Map<String, dynamic>, Future<TowerTrial>>>(
+    () => RumpusMapToTowerTrialConverter(),
+    instanceName: 'data.converters.towertrial.toTowerTrial.fromRumpusMap',
+  );
   getIt.registerLazySingleton<Converter<PlayersParams, Map<String, String>>>(
     () => PlayersParamsToParameterMapConverter(),
     instanceName: 'data.converters.players.toParamMap.fromPlayersParams',
@@ -109,6 +119,11 @@ Future<void> setUpDI() async {
     () => RumpusLevelProvider(),
     instanceName: 'data.providers.level.rumpus',
   );
+  getIt.registerLazySingleton<
+      TowerTrialProvider<TowerTrialsParams, Map<String, dynamic>>>(
+    () => RumpusTowerTrialProvider(),
+    instanceName: 'data.providers.towertrial.rumpus',
+  );
 
   // Repositories
   getIt.registerLazySingleton<ProfileRepository<PlayersParams, Profile>>(
@@ -118,6 +133,11 @@ Future<void> setUpDI() async {
   getIt.registerLazySingleton<LevelRepository<LevelsParams, Level>>(
     () => RumpusLevelRepository(),
     instanceName: 'data.repositories.level.rumpus',
+  );
+  getIt.registerLazySingleton<
+      TowerTrialRepository<TowerTrialsParams, TowerTrial>>(
+    () => RumpusTowerTrialRepository(),
+    instanceName: 'data.repositories.towertrial.rumpus',
   );
 
   // Styles
