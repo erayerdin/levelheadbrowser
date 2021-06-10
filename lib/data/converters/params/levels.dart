@@ -51,15 +51,15 @@ class LevelsParamsToParameterMapConverter
     });
 
     ifNotNullDo<bool>(input.inTower, (inTower) {
-      params['tower'] = '$inTower';
+      if (inTower) params['tower'] = '$inTower';
     });
 
     ifNotNullDo<bool>(input.inMarketingDepartment, (inMarketingDepartment) {
-      params['marketing'] = '$inMarketingDepartment';
+      if (inMarketingDepartment) params['marketing'] = '$inMarketingDepartment';
     });
 
     ifNotNullDo<bool>(input.inDailyBuild, (inDailyBuild) {
-      params['dailyBuild'] = '$inDailyBuild';
+      if (inDailyBuild) params['dailyBuild'] = '$inDailyBuild';
     });
 
     ifNotNullDo<int>(input.minPlaytimeSeconds, (minPlaytimeSeconds) {
@@ -102,6 +102,7 @@ class LevelsParamsToParameterMapConverter
       params['maxDiamons'] = maxDiamondCount.toString();
     });
 
+    _logger.v('Levels GET params: $params');
     return params;
   }
 }
