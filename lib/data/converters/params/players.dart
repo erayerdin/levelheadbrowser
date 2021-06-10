@@ -61,6 +61,7 @@ class PlayersParamsToParameterMapConverter
       params['maxCreatedAt'] = maxDateJoined.toString();
     });
 
+    _logger.v('Profiles GET params: $params');
     return params;
   }
 }

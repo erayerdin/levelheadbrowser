@@ -51,7 +51,7 @@ class LevelStats {
   final int playTimeSeconds;
   final int replayValue;
   final int hiddenGemCount;
-  final int exposureBucks;
+  final num exposureBucks;
 
   LevelStats({
     required this.attemptCount,
