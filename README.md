@@ -17,9 +17,22 @@ It is also possible to build Levelhead Browser as native Linux application. We c
 
 ## Screenshots
 
-This is how profile page looks like:
+### Profiles Page
 
-![](screenshots/app.gif)
+- Grid-like info cards, the color of which is based on subscriber count
+- Information dialog for each profile
+- Sliding up filter panel
+
+![](screenshots/profilespage.gif)
+
+### Levels Page
+
+- List-like info cards, the color of which is based on clear rate
+- Information dialog for each level
+  - Badges for informations such as exposure bucks, tags, required players etc.
+- Sliding up filter panel
+
+![](screenshots/levelspage.gif)
 
 ## License
 
