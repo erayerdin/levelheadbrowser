@@ -12,6 +12,7 @@ import 'package:levelheadbrowser/data/models/params/levels.dart';
 import 'package:levelheadbrowser/di.dart';
 import 'package:levelheadbrowser/presentation/pages/levels/levels.page.dart';
 import 'package:logger/logger.dart';
+import 'package:tuple/tuple.dart';
 
 class LevelFilterFormToLevelsParamsConverter extends Converter<
     Map<String, FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>,
@@ -54,6 +55,8 @@ class LevelFilterFormToLevelsParamsConverter extends Converter<
         ? null
         : replayCountRange.end.floor();
 
+    var sortBy = input['sortBy']?.value as Tuple2<bool, LevelsParamsSortField>?;
+
     var params = LevelsParams(
       inTower: inTower,
       inMarketingDepartment: inMarketingDepartment,
@@ -64,6 +67,7 @@ class LevelFilterFormToLevelsParamsConverter extends Converter<
       maxExposureBucks: maxExposureBucks,
       minReplayValue: minReplayValue,
       maxReplayValue: maxReplayValue,
+      sort: sortBy,
     );
     _logger.d('converted params: $params');
     return params;

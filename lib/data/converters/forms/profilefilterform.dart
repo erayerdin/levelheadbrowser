@@ -49,7 +49,7 @@ class ProfileFilterFormToPlayersParamsConverter extends Converter<
       maxPlaytimeSeconds: maxPlaytimeSeconds,
       sort: sortBy,
     );
-    _logger.d('converted params: $params');
+
     return params;
   }
 }

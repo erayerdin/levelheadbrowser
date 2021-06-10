@@ -22,6 +22,41 @@ const Tuple2<int, int> PLAYTIME_SECS = Tuple2(0, 100000);
 const Tuple2<int, int> BUCKS = Tuple2(0, 1000000);
 const Tuple2<int, int> REPLAY = Tuple2(0, 10000);
 
+const SORT_BY_DROPDOWN_ITEMS = [
+  DropdownMenuItem(
+    child: Text('Earliest Created'),
+    value: Tuple2(true, LevelsParamsSortField.CreatedAt),
+  ),
+  DropdownMenuItem(
+    child: Text('Latest Created'),
+    value: Tuple2(false, LevelsParamsSortField.CreatedAt),
+  ),
+  DropdownMenuItem(
+    child: Text('Most Playtime'),
+    value: Tuple2(true, LevelsParamsSortField.PlaytimeSeconds),
+  ),
+  DropdownMenuItem(
+    child: Text('Least Playtime'),
+    value: Tuple2(false, LevelsParamsSortField.PlaytimeSeconds),
+  ),
+  DropdownMenuItem(
+    child: Text('Most Replayed'),
+    value: Tuple2(true, LevelsParamsSortField.ReplayValue),
+  ),
+  DropdownMenuItem(
+    child: Text('Least Replayed'),
+    value: Tuple2(false, LevelsParamsSortField.ReplayValue),
+  ),
+  DropdownMenuItem(
+    child: Text('Most Exposure Bucks'),
+    value: Tuple2(true, LevelsParamsSortField.ExposureBucks),
+  ),
+  DropdownMenuItem(
+    child: Text('Least Playtime'),
+    value: Tuple2(false, LevelsParamsSortField.ExposureBucks),
+  ),
+];
+
 class LevelsPage extends StatelessWidget {
   final LevelRepository<LevelsParams, Level> _repository =
       getIt.get(instanceName: 'data.repositories.level.rumpus');
@@ -120,6 +155,15 @@ class LevelsPage extends StatelessWidget {
                     REPLAY.item1.toDouble(),
                     REPLAY.item2.toDouble(),
                   ),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  'Sort by',
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                FormBuilderDropdown(
+                  name: 'sortBy',
+                  items: SORT_BY_DROPDOWN_ITEMS,
                 ),
               ],
               onApply: (form) {
