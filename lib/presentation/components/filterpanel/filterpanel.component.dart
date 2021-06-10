@@ -88,7 +88,7 @@ class FilterPanel extends StatelessWidget {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.fromLTRB(10, 10, 10, 150),
         child: body,
       ),
     );
