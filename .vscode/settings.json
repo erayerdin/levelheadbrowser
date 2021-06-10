@@ -20,5 +20,9 @@
         "ios": true
     },
     "explorerExclude.backup": null,
-    "licenser.license": "MPLv2"
+    "licenser.license": "MPLv2",
+    "todo-tree.filtering.excludeGlobs": [
+        "**/node_modules",
+        "**/CMakeLists.txt"
+    ]
 }
