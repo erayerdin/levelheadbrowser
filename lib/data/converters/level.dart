@@ -43,32 +43,26 @@ class RumpusMapToLevelConverter
     _logger.d('Building records...');
     _logger.v('is fastest time? $isFastestTime');
 
-    List<Record> records = [];
-    if (isFastestTime) {
-      List<Map<String, dynamic>> fastestTimeRecords =
-          List.from(input['records']['FastestTime']);
-      for (var record in fastestTimeRecords) {
-        records.add(
-          Record(
-            profile: await _profileRepository.getById(record['userId']),
-            createdAt: DateTime.parse(record['createdAt']),
-            value: record['value'],
+    List<Map<String, dynamic>> recordsData = isFastestTime
+        ? List.from(input['records']['FastestTime'])
+        : List.from(input['records']['HighScore']);
+
+    List<Profile> profiles = await _profileRepository.list(
+      PlayersParams(
+        ids: recordsData.map((e) => e['userId'] as String).toSet(),
+      ),
+    );
+
+    List<Record> records = recordsData
+        .map(
+          (e) => Record(
+            profile:
+                profiles.firstWhere((element) => element.id == e['userId']),
+            createdAt: DateTime.parse(e['createdAt']),
+            value: e['value'],
           ),
-        );
-      }
-    } else {
-      List<Map<String, dynamic>> highScoreRecords =
-          List.from(input['records']['HighScore']);
-      for (var record in highScoreRecords) {
-        records.add(
-          Record(
-            profile: await _profileRepository.getById(record['userId']),
-            createdAt: DateTime.parse(record['createdAt']),
-            value: record['value'],
-          ),
-        );
-      }
-    }
+        )
+        .toList();
 
     return records;
   }
