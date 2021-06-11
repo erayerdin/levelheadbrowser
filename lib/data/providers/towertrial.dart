@@ -20,7 +20,18 @@ class RumpusTowerTrialProvider
 
   @override
   Future<Map<String, dynamic>> today(TowerTrialsParams params) async {
-    // TODO: implement today
-    throw UnimplementedError();
+    _logger.d(
+        'Getting the tower trial of today using Rumpus Tower Trial Provider...');
+
+    Response<Map<String, dynamic>> response = await _client.get(
+      '/tower-trials',
+      queryParameters: {'includeRecords': 'true'},
+    );
+
+    Map<String, dynamic> body = response.data!;
+    Map<String, dynamic> data = List.from(body['data']).first;
+    _logger.v('data: $data');
+
+    return data;
   }
 }
