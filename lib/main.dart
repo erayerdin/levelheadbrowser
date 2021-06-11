@@ -5,7 +5,9 @@ import 'package:levelheadbrowser/logic/observer.dart';
 import 'package:levelheadbrowser/presentation/pages/home/home.page.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   setUpDI();
+  await getIt.allReady();
   Bloc.observer = LoggingObserver();
   runApp(MyApp());
 }
