@@ -25,6 +25,7 @@ void main() {
       client.interceptors.removeWhere(
         (element) => element is DioCacheInterceptor,
       );
+
       _repository =
           getIt.get(instanceName: 'data.repositories.towertrial.rumpus');
     });
