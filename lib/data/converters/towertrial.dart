@@ -28,7 +28,7 @@ class RumpusMapToTowerTrialConverter
   Future<List<Level>> _buildLevels(Map<String, dynamic> input) async {
     _logger.d('Building levels...');
 
-    List<String> levelIds = input['levelIds'];
+    List<String> levelIds = List.from(input['levelIds']);
     // REF https://stackoverflow.com/a/38016334/2926992
     List<Level> levels = await _levelRepository.list(
       LevelsParams(
@@ -45,8 +45,8 @@ class RumpusMapToTowerTrialConverter
     _logger.d('Building records...');
 
     List<Map<String, dynamic>> recordsData = isFastestTime
-        ? input['records']['FastestTime']
-        : input['records']['HighScore'];
+        ? List.from(input['records']['FastestTime'])
+        : List.from(input['records']['HighScore']);
 
     List<Profile> profiles = await _profileRepository.list(
       PlayersParams(
