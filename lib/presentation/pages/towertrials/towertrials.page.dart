@@ -31,9 +31,10 @@ class TowerTrialsPage extends StatelessWidget {
                     .map((e) => LevelCardComponent(level: e))
                     .toList(),
               ),
-              formHeader: Text(''), // TODO add form header
+              formHeader: Text('Records'), // TODO add form header
               formChildren: [], // TODO add form children
               onApply: (form) {}, // TODO implement form onApply
+              showButtons: false,
             );
           } else if (state is FailedLoadingTowerTrialsState) {
             return Center(child: Text(state.message));

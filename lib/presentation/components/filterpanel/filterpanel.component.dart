@@ -17,6 +17,7 @@ class FilterPanel extends StatelessWidget {
   final List<Widget> formChildren;
   final Function(GlobalKey<FormBuilderState>) onApply;
   final bool onApplyPop;
+  final bool showButtons;
 
   FilterPanel({
     Key? key,
@@ -25,6 +26,7 @@ class FilterPanel extends StatelessWidget {
     required this.formChildren,
     required this.onApply,
     this.onApplyPop = true,
+    this.showButtons = true,
   }) : super(key: key);
 
   @override
@@ -51,38 +53,42 @@ class FilterPanel extends StatelessWidget {
               ),
               Divider(),
               ...formChildren,
-              Divider(),
-              Row(
-                children: [
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: () async {
-                        if (_panelController.isAttached)
-                          await _panelController.close();
-                      },
-                      child: Text('Close'),
-                    ),
-                  ),
-                  SizedBox(width: 5),
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: () => _formKey.currentState?.reset(),
-                      child: Text('Reset'),
-                    ),
-                  ),
-                  SizedBox(width: 5),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        onApply(_formKey);
-                        if (onApplyPop && _panelController.isAttached)
-                          await _panelController.close();
-                      },
-                      child: Text('Apply'),
-                    ),
-                  ),
-                ],
-              ),
+              ...showButtons
+                  ? [
+                      Divider(),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: OutlinedButton(
+                              onPressed: () async {
+                                if (_panelController.isAttached)
+                                  await _panelController.close();
+                              },
+                              child: Text('Close'),
+                            ),
+                          ),
+                          SizedBox(width: 5),
+                          Expanded(
+                            child: OutlinedButton(
+                              onPressed: () => _formKey.currentState?.reset(),
+                              child: Text('Reset'),
+                            ),
+                          ),
+                          SizedBox(width: 5),
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () async {
+                                onApply(_formKey);
+                                if (onApplyPop && _panelController.isAttached)
+                                  await _panelController.close();
+                              },
+                              child: Text('Apply'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ]
+                  : []
             ],
           ),
         ),
