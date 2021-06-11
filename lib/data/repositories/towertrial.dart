@@ -28,7 +28,13 @@ class RumpusTowerTrialRepository
 
   @override
   Future<TowerTrial> today(TowerTrialsParams params) async {
-    // TODO implement RumpusTowerTrialRepository::today
-    throw UnimplementedError();
+    _logger.d(
+        'Getting the tower trial of today using Rumpus Tower Trial Repository...');
+
+    Map<String, dynamic> data = await _provider.today(TowerTrialsParams());
+    TowerTrial towerTrial = await _converter.convert(data);
+    _logger.v('tower trial: $towerTrial');
+
+    return towerTrial;
   }
 }
