@@ -37,8 +37,7 @@ class LevelDialog extends StatelessWidget {
       ),
       child: Builder(
         builder: (context) => Dialog(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+          child: ListView(
             children: [
               Container(
                 margin: _margin,
