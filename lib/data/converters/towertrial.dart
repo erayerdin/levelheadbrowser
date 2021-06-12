@@ -55,6 +55,12 @@ class RumpusMapToTowerTrialConverter
     );
 
     List<Record> records = recordsData
+        // for some reason, there might be profiles that do not exist in `profiles`.
+        // for this strange reason, i filtered only profiles that exists in the record data.
+        // not sure why that happens.
+        .where(
+          (data) => profiles.any((profile) => profile.id == data['userId']),
+        )
         .map(
           (e) => Record(
             profile:
