@@ -34,6 +34,14 @@ It is also possible to build Levelhead Browser as native Linux application. We c
 
 ![](screenshots/levelspage.gif)
 
+### Tower Trials Page
+
+ - List-like info cards, the color of which is based on clear rate
+ - Information dialog for each level such as exposure bucks, tags, required players, etc.
+ - See fastest time and high score records on a separate slide-up panel.
+
+![](screenshots/towertrialspage.gif)
+
 ## License
 
 This project is licensed under [Mozilla Public License 2.0](https://www.mozilla.org/en-US/MPL/2.0/).
