@@ -39,17 +39,23 @@ class _RecordTable extends StatelessWidget {
                     : towerTrial.highScoreRecords)
                 .map(
               (e) {
-                var duration = Duration(seconds: e.value.toDouble().floor());
-                var hours = duration.inHours;
-                var minutes = duration.inMinutes.remainder(60);
-                var seconds = duration.inSeconds.remainder(60);
-                var valueText =
-                    '${hours > 0 ? "$hours hrs " : ""}$minutes mins $seconds secs';
+                String valueText;
+                if (isFastestTime) {
+                  var duration = Duration(seconds: e.value.toDouble().floor());
+                  var hours = duration.inHours;
+                  var minutes = duration.inMinutes.remainder(60);
+                  var seconds = duration.inSeconds.remainder(60);
+                  valueText =
+                      '${hours > 0 ? "$hours hrs " : ""}$minutes mins $seconds secs';
+                } else {
+                  valueText = '${e.value.toDouble().floor()} pts';
+                }
 
                 return TableRow(
                   children: [
                     Container(
                       margin: EdgeInsets.all(5),
+                      // TODO add link to profiles
                       child: Text(
                         e.profile.alias ?? '<no-alias>',
                         style: TextStyle(fontWeight: FontWeight.bold),
@@ -100,8 +106,12 @@ class TowerTrialsPage extends StatelessWidget {
                 // TODO apply side-by-side
                 // couldn't do that for some reason
                 _RecordTable(towerTrial: state.towerTrial, isFastestTime: true),
+                _RecordTable(
+                  towerTrial: state.towerTrial,
+                  isFastestTime: false,
+                ),
               ],
-              onApply: (form) {}, // TODO implement form onApply
+              onApply: (form) {},
               showButtons: false,
             );
           } else if (state is FailedLoadingTowerTrialsState) {
