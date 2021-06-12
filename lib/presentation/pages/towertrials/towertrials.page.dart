@@ -6,10 +6,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:levelheadbrowser/data/models/params/players.dart';
 
 import 'package:levelheadbrowser/data/models/towertrial.dart';
 import 'package:levelheadbrowser/logic/towertrials/towertrials_bloc.dart';
+import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
 import 'package:levelheadbrowser/presentation/components/filterpanel/filterpanel.component.dart';
+import 'package:levelheadbrowser/presentation/components/link/link.component.dart';
+import 'package:levelheadbrowser/presentation/pages/home/home.page.dart';
 import 'package:levelheadbrowser/presentation/pages/levels/components/levelcard.component.dart';
 
 class _RecordTable extends StatelessWidget {
@@ -55,11 +59,16 @@ class _RecordTable extends StatelessWidget {
                   children: [
                     Container(
                       margin: EdgeInsets.all(5),
-                      // TODO add link to profiles
-                      child: Text(
+                      child: LinkComponent(
                         e.profile.alias ?? '<no-alias>',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.right,
+                        align: TextAlign.right,
+                        onTap: () => BlocProvider.of<HomePageBloc>(context)
+                          ..add(
+                            LoadHomePageEvent(
+                              index: HomePageBottomNavbarTab.Profiles.index,
+                              params: PlayersParams(ids: {e.profile.id}),
+                            ),
+                          ),
                       ),
                     ),
                     Container(

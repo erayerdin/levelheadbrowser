@@ -82,10 +82,15 @@ class ProfileDialog extends StatelessWidget {
                       children: [
                         _mapProfileFieldToTableRow(context, 'ID:', profile.id),
                         _mapProfileFieldToTableRow(
-                            context, 'Alias:', profile.alias),
+                          context,
+                          'Alias:',
+                          profile.alias,
+                        ),
                         _mapProfileFieldToTableRow(
                           context,
                           'Date Joined:',
+                          // TODO better date time
+                          // current: 2021-06-04 ...
                           profile.dateJoined,
                         ),
                         _mapProfileFieldToTableRow(
@@ -108,6 +113,8 @@ class ProfileDialog extends StatelessWidget {
                           'Playtime:',
                           profile.stats.playtimeSeconds,
                         ),
+                        // TODO better tips
+                        // if its double, it has elipsis
                         _mapProfileFieldToTableRow(
                           context,
                           'Tips (Per Level):',

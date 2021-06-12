@@ -10,18 +10,21 @@ import 'package:flutter/material.dart';
 class LinkComponent extends StatelessWidget {
   final String text;
   final Color color;
+  final TextAlign? align;
   final Function()? onTap;
 
   const LinkComponent(
     this.text, {
     Key? key,
     this.color = Colors.blue,
+    this.align,
     this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return RichText(
+      textAlign: align ?? TextAlign.left,
       overflow: TextOverflow.ellipsis,
       text: TextSpan(
         text: text,
