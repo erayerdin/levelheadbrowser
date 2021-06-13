@@ -22,8 +22,6 @@ extension HomePageBottomNavbarTabBlocExtension on HomePageBottomNavbarTab {
         );
       case HomePageBottomNavbarTab.TowerTrial:
         return HomePageTowerTrialTabState();
-      case HomePageBottomNavbarTab.DailyBuild:
-        return HomePageDailyBuildTabState();
     }
   }
 }

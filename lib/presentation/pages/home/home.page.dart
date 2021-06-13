@@ -38,8 +38,6 @@ class HomePage extends StatelessWidget {
               return TowerTrialsPage();
             } else if (state is HomePageLevelsTabState) {
               return LevelsPage();
-            } else if (state is HomePageDailyBuildTabState) {
-              return DailyBuildPage();
             }
 
             return ProfilesPage();

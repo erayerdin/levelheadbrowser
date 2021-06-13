@@ -4,7 +4,6 @@ enum HomePageBottomNavbarTab {
   Profiles,
   Levels,
   TowerTrial,
-  DailyBuild,
 }
 
 extension HomePageBottomNavbarTabExtension on HomePageBottomNavbarTab {
@@ -16,8 +15,6 @@ extension HomePageBottomNavbarTabExtension on HomePageBottomNavbarTab {
         return 'Levels';
       case HomePageBottomNavbarTab.TowerTrial:
         return 'Tower Trial';
-      case HomePageBottomNavbarTab.DailyBuild:
-        return 'Daily Build';
     }
   }
 

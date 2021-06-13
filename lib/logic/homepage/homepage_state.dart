@@ -58,16 +58,3 @@ class HomePageLevelsTabState implements HomePageState<LevelsParams> {
   @override
   String toString() => 'HomePageLevelsTabState(params: $params)';
 }
-
-class HomePageDailyBuildTabState implements HomePageState {
-  final int index = HomePageBottomNavbarTab.DailyBuild.index;
-  @override
-  List<Object> get props => [];
-
-  @override
-  bool? get stringify => true;
-
-  @override
-  // TODO: implement params
-  get params => throw UnimplementedError();
-}
