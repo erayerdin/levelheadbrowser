@@ -72,9 +72,9 @@ class BadgeComponent extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: badge.url,
       placeholder: (context, url) =>
-          Image.asset('images/badges/loading-badge.png'),
+          Image.asset('assets/images/badges/loading-badge.png'),
       errorWidget: (context, url, error) =>
-          Image.asset('images/badges/error-badge.png'),
+          Image.asset('assets/images/badges/error-badge.png'),
     );
   }
 }
