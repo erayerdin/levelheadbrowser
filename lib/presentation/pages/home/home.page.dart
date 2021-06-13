@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
       ],
       child: Scaffold(
         appBar: AppBar(
-          title: Text('LevelHead Browser'),
+          title: Text('Levelhead Browser'),
         ),
         body: BlocBuilder<HomePageBloc, HomePageState>(
           builder: (context, state) {

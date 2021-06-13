@@ -16,7 +16,7 @@ class RumpusMapToProfileConverter
 
   @override
   Profile convert(Map<String, dynamic> input) {
-    _logger.d('Converting LevelHead profile data to Profile object...');
+    _logger.d('Converting Levelhead profile data to Profile object...');
     _logger.v('input: $input');
 
     return Profile(

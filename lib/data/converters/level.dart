@@ -69,7 +69,7 @@ class RumpusMapToLevelConverter
 
   @override
   Future<Level> convert(Map<String, dynamic> input) async {
-    _logger.d('Converting LevelHead level data to Level object...');
+    _logger.d('Converting Levelhead level data to Level object...');
     _logger.v('input: $input');
 
     return Level(

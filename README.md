@@ -1,4 +1,4 @@
-# LevelHead Browser
+# Levelhead Browser
 
 ![GitHub Workflow Build Status](https://img.shields.io/github/workflow/status/erayerdin/levelheadbrowser/build?style=flat-square&label=build)
 ![GitHub Workflow Test Status](https://img.shields.io/github/workflow/status/erayerdin/levelheadbrowser/test?style=flat-square&label=tests)
