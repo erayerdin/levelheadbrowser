@@ -6,6 +6,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -48,7 +49,18 @@ class SettingsPage extends StatelessWidget {
           SettingsSection(
             title: 'Misc',
             tiles: [
-              SettingsTile(title: 'Source Code'),
+              SettingsTile(
+                title: 'Source Code',
+                onPressed: (_) async => await launch(
+                  'https://github.com/erayerdin/levelheadbrowser',
+                ),
+              ),
+              SettingsTile(
+                title: 'Issues',
+                onPressed: (context) async => await launch(
+                  'https://github.com/erayerdin/levelheadbrowser/issues',
+                ),
+              ),
               SettingsTile(title: 'Donate'),
             ],
           ),
