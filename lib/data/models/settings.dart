@@ -10,6 +10,7 @@
 import 'package:flutter/material.dart';
 import 'package:tuple/tuple.dart';
 
+import 'package:levelheadbrowser/data/models/params/levels.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
 
 class DefaultProfilesPageFilteringSettings {
@@ -25,7 +26,24 @@ class DefaultProfilesPageFilteringSettings {
 }
 
 class DefaultLevelsPageFilteringSettings {
-} // TODO implement default levels page filtering settings
+  final bool inTower;
+  final bool inMarketingDepartment;
+  final bool inDailyBuild;
+  final Tuple2<int, int> playtimeSeconds;
+  final Tuple2<int, int> exposureBucks;
+  final Tuple2<int, int> replayValue;
+  final LevelsParamsSortField sortBy;
+
+  DefaultLevelsPageFilteringSettings({
+    required this.inTower,
+    required this.inMarketingDepartment,
+    required this.inDailyBuild,
+    required this.playtimeSeconds,
+    required this.exposureBucks,
+    required this.replayValue,
+    required this.sortBy,
+  });
+}
 
 class DefaultFilteringSettings {
   final DefaultProfilesPageFilteringSettings defaultProfilePageFiltering;
