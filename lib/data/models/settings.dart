@@ -8,9 +8,21 @@
 // Default Filtering Settings //
 //############################//
 import 'package:flutter/material.dart';
+import 'package:tuple/tuple.dart';
+
+import 'package:levelheadbrowser/data/models/params/players.dart';
 
 class DefaultProfilesPageFilteringSettings {
-} // TODO implement default profiles page filtering settings
+  final Tuple2<int, int> subscriberCount;
+  final Tuple2<int, int> playtimeSeconds;
+  final PlayerParamsSortField sortBy;
+
+  DefaultProfilesPageFilteringSettings({
+    required this.subscriberCount,
+    required this.playtimeSeconds,
+    required this.sortBy,
+  });
+}
 
 class DefaultLevelsPageFilteringSettings {
 } // TODO implement default levels page filtering settings
