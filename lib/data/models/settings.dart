@@ -39,7 +39,18 @@ class ProfileFormAppearanceSettings {
 }
 
 class LevelFormAppearanceSettings {
-} // TODO implement level form appearance settings
+  final bool enableLocationField;
+  final bool enablePlaytimeSecondsField;
+  final bool enableExposureBucksField;
+  final bool enableReplayValueField;
+
+  LevelFormAppearanceSettings({
+    required this.enableLocationField,
+    required this.enablePlaytimeSecondsField,
+    required this.enableExposureBucksField,
+    required this.enableReplayValueField,
+  });
+}
 
 class FormAppearanceSettings {
   final ProfileFormAppearanceSettings profileFormAppearance;
