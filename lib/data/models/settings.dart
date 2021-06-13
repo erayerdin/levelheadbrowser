@@ -98,7 +98,36 @@ class ProfileCardSettings {
   });
 }
 
-class LevelCardSettings {} // TODO implement level card settings
+enum LevelCardColorInterpolationField {
+  InTower,
+  InTowerTrial,
+  InDailyBuild,
+  RequiredPlayerCount,
+  AttemptCount,
+  PlayerCount,
+  SuccessCount,
+  ClearRate,
+  FailureRate,
+  FavoriteCount,
+  LikeCount,
+  PlaytimeSeconds,
+  ReplayValue,
+  ExposureBucks,
+}
+
+class LevelCardSettings {
+  final LevelCardColorInterpolationField field;
+  final Color minColor;
+  final Color maxColor;
+  final num maxThreshold;
+
+  LevelCardSettings({
+    required this.field,
+    required this.minColor,
+    required this.maxColor,
+    required this.maxThreshold,
+  });
+}
 
 class CardSettings {
   final ProfileCardSettings profileCard;
