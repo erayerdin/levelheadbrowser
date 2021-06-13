@@ -29,7 +29,14 @@ class DefaultFilteringSettings {
 // Form Appearance Settings //
 //##########################//
 class ProfileFormAppearanceSettings {
-} // TODO implement profile form appearance settings
+  final bool enableSubscriberCountField;
+  final bool enablePlaytimeSecondsField;
+
+  ProfileFormAppearanceSettings({
+    required this.enableSubscriberCountField,
+    required this.enablePlaytimeSecondsField,
+  });
+}
 
 class LevelFormAppearanceSettings {
 } // TODO implement level form appearance settings
