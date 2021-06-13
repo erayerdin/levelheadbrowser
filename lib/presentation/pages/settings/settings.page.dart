@@ -19,11 +19,39 @@ class SettingsPage extends StatelessWidget {
       body: SettingsList(
         sections: [
           SettingsSection(
-            title: 'Appearance',
+            title: 'Cards Appearance',
             tiles: [
-              SettingsTile(title: 'Card Colors'),
+              SettingsTile(title: 'Profile Cards'),
+              SettingsTile(title: 'Level Cards'),
             ],
-          )
+          ),
+          SettingsSection(
+            title: 'Filter Forms Appearance',
+            tiles: [
+              SettingsTile(title: 'Profiles Filter Form'),
+              SettingsTile(title: 'Levels Filter Form'),
+            ],
+          ),
+          SettingsSection(
+            title: 'Default Filtering',
+            tiles: [
+              SettingsTile(title: 'Profiles Page'),
+              SettingsTile(title: 'Levels Page'),
+            ],
+          ),
+          SettingsSection(
+            title: 'Link Accounts',
+            tiles: [
+              SettingsTile(title: 'Log in with Rumpus'),
+            ],
+          ),
+          SettingsSection(
+            title: 'Misc',
+            tiles: [
+              SettingsTile(title: 'Source Code'),
+              SettingsTile(title: 'Donate'),
+            ],
+          ),
         ],
       ),
     );
