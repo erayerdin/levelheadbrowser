@@ -11,6 +11,7 @@ import 'package:levelheadbrowser/presentation/pages/dailybuild/dailybuild.page.d
 import 'package:levelheadbrowser/presentation/pages/levels/levels.page.dart';
 import 'package:levelheadbrowser/presentation/pages/profiles/profiles.page.dart';
 import 'package:levelheadbrowser/presentation/pages/towertrials/towertrials.page.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 part 'bottomnavbar.component.dart';
 
@@ -29,6 +30,33 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Levelhead Browser'),
+          actions: [
+            PopupMenuButton(
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  child: Text('About'),
+                  value: 'about',
+                )
+              ],
+              onSelected: (item) {
+                switch (item) {
+                  case 'about':
+                    PackageInfo.fromPlatform().then((info) {
+                      showAboutDialog(
+                        context: context,
+                        applicationVersion: info.version,
+                        applicationIcon: ClipRRect(
+                          child: Image.asset('assets/images/icons/icon.png'),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        applicationLegalese:
+                            'An application to browser Levelhead world.',
+                      );
+                    });
+                }
+              },
+            )
+          ],
         ),
         body: BlocBuilder<HomePageBloc, HomePageState>(
           builder: (context, state) {
