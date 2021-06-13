@@ -17,12 +17,14 @@ import 'package:levelheadbrowser/data/converters/level.dart';
 import 'package:levelheadbrowser/data/converters/params/levels.dart';
 import 'package:levelheadbrowser/data/converters/params/players.dart';
 import 'package:levelheadbrowser/data/converters/profile.dart';
+import 'package:levelheadbrowser/data/converters/settings.dart';
 import 'package:levelheadbrowser/data/converters/towertrial.dart';
 import 'package:levelheadbrowser/data/models/level.dart';
 import 'package:levelheadbrowser/data/models/params/levels.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
 import 'package:levelheadbrowser/data/models/params/towertrials.dart';
 import 'package:levelheadbrowser/data/models/profile.dart';
+import 'package:levelheadbrowser/data/models/settings.dart';
 import 'package:levelheadbrowser/data/models/towertrial.dart';
 import 'package:levelheadbrowser/data/providers/level.dart';
 import 'package:levelheadbrowser/data/providers/profile.dart';
@@ -69,6 +71,16 @@ Future<void> setUpDI() async {
   );
 
   // Converters
+  getIt
+      .registerLazySingleton<Converter<Settings, Future<Map<String, dynamic>>>>(
+    () => SettingsToHiveMapConverter(),
+    instanceName: 'data.converters.settings.toHiveMap.fromSettings',
+  );
+  getIt
+      .registerLazySingleton<Converter<Map<String, dynamic>, Future<Settings>>>(
+    () => HiveMapToSettingsConverter(),
+    instanceName: 'data.converters.settings.toSettings.fromHiveMap',
+  );
   getIt.registerLazySingleton<Converter<Map<String, dynamic>, Profile>>(
     () => RumpusMapToProfileConverter(),
     instanceName: 'data.converters.profile.toProfile.fromRumpusMap',
