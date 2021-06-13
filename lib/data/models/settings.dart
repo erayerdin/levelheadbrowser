@@ -7,6 +7,8 @@
 //############################//
 // Default Filtering Settings //
 //############################//
+import 'package:flutter/material.dart';
+
 class DefaultProfilesPageFilteringSettings {
 } // TODO implement default profiles page filtering settings
 
@@ -45,7 +47,56 @@ class FormAppearanceSettings {
 //###############//
 // Card Settings //
 //###############//
-class ProfileCardSettings {} // TODO implement profile card settings
+enum ProfileCardColorInterpolationField {
+  SubscriberCount,
+  FollowingCount,
+  CrownCount,
+  ShoeCount,
+  PlaytimeSeconds,
+  HiddenGemCount,
+  TrophyCount,
+  CampaignProgress,
+  TimeTrophyCount,
+}
+
+/// Settings related to profile card.
+class ProfileCardSettings {
+  /// Shown when a profile has no alias defined.
+  final String noAliasDefault;
+
+  /// Whether to show joined human-readable time format.
+  final bool showJoined;
+
+  /// Whether to show subscriber count.
+  final bool showSubscriberCount;
+
+  /// Whether to show following count.
+  final bool showFollowingCount;
+
+  /// The field to be used to colorize the card.
+  final ProfileCardColorInterpolationField field;
+
+  /// The color of the card to be used in minimum amount, which is 0.
+  final Color minColor;
+
+  /// The color of the card to be used in maximum amount, which is defined in
+  /// `maxThreshold` attribute.
+  final Color maxColor;
+
+  /// The maximum threshold of `field`.
+  final num maxThreshold;
+
+  ProfileCardSettings({
+    required this.noAliasDefault,
+    required this.showJoined,
+    required this.showSubscriberCount,
+    required this.showFollowingCount,
+    required this.field,
+    required this.minColor,
+    required this.maxColor,
+    required this.maxThreshold,
+  });
+}
 
 class LevelCardSettings {} // TODO implement level card settings
 
