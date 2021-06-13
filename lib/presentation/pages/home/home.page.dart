@@ -33,12 +33,19 @@ class HomePage extends StatelessWidget {
             PopupMenuButton(
               itemBuilder: (context) => [
                 PopupMenuItem(
+                  child: Text('Settings'),
+                  value: 'settings',
+                ),
+                PopupMenuItem(
                   child: Text('About'),
                   value: 'about',
-                )
+                ),
               ],
               onSelected: (item) {
                 switch (item) {
+                  case 'settings':
+                    Navigator.pushNamed(context, '/settings');
+                    break;
                   case 'about':
                     PackageInfo.fromPlatform().then((info) {
                       showAboutDialog(
@@ -52,6 +59,7 @@ class HomePage extends StatelessWidget {
                             'An application to browser Levelhead world.',
                       );
                     });
+                    break;
                 }
               },
             )
