@@ -17,7 +17,8 @@
         ".flutter-plugins-dependencies": true,
         ".metadata": true,
         "build": true,
-        "ios": true
+        "ios": true,
+        "linux": true
     },
     "explorerExclude.backup": null,
     "licenser.license": "MPLv2",
