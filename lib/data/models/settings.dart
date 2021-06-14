@@ -122,7 +122,7 @@ class ProfileCardSettings {
   final bool showFollowingCount;
 
   /// The field to be used to colorize the card.
-  final ProfileCardColorInterpolationField field;
+  final ProfileCardColorInterpolationField colorInterpolationField;
 
   /// The color of the card to be used in minimum amount, which is 0.
   final Color minColor;
@@ -139,7 +139,7 @@ class ProfileCardSettings {
     required this.showJoined,
     required this.showSubscriberCount,
     required this.showFollowingCount,
-    required this.field,
+    required this.colorInterpolationField,
     required this.minColor,
     required this.maxColor,
     required this.maxThreshold,
@@ -164,13 +164,13 @@ enum LevelCardColorInterpolationField {
 }
 
 class LevelCardSettings {
-  final LevelCardColorInterpolationField field;
+  final LevelCardColorInterpolationField colorInterpolationField;
   final Color minColor;
   final Color maxColor;
   final num maxThreshold;
 
   LevelCardSettings({
-    required this.field,
+    required this.colorInterpolationField,
     required this.minColor,
     required this.maxColor,
     required this.maxThreshold,
