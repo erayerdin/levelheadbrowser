@@ -28,6 +28,7 @@ import 'package:levelheadbrowser/data/models/settings.dart';
 import 'package:levelheadbrowser/data/models/towertrial.dart';
 import 'package:levelheadbrowser/data/providers/level.dart';
 import 'package:levelheadbrowser/data/providers/profile.dart';
+import 'package:levelheadbrowser/data/providers/settings.dart';
 import 'package:levelheadbrowser/data/providers/towertrial.dart';
 import 'package:levelheadbrowser/data/repositories/level.dart';
 import 'package:levelheadbrowser/data/repositories/profile.dart';
@@ -121,6 +122,10 @@ Future<void> setUpDI() async {
   );
 
   // Providers
+  getIt.registerLazySingleton<SettingsProvider<dynamic, Settings>>(
+    () => HiveSettingsProvider(),
+    instanceName: 'data.providers.settings.hive',
+  );
   getIt.registerLazySingleton<
       ProfileProvider<PlayersParams, Map<String, dynamic>>>(
     () => RumpusProfileProvider(),
