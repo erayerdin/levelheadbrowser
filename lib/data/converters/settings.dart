@@ -14,6 +14,7 @@ import 'package:levelheadbrowser/di.dart';
 import 'package:logger/logger.dart';
 import 'package:tuple/tuple.dart';
 
+// REF https://stackoverflow.com/a/50081214/2926992
 extension HexColor on Color {
   /// String is in the format "aabbcc" or "ffaabbcc" with an optional leading "#".
   static Color fromHex(String hexString) {
@@ -33,10 +34,99 @@ extension HexColor on Color {
 
 class SettingsToHiveMapConverter
     extends Converter<Settings, Future<Map<String, dynamic>>> {
+  final Logger _logger = getIt.get();
+
   @override
   Future<Map<String, dynamic>> convert(Settings input) async {
-    // TODO: implement convert
-    throw UnimplementedError();
+    _logger.d('Converting Settings to Hive Map...');
+    _logger.v('input settings: $input');
+
+    Map<String, dynamic> map = {
+      'card': {
+        'profileCard': {
+          'noAliasDefault': input.card.profileCard.noAliasDefault,
+          'showJoined': input.card.profileCard.showJoined,
+          'showSubscriberCount': input.card.profileCard.showSubscriberCount,
+          'showFollowingCount': input.card.profileCard.showFollowingCount,
+          'colorInterpolationField':
+              input.card.profileCard.colorInterpolationField.index,
+          'minColor': input.card.profileCard.minColor.toHex(),
+          'maxColor': input.card.profileCard.maxColor.toHex(),
+          'maxThreshold': input.card.profileCard.maxThreshold,
+        },
+        'levelCard': {
+          'colorInterpolationField':
+              input.card.levelCard.colorInterpolationField.index,
+          'minColor': input.card.levelCard.minColor.toHex(),
+          'maxColor': input.card.levelCard.maxColor.toHex(),
+          'maxThreshold': input.card.levelCard.maxThreshold,
+        },
+      },
+      'formAppearance': {
+        'profileFormAppearance': {
+          'enableSubscriberCountField': input
+              .formAppearance.profileFormAppearance.enableSubscriberCountField,
+          'enablePlaytimeSecondsField': input
+              .formAppearance.profileFormAppearance.enablePlaytimeSecondsField,
+        },
+        'levelFormAppearance': {
+          'enableLocationField': input
+              .formAppearance.levelFormAppearanceSettings.enableLocationField,
+          'enablePlaytimeSecondsField': input.formAppearance
+              .levelFormAppearanceSettings.enablePlaytimeSecondsField,
+          'enableExposureBucksField': input.formAppearance
+              .levelFormAppearanceSettings.enableExposureBucksField,
+          'enableReplayValueField': input.formAppearance
+              .levelFormAppearanceSettings.enableReplayValueField,
+        },
+      },
+      'defaultFiltering': {
+        'defaultProfilePageFiltering': {
+          'subscriberCount': [
+            input.defaultFiltering.defaultProfilePageFiltering.subscriberCount
+                .item1,
+            input.defaultFiltering.defaultProfilePageFiltering.subscriberCount
+                .item2,
+          ],
+          'playtimeSeconds': [
+            input.defaultFiltering.defaultLevelsPageFiltering.playtimeSeconds
+                .item1,
+            input.defaultFiltering.defaultLevelsPageFiltering.playtimeSeconds
+                .item2,
+          ],
+          'sortBy':
+              input.defaultFiltering.defaultLevelsPageFiltering.sortBy.index,
+        },
+        'defaultLevelsPageFiltering': {
+          'inTower': input.defaultFiltering.defaultLevelsPageFiltering.inTower,
+          'inMarketingDepartment': input.defaultFiltering
+              .defaultLevelsPageFiltering.inMarketingDepartment,
+          'inDailyBuild':
+              input.defaultFiltering.defaultLevelsPageFiltering.inDailyBuild,
+          'playtimeSeconds': [
+            input.defaultFiltering.defaultLevelsPageFiltering.playtimeSeconds
+                .item1,
+            input.defaultFiltering.defaultLevelsPageFiltering.playtimeSeconds
+                .item2,
+          ],
+          'exposureBucks': [
+            input.defaultFiltering.defaultLevelsPageFiltering.exposureBucks
+                .item1,
+            input.defaultFiltering.defaultLevelsPageFiltering.exposureBucks
+                .item2,
+          ],
+          'replayValue': [
+            input.defaultFiltering.defaultLevelsPageFiltering.replayValue.item1,
+            input.defaultFiltering.defaultLevelsPageFiltering.replayValue.item2,
+          ],
+          'sortBy':
+              input.defaultFiltering.defaultLevelsPageFiltering.sortBy.index,
+        },
+      },
+    };
+
+    _logger.v('output map: $map');
+    return map;
   }
 }
 
@@ -139,7 +229,6 @@ class HiveMapToSettingsConverter
     );
 
     _logger.v('output settings: $settings');
-
     return settings;
   }
 }
