@@ -16,7 +16,7 @@ import 'package:levelheadbrowser/data/models/params/players.dart';
 class DefaultProfilesPageFilteringSettings {
   final Tuple2<int, int> subscriberCount;
   final Tuple2<int, int> playtimeSeconds;
-  final PlayerParamsSortField sortBy;
+  final PlayersParamsSortField sortBy;
 
   DefaultProfilesPageFilteringSettings({
     required this.subscriberCount,
@@ -46,11 +46,11 @@ class DefaultLevelsPageFilteringSettings {
 }
 
 class DefaultFilteringSettings {
-  final DefaultProfilesPageFilteringSettings defaultProfilePageFiltering;
+  final DefaultProfilesPageFilteringSettings defaultProfilesPageFiltering;
   final DefaultLevelsPageFilteringSettings defaultLevelsPageFiltering;
 
   DefaultFilteringSettings({
-    required this.defaultProfilePageFiltering,
+    required this.defaultProfilesPageFiltering,
     required this.defaultLevelsPageFiltering,
   });
 }

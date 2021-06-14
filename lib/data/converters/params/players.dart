@@ -28,7 +28,7 @@ class PlayersParamsToParameterMapConverter
       params['userIds'] = ids.map((e) => e.trim()).join(',');
     });
 
-    ifNotNullDo<Tuple2<bool, PlayerParamsSortField>>(input.sort, (sort) {
+    ifNotNullDo<Tuple2<bool, PlayersParamsSortField>>(input.sort, (sort) {
       var descChar = sort.item1 ? '' : '-';
       var value = sort.item2.value;
 

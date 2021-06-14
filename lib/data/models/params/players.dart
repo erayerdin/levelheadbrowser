@@ -6,7 +6,7 @@
 
 import 'package:tuple/tuple.dart';
 
-enum PlayerParamsSortField {
+enum PlayersParamsSortField {
   DateJoined,
   SubscribeCount,
   PlaytimeSeconds,
@@ -17,24 +17,24 @@ enum PlayerParamsSortField {
   PublishCount,
 }
 
-extension PlayerParamsSortFieldExtension on PlayerParamsSortField {
+extension PlayersParamsSortFieldExtension on PlayersParamsSortField {
   String get value {
     switch (this) {
-      case PlayerParamsSortField.DateJoined:
+      case PlayersParamsSortField.DateJoined:
         return 'createdAt';
-      case PlayerParamsSortField.SubscribeCount:
+      case PlayersParamsSortField.SubscribeCount:
         return 'Subscribers';
-      case PlayerParamsSortField.PlaytimeSeconds:
+      case PlayersParamsSortField.PlaytimeSeconds:
         return 'PlayTime';
-      case PlayerParamsSortField.PlayCount:
+      case PlayersParamsSortField.PlayCount:
         return 'Plays';
-      case PlayerParamsSortField.TrophyCount:
+      case PlayersParamsSortField.TrophyCount:
         return 'Trophies';
-      case PlayerParamsSortField.ShoeCount:
+      case PlayersParamsSortField.ShoeCount:
         return 'Shoes';
-      case PlayerParamsSortField.CrownCount:
+      case PlayersParamsSortField.CrownCount:
         return 'Crowns';
-      case PlayerParamsSortField.PublishCount:
+      case PlayersParamsSortField.PublishCount:
         return 'Published';
     }
   }
@@ -42,7 +42,7 @@ extension PlayerParamsSortFieldExtension on PlayerParamsSortField {
 
 class PlayersParams {
   final Set<String>? ids;
-  final Tuple2<bool, PlayerParamsSortField>? sort;
+  final Tuple2<bool, PlayersParamsSortField>? sort;
   final int? limit;
   final int? minSubscriberCount;
   final int? maxSubscriberCount;

@@ -40,7 +40,8 @@ class ProfileFilterFormToPlayersParamsConverter extends Converter<
         ? null
         : playtimeSecondsRange.end.floor();
 
-    var sortBy = input['sortBy']?.value as Tuple2<bool, PlayerParamsSortField>?;
+    var sortBy =
+        input['sortBy']?.value as Tuple2<bool, PlayersParamsSortField>?;
 
     var params = PlayersParams(
       minSubscriberCount: minSubscriberCount,

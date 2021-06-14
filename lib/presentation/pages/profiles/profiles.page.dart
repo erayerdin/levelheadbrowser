@@ -24,67 +24,67 @@ const Tuple2<int, int> PLAYTIME_SECS = Tuple2(0, 10000);
 const SORT_BY_DROPDOWN_ITEMS = [
   DropdownMenuItem(
     child: Text('Earliest Joined'),
-    value: Tuple2(false, PlayerParamsSortField.DateJoined),
+    value: Tuple2(false, PlayersParamsSortField.DateJoined),
   ),
   DropdownMenuItem(
     child: Text('Latest Joined'),
-    value: Tuple2(true, PlayerParamsSortField.DateJoined),
+    value: Tuple2(true, PlayersParamsSortField.DateJoined),
   ),
   DropdownMenuItem(
     child: Text('Most Subscribers'),
-    value: Tuple2(true, PlayerParamsSortField.SubscribeCount),
+    value: Tuple2(true, PlayersParamsSortField.SubscribeCount),
   ),
   DropdownMenuItem(
     child: Text('Least Subscribers'),
-    value: Tuple2(false, PlayerParamsSortField.SubscribeCount),
+    value: Tuple2(false, PlayersParamsSortField.SubscribeCount),
   ),
   DropdownMenuItem(
     child: Text('Most Playtime'),
-    value: Tuple2(true, PlayerParamsSortField.PlaytimeSeconds),
+    value: Tuple2(true, PlayersParamsSortField.PlaytimeSeconds),
   ),
   DropdownMenuItem(
     child: Text('Least Playtime'),
-    value: Tuple2(false, PlayerParamsSortField.PlaytimeSeconds),
+    value: Tuple2(false, PlayersParamsSortField.PlaytimeSeconds),
   ),
   DropdownMenuItem(
     child: Text('Most Levels Played'),
-    value: Tuple2(true, PlayerParamsSortField.PlayCount),
+    value: Tuple2(true, PlayersParamsSortField.PlayCount),
   ),
   DropdownMenuItem(
     child: Text('Least Levels Played'),
-    value: Tuple2(false, PlayerParamsSortField.PlayCount),
+    value: Tuple2(false, PlayersParamsSortField.PlayCount),
   ),
   DropdownMenuItem(
     child: Text('Most Trophies'),
-    value: Tuple2(true, PlayerParamsSortField.TrophyCount),
+    value: Tuple2(true, PlayersParamsSortField.TrophyCount),
   ),
   DropdownMenuItem(
     child: Text('Least Trophies'),
-    value: Tuple2(false, PlayerParamsSortField.TrophyCount),
+    value: Tuple2(false, PlayersParamsSortField.TrophyCount),
   ),
   DropdownMenuItem(
     child: Text('Most Shoes'),
-    value: Tuple2(true, PlayerParamsSortField.ShoeCount),
+    value: Tuple2(true, PlayersParamsSortField.ShoeCount),
   ),
   DropdownMenuItem(
     child: Text('Least Shoes'),
-    value: Tuple2(false, PlayerParamsSortField.ShoeCount),
+    value: Tuple2(false, PlayersParamsSortField.ShoeCount),
   ),
   DropdownMenuItem(
     child: Text('Most Crowns'),
-    value: Tuple2(true, PlayerParamsSortField.CrownCount),
+    value: Tuple2(true, PlayersParamsSortField.CrownCount),
   ),
   DropdownMenuItem(
     child: Text('Least Crowns'),
-    value: Tuple2(false, PlayerParamsSortField.CrownCount),
+    value: Tuple2(false, PlayersParamsSortField.CrownCount),
   ),
   DropdownMenuItem(
     child: Text('Most Published Levels'),
-    value: Tuple2(true, PlayerParamsSortField.PublishCount),
+    value: Tuple2(true, PlayersParamsSortField.PublishCount),
   ),
   DropdownMenuItem(
     child: Text('Least Published Levels'),
-    value: Tuple2(false, PlayerParamsSortField.PublishCount),
+    value: Tuple2(false, PlayersParamsSortField.PublishCount),
   ),
 ];
 

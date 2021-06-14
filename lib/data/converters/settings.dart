@@ -81,11 +81,11 @@ class SettingsToHiveMapConverter
         },
       },
       'defaultFiltering': {
-        'defaultProfilePageFiltering': {
+        'defaultProfilesPageFiltering': {
           'subscriberCount': [
-            input.defaultFiltering.defaultProfilePageFiltering.subscriberCount
+            input.defaultFiltering.defaultProfilesPageFiltering.subscriberCount
                 .item1,
-            input.defaultFiltering.defaultProfilePageFiltering.subscriberCount
+            input.defaultFiltering.defaultProfilesPageFiltering.subscriberCount
                 .item2,
           ],
           'playtimeSeconds': [
@@ -181,21 +181,21 @@ class HiveMapToSettingsConverter
         ),
       ),
       defaultFiltering: DefaultFilteringSettings(
-        defaultProfilePageFiltering: DefaultProfilesPageFilteringSettings(
+        defaultProfilesPageFiltering: DefaultProfilesPageFilteringSettings(
           subscriberCount: Tuple2(
-            input['defaultFiltering']['defaultProfilePageFiltering']
+            input['defaultFiltering']['defaultProfilesPageFiltering']
                 ['subscriberCount'][0],
-            input['defaultFiltering']['defaultProfilePageFiltering']
+            input['defaultFiltering']['defaultProfilesPageFiltering']
                 ['subscriberCount'][1],
           ),
           playtimeSeconds: Tuple2(
-            input['defaultFiltering']['defaultProfilePageFiltering']
+            input['defaultFiltering']['defaultProfilesPageFiltering']
                 ['playtimeSeconds'][0],
-            input['defaultFiltering']['defaultProfilePageFiltering']
+            input['defaultFiltering']['defaultProfilesPageFiltering']
                 ['playtimeSeconds'][1],
           ),
-          sortBy: PlayerParamsSortField.values[input['defaultFiltering']
-              ['defaultProfilePageFiltering']['sortBy']],
+          sortBy: PlayersParamsSortField.values[input['defaultFiltering']
+              ['defaultProfilesPageFiltering']['sortBy']],
         ),
         defaultLevelsPageFiltering: DefaultLevelsPageFilteringSettings(
           inTower: input['defaultFiltering']['defaultLevelsPageFiltering']
