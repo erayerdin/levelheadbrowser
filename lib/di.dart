@@ -34,6 +34,7 @@ import 'package:levelheadbrowser/data/providers/settings.dart';
 import 'package:levelheadbrowser/data/providers/towertrial.dart';
 import 'package:levelheadbrowser/data/repositories/level.dart';
 import 'package:levelheadbrowser/data/repositories/profile.dart';
+import 'package:levelheadbrowser/data/repositories/settings.dart';
 import 'package:levelheadbrowser/data/repositories/towertrial.dart';
 import 'package:logger/logger.dart' show Logger;
 import 'package:path_provider/path_provider.dart';
@@ -154,6 +155,10 @@ Future<void> setUpDI() async {
   );
 
   // Repositories
+  getIt.registerLazySingleton<SettingsRepository<dynamic, Settings>>(
+    () => HiveSettingsRepository(),
+    instanceName: 'data.repositories.settings.hive',
+  );
   getIt.registerLazySingleton<ProfileRepository<PlayersParams, Profile>>(
     () => RumpusProfileRepository(),
     instanceName: 'data.repositories.profile.rumpus',
