@@ -19,8 +19,8 @@ class HiveSettingsRepository implements SettingsRepository<dynamic, Settings> {
   final Logger _logger = getIt.get();
   final SettingsProvider<dynamic, Map<String, dynamic>> _provider =
       getIt.get(instanceName: 'data.providers.settings.hive');
-  final Converter<Map<String, dynamic>, Settings> _hiveMapToSettingsConverter =
-      getIt.get(
+  final Converter<Map<String, dynamic>, Future<Settings>>
+      _hiveMapToSettingsConverter = getIt.get(
           instanceName: 'data.converters.settings.toSettings.fromHiveMap');
 
   @override

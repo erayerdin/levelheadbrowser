@@ -15,11 +15,11 @@ abstract class SettingsProvider<ParamModel, ResponseType> {
 class HiveSettingsProvider
     implements SettingsProvider<dynamic, Map<String, dynamic>> {
   final Logger _logger = getIt.get();
-  final Box _box = getIt.get(instanceName: 'hive.box.settings');
+  final Future<Box> _box = getIt.getAsync(instanceName: 'hive.box.settings');
 
   @override
   Future<Map<String, dynamic>> get(params) async {
     _logger.d('Getting settings using Hive Settings Provder...');
-    return _box.get('settings');
+    return (await _box).get('settings');
   }
 }
