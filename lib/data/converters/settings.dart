@@ -42,6 +42,7 @@ class SettingsToHiveMapConverter
     _logger.v('input settings: $input');
 
     Map<String, dynamic> map = {
+      'rumpusDelegationKey': input.rumpusDelegationKey,
       'card': {
         'profileCard': {
           'noAliasDefault': input.card.profileCard.noAliasDefault,
@@ -140,6 +141,7 @@ class HiveMapToSettingsConverter
     _logger.v('input hive map: $input');
 
     var settings = Settings(
+      rumpusDelegationKey: input['rumpusDelegationKey'],
       card: CardSettings(
         profileCard: ProfileCardSettings(
           noAliasDefault: input['card']['profileCard']['noAliasDefault'],
