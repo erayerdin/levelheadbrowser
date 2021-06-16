@@ -5,8 +5,39 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:levelheadbrowser/data/models/settings.dart';
+import 'package:levelheadbrowser/presentation/pages/settings/components/colorpicker.component.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+part 'profilecards.appearance.settings.page.dart';
+
+class _SettingsSection extends StatelessWidget {
+  final String title;
+  final List<Widget> children;
+
+  const _SettingsSection({
+    Key? key,
+    required this.title,
+    required this.children,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          title,
+          style: Theme.of(context).textTheme.caption,
+        ),
+        Divider(),
+        ...children,
+      ],
+    );
+  }
+}
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -22,7 +53,17 @@ class SettingsPage extends StatelessWidget {
           SettingsSection(
             title: 'Cards Appearance',
             tiles: [
-              SettingsTile(title: 'Profile Cards'),
+              SettingsTile(
+                title: 'Profile Cards',
+                onPressed: (_) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => _ProfileCardsAppearanceSettingsPage(),
+                    ),
+                  );
+                },
+              ),
               SettingsTile(title: 'Level Cards'),
             ],
           ),
