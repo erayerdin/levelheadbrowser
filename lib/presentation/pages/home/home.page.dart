@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
+import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
 import 'package:levelheadbrowser/presentation/pages/levels/levels.page.dart';
 import 'package:levelheadbrowser/presentation/pages/profiles/profiles.page.dart';
 import 'package:levelheadbrowser/presentation/pages/towertrials/towertrials.page.dart';
@@ -20,11 +21,14 @@ class HomePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (blocCtx) => HomePageBloc()
+          create: (_) => HomePageBloc()
             ..add(
               LoadHomePageEvent(index: HomePageBottomNavbarTab.Profiles.index),
             ),
         ),
+        BlocProvider(
+          create: (_) => SettingsBloc()..add(LoadSettingsEvent()),
+        )
       ],
       child: Scaffold(
         appBar: AppBar(
