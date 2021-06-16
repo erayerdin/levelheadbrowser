@@ -23,6 +23,10 @@ class DefaultProfilesPageFilteringSettings {
     required this.playtimeSeconds,
     required this.sortBy,
   });
+
+  @override
+  String toString() =>
+      'DefaultProfilesPageFilteringSettings(subscriberCount: $subscriberCount, playtimeSeconds: $playtimeSeconds, sortBy: $sortBy)';
 }
 
 class DefaultLevelsPageFilteringSettings {
@@ -43,6 +47,11 @@ class DefaultLevelsPageFilteringSettings {
     required this.replayValue,
     required this.sortBy,
   });
+
+  @override
+  String toString() {
+    return 'DefaultLevelsPageFilteringSettings(inTower: $inTower, inMarketingDepartment: $inMarketingDepartment, inDailyBuild: $inDailyBuild, playtimeSeconds: $playtimeSeconds, exposureBucks: $exposureBucks, replayValue: $replayValue, sortBy: $sortBy)';
+  }
 }
 
 class DefaultFilteringSettings {
@@ -53,6 +62,10 @@ class DefaultFilteringSettings {
     required this.defaultProfilesPageFiltering,
     required this.defaultLevelsPageFiltering,
   });
+
+  @override
+  String toString() =>
+      'DefaultFilteringSettings(defaultProfilesPageFiltering: $defaultProfilesPageFiltering, defaultLevelsPageFiltering: $defaultLevelsPageFiltering)';
 }
 
 //##########################//
@@ -66,6 +79,10 @@ class ProfileFormAppearanceSettings {
     required this.enableSubscriberCountField,
     required this.enablePlaytimeSecondsField,
   });
+
+  @override
+  String toString() =>
+      'ProfileFormAppearanceSettings(enableSubscriberCountField: $enableSubscriberCountField, enablePlaytimeSecondsField: $enablePlaytimeSecondsField)';
 }
 
 class LevelFormAppearanceSettings {
@@ -80,6 +97,11 @@ class LevelFormAppearanceSettings {
     required this.enableExposureBucksField,
     required this.enableReplayValueField,
   });
+
+  @override
+  String toString() {
+    return 'LevelFormAppearanceSettings(enableLocationField: $enableLocationField, enablePlaytimeSecondsField: $enablePlaytimeSecondsField, enableExposureBucksField: $enableExposureBucksField, enableReplayValueField: $enableReplayValueField)';
+  }
 }
 
 class FormAppearanceSettings {
@@ -90,6 +112,10 @@ class FormAppearanceSettings {
     required this.profileFormAppearance,
     required this.levelFormAppearanceSettings,
   });
+
+  @override
+  String toString() =>
+      'FormAppearanceSettings(profileFormAppearance: $profileFormAppearance, levelFormAppearanceSettings: $levelFormAppearanceSettings)';
 }
 
 //###############//
@@ -144,6 +170,11 @@ class ProfileCardSettings {
     required this.maxColor,
     required this.maxThreshold,
   });
+
+  @override
+  String toString() {
+    return 'ProfileCardSettings(noAliasDefault: $noAliasDefault, showJoined: $showJoined, showSubscriberCount: $showSubscriberCount, showFollowingCount: $showFollowingCount, colorInterpolationField: $colorInterpolationField, minColor: $minColor, maxColor: $maxColor, maxThreshold: $maxThreshold)';
+  }
 }
 
 enum LevelCardColorInterpolationField {
@@ -175,6 +206,11 @@ class LevelCardSettings {
     required this.maxColor,
     required this.maxThreshold,
   });
+
+  @override
+  String toString() {
+    return 'LevelCardSettings(colorInterpolationField: $colorInterpolationField, minColor: $minColor, maxColor: $maxColor, maxThreshold: $maxThreshold)';
+  }
 }
 
 class CardSettings {
@@ -185,6 +221,10 @@ class CardSettings {
     required this.profileCard,
     required this.levelCard,
   });
+
+  @override
+  String toString() =>
+      'CardSettings(profileCard: $profileCard, levelCard: $levelCard)';
 }
 
 class Settings {
@@ -199,4 +239,23 @@ class Settings {
     required this.defaultFiltering,
     this.rumpusDelegationKey,
   });
+
+  Settings copyWith({
+    CardSettings? card,
+    FormAppearanceSettings? formAppearance,
+    DefaultFilteringSettings? defaultFiltering,
+    String? rumpusDelegationKey,
+  }) {
+    return Settings(
+      card: card ?? this.card,
+      formAppearance: formAppearance ?? this.formAppearance,
+      defaultFiltering: defaultFiltering ?? this.defaultFiltering,
+      rumpusDelegationKey: rumpusDelegationKey ?? this.rumpusDelegationKey,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'Settings(card: $card, formAppearance: $formAppearance, defaultFiltering: $defaultFiltering, rumpusDelegationKey: $rumpusDelegationKey)';
+  }
 }
