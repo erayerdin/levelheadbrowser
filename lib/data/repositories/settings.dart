@@ -13,6 +13,7 @@ import 'package:logger/logger.dart';
 
 abstract class SettingsRepository<ParamModel, LocalModel> {
   Future<LocalModel> get(ParamModel params);
+  Future<void> update(LocalModel instance);
 }
 
 class HiveSettingsRepository implements SettingsRepository<dynamic, Settings> {
@@ -22,11 +23,22 @@ class HiveSettingsRepository implements SettingsRepository<dynamic, Settings> {
   final Converter<Map<String, dynamic>, Future<Settings>>
       _hiveMapToSettingsConverter = getIt.get(
           instanceName: 'data.converters.settings.toSettings.fromHiveMap');
+  final Converter<Settings, Future<Map<String, dynamic>>>
+      _settingsToHiveMapConverter = getIt.get(
+          instanceName: 'data.converters.settings.toHiveMap.fromSettings');
 
   @override
   Future<Settings> get(params) async {
     _logger.d('Getting settings using Hive Settings Repository...');
     Map<String, dynamic> data = await _provider.get(params);
     return _hiveMapToSettingsConverter.convert(data);
+  }
+
+  @override
+  Future<void> update(Settings instance) async {
+    _logger.d('Updating settings using Hive Settings Repository...');
+    Map<String, dynamic> data =
+        await _settingsToHiveMapConverter.convert(instance);
+    await _provider.update(data);
   }
 }

@@ -169,5 +169,13 @@ void main() {
         LevelsParamsSortField.values[0],
       );
     });
+
+    test('update', () async {
+      Settings settings = await _repository.get(null);
+      Settings newSettings = settings.copyWith(rumpusDelegationKey: 'foo');
+      await _repository.update(newSettings);
+      Settings updatedSettings = await _repository.get(null);
+      expect(updatedSettings.rumpusDelegationKey, 'foo');
+    });
   });
 }
