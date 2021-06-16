@@ -133,6 +133,32 @@ enum ProfileCardColorInterpolationField {
   TimeTrophyCount,
 }
 
+extension ProfileCardColorInterpolationFieldExtension
+    on ProfileCardColorInterpolationField {
+  String toRepr() {
+    switch (this) {
+      case ProfileCardColorInterpolationField.SubscriberCount:
+        return 'Subscriber Count';
+      case ProfileCardColorInterpolationField.FollowingCount:
+        return 'Following Count';
+      case ProfileCardColorInterpolationField.CrownCount:
+        return 'Crown Count';
+      case ProfileCardColorInterpolationField.ShoeCount:
+        return 'Shoe Count';
+      case ProfileCardColorInterpolationField.PlaytimeSeconds:
+        return 'Playtime';
+      case ProfileCardColorInterpolationField.HiddenGemCount:
+        return 'Hidden Gem Count';
+      case ProfileCardColorInterpolationField.TrophyCount:
+        return 'Trophy Count';
+      case ProfileCardColorInterpolationField.CampaignProgress:
+        return 'Campaign Progress';
+      case ProfileCardColorInterpolationField.TimeTrophyCount:
+        return 'Time Trophy Count';
+    }
+  }
+}
+
 /// Settings related to profile card.
 class ProfileCardSettings {
   /// Shown when a profile has no alias defined.
