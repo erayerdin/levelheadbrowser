@@ -22,7 +22,7 @@ class HiveSettingsProvider
   @override
   Future<Map<String, dynamic>?> get(params) async {
     _logger.d('Getting settings using Hive Settings Provder...');
-    return (await _box).get(BOX_KEY);
+    return Map<String, dynamic>.from((await _box).get(BOX_KEY));
   }
 
   @override
