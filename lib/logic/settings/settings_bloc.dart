@@ -36,6 +36,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
 
       yield LoadedSettingsState(settings: settings);
     } else if (event is UpdateSettingsEvent) {
+      yield LoadingSettingsState();
       _repository.update(event.settings);
       _settings = event.settings;
       yield LoadedSettingsState(settings: _settings);
