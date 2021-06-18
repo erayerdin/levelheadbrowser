@@ -85,12 +85,12 @@ class SettingsToHiveMapConverter
         'defaultProfilesPageFiltering': {
           'subscriberCount': input
               .defaultFiltering.defaultProfilesPageFiltering.subscriberCount
-              .toList(),
+              ?.toList(),
           'playtimeSeconds': input
               .defaultFiltering.defaultLevelsPageFiltering.playtimeSeconds
-              .toList(),
+              ?.toList(),
           'sortBy':
-              input.defaultFiltering.defaultLevelsPageFiltering.sortBy.index,
+              input.defaultFiltering.defaultLevelsPageFiltering.sortBy?.index,
         },
         'defaultLevelsPageFiltering': {
           'inTower': input.defaultFiltering.defaultLevelsPageFiltering.inTower,
@@ -100,15 +100,15 @@ class SettingsToHiveMapConverter
               input.defaultFiltering.defaultLevelsPageFiltering.inDailyBuild,
           'playtimeSeconds': input
               .defaultFiltering.defaultLevelsPageFiltering.playtimeSeconds
-              .toList(),
+              ?.toList(),
           'exposureBucks': input
               .defaultFiltering.defaultLevelsPageFiltering.exposureBucks
-              .toList(),
+              ?.toList(),
           'replayValue': input
               .defaultFiltering.defaultLevelsPageFiltering.replayValue
-              .toList(),
+              ?.toList(),
           'sortBy':
-              input.defaultFiltering.defaultLevelsPageFiltering.sortBy.index,
+              input.defaultFiltering.defaultLevelsPageFiltering.sortBy?.index,
         },
       },
     };

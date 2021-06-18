@@ -14,9 +14,9 @@ import 'package:levelheadbrowser/data/models/params/levels.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
 
 class DefaultProfilesPageFilteringSettings {
-  final Tuple2<int, int> subscriberCount;
-  final Tuple2<int, int> playtimeSeconds;
-  final PlayersParamsSortField sortBy;
+  final Tuple2<int, int>? subscriberCount;
+  final Tuple2<int, int>? playtimeSeconds;
+  final PlayersParamsSortField? sortBy;
 
   DefaultProfilesPageFilteringSettings({
     required this.subscriberCount,
@@ -30,13 +30,13 @@ class DefaultProfilesPageFilteringSettings {
 }
 
 class DefaultLevelsPageFilteringSettings {
-  final bool inTower;
-  final bool inMarketingDepartment;
-  final bool inDailyBuild;
-  final Tuple2<int, int> playtimeSeconds;
-  final Tuple2<int, int> exposureBucks;
-  final Tuple2<int, int> replayValue;
-  final LevelsParamsSortField sortBy;
+  final bool? inTower;
+  final bool? inMarketingDepartment;
+  final bool? inDailyBuild;
+  final Tuple2<int, int>? playtimeSeconds;
+  final Tuple2<int, int>? exposureBucks;
+  final Tuple2<int, int>? replayValue;
+  final LevelsParamsSortField? sortBy;
 
   DefaultLevelsPageFilteringSettings({
     required this.inTower,

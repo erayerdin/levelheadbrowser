@@ -79,7 +79,7 @@ void main() {
     });
 
     test('get', () async {
-      Settings settings = await _repository.get(null);
+      Settings settings = (await _repository.get(null))!;
 
       expect(settings.card.profileCard.noAliasDefault, 'foo');
       expect(settings.card.profileCard.showJoined, true);
@@ -171,10 +171,10 @@ void main() {
     });
 
     test('update', () async {
-      Settings settings = await _repository.get(null);
+      Settings settings = (await _repository.get(null))!;
       Settings newSettings = settings.copyWith(rumpusDelegationKey: 'foo');
       await _repository.update(newSettings);
-      Settings updatedSettings = await _repository.get(null);
+      Settings updatedSettings = (await _repository.get(null))!;
       expect(updatedSettings.rumpusDelegationKey, 'foo');
     });
   });
