@@ -11,6 +11,8 @@ class _ProfileCardsAppearanceSettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var settingsBloc = BlocProvider.of<SettingsBloc>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile Cards Appearance'),
@@ -29,8 +31,19 @@ class _ProfileCardsAppearanceSettingsPage extends StatelessWidget {
                       'Show Joined Date',
                       style: Theme.of(context).textTheme.bodyText2,
                     ),
-                    initialValue: false, // TODO change on state
-                    onChanged: (val) {}, // TODO implement onChanged
+                    initialValue:
+                        settingsBloc.settings.card.profileCard.showJoined,
+                    onChanged: (val) {
+                      var settings = settingsBloc.settings.copyWith(
+                        card: settingsBloc.settings.card.copyWith(
+                          profileCard:
+                              settingsBloc.settings.card.profileCard.copyWith(
+                            showJoined: val,
+                          ),
+                        ),
+                      );
+                      settingsBloc.add(UpdateSettingsEvent(settings: settings));
+                    },
                   ),
                   FormBuilderSwitch(
                     name: '',
@@ -38,8 +51,19 @@ class _ProfileCardsAppearanceSettingsPage extends StatelessWidget {
                       'Show Subscriber Count',
                       style: Theme.of(context).textTheme.bodyText2,
                     ),
-                    initialValue: false, // TODO change on state
-                    onChanged: (val) {}, // TODO implement onChanged
+                    initialValue: settingsBloc
+                        .settings.card.profileCard.showSubscriberCount,
+                    onChanged: (val) {
+                      var settings = settingsBloc.settings.copyWith(
+                        card: settingsBloc.settings.card.copyWith(
+                          profileCard:
+                              settingsBloc.settings.card.profileCard.copyWith(
+                            showSubscriberCount: val,
+                          ),
+                        ),
+                      );
+                      settingsBloc.add(UpdateSettingsEvent(settings: settings));
+                    },
                   ),
                   FormBuilderSwitch(
                     name: '',
@@ -47,8 +71,20 @@ class _ProfileCardsAppearanceSettingsPage extends StatelessWidget {
                       'Show Following Count',
                       style: Theme.of(context).textTheme.bodyText2,
                     ),
-                    initialValue: false, // TODO change on state
-                    onChanged: (val) {}, // TODO implement onChanged
+                    initialValue: settingsBloc
+                        .settings.card.profileCard.showFollowingCount,
+                    onChanged: (val) {
+                      var settings = settingsBloc.settings.copyWith(
+                        card: settingsBloc.settings.card.copyWith(
+                          profileCard:
+                              settingsBloc.settings.card.profileCard.copyWith(
+                            showFollowingCount: val,
+                          ),
+                        ),
+                      );
+
+                      settingsBloc.add(UpdateSettingsEvent(settings: settings));
+                    },
                   ),
                 ],
               ),

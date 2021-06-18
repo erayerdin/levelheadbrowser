@@ -15,7 +15,6 @@ import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
 import 'package:levelheadbrowser/logic/profiles/profiles_bloc.dart';
 import 'package:levelheadbrowser/presentation/components/filterpanel/filterpanel.component.dart';
 import 'package:levelheadbrowser/presentation/pages/profiles/components/profilecard.component.dart';
-import 'package:logger/logger.dart';
 import 'package:tuple/tuple.dart';
 
 const Tuple2<int, int> SUBS_COUNT = Tuple2(0, 10000);

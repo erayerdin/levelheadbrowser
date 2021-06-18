@@ -6,9 +6,11 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:levelheadbrowser/data/models/profile.dart';
 import 'package:levelheadbrowser/di.dart';
+import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
 import 'package:levelheadbrowser/presentation/pages/profiles/components/profiledialog/profiledialog.component.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -26,6 +28,8 @@ class ProfileCardComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var settingsBloc = BlocProvider.of<SettingsBloc>(context);
+
     return Theme(
       data: Theme.of(context).copyWith(
         cardTheme: Theme.of(context).cardTheme.copyWith(
@@ -89,23 +93,38 @@ class ProfileCardComponent extends StatelessWidget {
                       ],
                     ),
                     Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            'Joined ${timeago.format(profile.dateJoined)}',
-                            style: Theme.of(context).textTheme.caption,
-                          ),
-                          Text(
-                            'Has ${profile.stats.subscriberCount} subscribers',
-                            style: Theme.of(context).textTheme.caption,
-                          ),
-                          Text(
-                            'Following ${profile.stats.followingCount} people',
-                            style: Theme.of(context).textTheme.caption,
-                          ),
-                        ],
+                      child: BlocBuilder<SettingsBloc, SettingsState>(
+                        buildWhen: (p, c) => c is LoadedSettingsState,
+                        builder: (context, state) {
+                          if (state is LoadingSettingsState) {
+                            return SizedBox();
+                          }
+
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              if (settingsBloc
+                                  .settings.card.profileCard.showJoined)
+                                Text(
+                                  'Joined ${timeago.format(profile.dateJoined)}',
+                                  style: Theme.of(context).textTheme.caption,
+                                ),
+                              if (settingsBloc.settings.card.profileCard
+                                  .showSubscriberCount)
+                                Text(
+                                  'Has ${profile.stats.subscriberCount} subscribers',
+                                  style: Theme.of(context).textTheme.caption,
+                                ),
+                              if (settingsBloc
+                                  .settings.card.profileCard.showFollowingCount)
+                                Text(
+                                  'Following ${profile.stats.followingCount} people',
+                                  style: Theme.of(context).textTheme.caption,
+                                ),
+                            ],
+                          );
+                        },
                       ),
                     ),
                   ],
