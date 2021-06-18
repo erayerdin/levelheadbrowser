@@ -14,6 +14,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   final Logger _logger = getIt.get();
   final SettingsRepository<dynamic, Settings> _repository =
       getIt.get(instanceName: 'data.repositories.settings.hive');
+  late Settings _settings;
+  Settings get settings => _settings;
 
   SettingsBloc() : super(LoadingSettingsState());
 
@@ -30,10 +32,13 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         settings = await _repository.get(null);
       }
 
-      yield LoadedSettingsState(settings: (await _repository.get(null))!);
+      _settings = settings!;
+
+      yield LoadedSettingsState(settings: settings);
     } else if (event is UpdateSettingsEvent) {
       _repository.update(event.settings);
-      yield LoadedSettingsState(settings: event.settings);
+      _settings = event.settings;
+      yield LoadedSettingsState(settings: _settings);
     }
   }
 }
