@@ -171,16 +171,28 @@ class HiveMapToSettingsConverter
       ),
       defaultFiltering: DefaultFilteringSettings(
         defaultProfilesPageFiltering: DefaultProfilesPageFilteringSettings(
-          subscriberCount: Tuple2.fromList(
-            input['defaultFiltering']['defaultProfilesPageFiltering']
-                ['subscriberCount'],
-          ),
-          playtimeSeconds: Tuple2.fromList(
-            input['defaultFiltering']['defaultProfilesPageFiltering']
-                ['playtimeSeconds'],
-          ),
-          sortBy: PlayersParamsSortField.values[input['defaultFiltering']
-              ['defaultProfilesPageFiltering']['sortBy']],
+          subscriberCount: input['defaultFiltering']
+                      ['defaultProfilesPageFiltering']['subscriberCount'] ==
+                  null
+              ? null
+              : Tuple2.fromList(
+                  input['defaultFiltering']['defaultProfilesPageFiltering']
+                      ['subscriberCount'],
+                ),
+          playtimeSeconds: input['defaultFiltering']
+                      ['defaultProfilesPageFiltering']['playtimeSeconds'] ==
+                  null
+              ? null
+              : Tuple2.fromList(
+                  input['defaultFiltering']['defaultProfilesPageFiltering']
+                      ['playtimeSeconds'],
+                ),
+          sortBy: input['defaultFiltering']['defaultProfilesPageFiltering']
+                      ['sortBy'] ==
+                  null
+              ? null
+              : PlayersParamsSortField.values[input['defaultFiltering']
+                  ['defaultProfilesPageFiltering']['sortBy']],
         ),
         defaultLevelsPageFiltering: DefaultLevelsPageFilteringSettings(
           inTower: input['defaultFiltering']['defaultLevelsPageFiltering']
@@ -189,20 +201,36 @@ class HiveMapToSettingsConverter
               ['defaultLevelsPageFiltering']['inMarketingDepartment'],
           inDailyBuild: input['defaultFiltering']['defaultLevelsPageFiltering']
               ['inDailyBuild'],
-          playtimeSeconds: Tuple2.fromList(
-            input['defaultFiltering']['defaultLevelsPageFiltering']
-                ['playtimeSeconds'],
-          ),
-          exposureBucks: Tuple2.fromList(
-            input['defaultFiltering']['defaultLevelsPageFiltering']
-                ['exposureBucks'],
-          ),
-          replayValue: Tuple2.fromList(
-            input['defaultFiltering']['defaultLevelsPageFiltering']
-                ['replayValue'],
-          ),
-          sortBy: LevelsParamsSortField.values[input['defaultFiltering']
-              ['defaultLevelsPageFiltering']['sortBy']],
+          playtimeSeconds: input['defaultFiltering']
+                      ['defaultLevelsPageFiltering']['playtimeSeconds'] ==
+                  null
+              ? null
+              : Tuple2.fromList(
+                  input['defaultFiltering']['defaultLevelsPageFiltering']
+                      ['playtimeSeconds'],
+                ),
+          exposureBucks: input['defaultFiltering']['defaultLevelsPageFiltering']
+                      ['exposureBucks'] ==
+                  null
+              ? null
+              : Tuple2.fromList(
+                  input['defaultFiltering']['defaultLevelsPageFiltering']
+                      ['exposureBucks'],
+                ),
+          replayValue: input['defaultFiltering']['defaultLevelsPageFiltering']
+                      ['replayValue'] ==
+                  null
+              ? null
+              : Tuple2.fromList(
+                  input['defaultFiltering']['defaultLevelsPageFiltering']
+                      ['replayValue'],
+                ),
+          sortBy: input['defaultFiltering']['defaultLevelsPageFiltering']
+                      ['sortBy'] ==
+                  null
+              ? null
+              : LevelsParamsSortField.values[input['defaultFiltering']
+                  ['defaultLevelsPageFiltering']['sortBy']],
         ),
       ),
     );
