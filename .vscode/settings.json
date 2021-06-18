@@ -25,5 +25,8 @@
     "todo-tree.filtering.excludeGlobs": [
         "**/node_modules",
         "**/CMakeLists.txt"
+    ],
+    "dart.flutterTestAdditionalArgs": [
+        "-j 1"
     ]
 }
