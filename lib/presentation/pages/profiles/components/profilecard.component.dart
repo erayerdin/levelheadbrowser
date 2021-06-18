@@ -59,76 +59,82 @@ class ProfileCardComponent extends StatelessWidget {
               ),
             )
           },
-          child: Card(
-            color: Color.lerp(
-                Colors.red,
-                Colors.green,
-                profile.stats.subscriberCount == null
-                    ? 0
-                    : profile.stats.subscriberCount! / _MAX_SUBS_LIMIT),
-            child: Container(
-                margin: _margin,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Text(
-                            profile.alias == null
-                                ? '<no alias>'
-                                : profile.alias!,
-                            style: Theme.of(context).textTheme.subtitle1,
-                            overflow: TextOverflow.ellipsis,
+          child: BlocBuilder<SettingsBloc, SettingsState>(
+            builder: (context, state) {
+              if (state is LoadingSettingsState) return SizedBox();
+              return Card(
+                color: Color.lerp(
+                    settingsBloc.settings.card.profileCard.minColor,
+                    settingsBloc.settings.card.profileCard.maxColor,
+                    profile.stats.subscriberCount == null
+                        ? 0
+                        : profile.stats.subscriberCount! / _MAX_SUBS_LIMIT),
+                child: Container(
+                  margin: _margin,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              profile.alias == null
+                                  ? '<no alias>'
+                                  : profile.alias!,
+                              style: Theme.of(context).textTheme.subtitle1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
-                        ),
-                        CachedNetworkImage(
-                          imageUrl: profile.getAvatarURL(),
-                          placeholder: (context, url) =>
-                              CircularProgressIndicator(),
-                          errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
-                        )
-                      ],
-                    ),
-                    Expanded(
-                      child: BlocBuilder<SettingsBloc, SettingsState>(
-                        buildWhen: (p, c) => c is LoadedSettingsState,
-                        builder: (context, state) {
-                          if (state is LoadingSettingsState) {
-                            return SizedBox();
-                          }
-
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              if (settingsBloc
-                                  .settings.card.profileCard.showJoined)
-                                Text(
-                                  'Joined ${timeago.format(profile.dateJoined)}',
-                                  style: Theme.of(context).textTheme.caption,
-                                ),
-                              if (settingsBloc.settings.card.profileCard
-                                  .showSubscriberCount)
-                                Text(
-                                  'Has ${profile.stats.subscriberCount} subscribers',
-                                  style: Theme.of(context).textTheme.caption,
-                                ),
-                              if (settingsBloc
-                                  .settings.card.profileCard.showFollowingCount)
-                                Text(
-                                  'Following ${profile.stats.followingCount} people',
-                                  style: Theme.of(context).textTheme.caption,
-                                ),
-                            ],
-                          );
-                        },
+                          CachedNetworkImage(
+                            imageUrl: profile.getAvatarURL(),
+                            placeholder: (context, url) =>
+                                CircularProgressIndicator(),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
+                          )
+                        ],
                       ),
-                    ),
-                  ],
-                )),
+                      Expanded(
+                        child: BlocBuilder<SettingsBloc, SettingsState>(
+                          buildWhen: (p, c) => c is LoadedSettingsState,
+                          builder: (context, state) {
+                            if (state is LoadingSettingsState) {
+                              return SizedBox();
+                            }
+
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                if (settingsBloc
+                                    .settings.card.profileCard.showJoined)
+                                  Text(
+                                    'Joined ${timeago.format(profile.dateJoined)}',
+                                    style: Theme.of(context).textTheme.caption,
+                                  ),
+                                if (settingsBloc.settings.card.profileCard
+                                    .showSubscriberCount)
+                                  Text(
+                                    'Has ${profile.stats.subscriberCount} subscribers',
+                                    style: Theme.of(context).textTheme.caption,
+                                  ),
+                                if (settingsBloc.settings.card.profileCard
+                                    .showFollowingCount)
+                                  Text(
+                                    'Following ${profile.stats.followingCount} people',
+                                    style: Theme.of(context).textTheme.caption,
+                                  ),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
           ),
         ),
       ),

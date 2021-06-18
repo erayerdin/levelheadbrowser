@@ -94,13 +94,35 @@ class _ProfileCardsAppearanceSettingsPage extends StatelessWidget {
                 children: [
                   SettingsColorPickerComponent(
                     label: 'Color of Minimum Value',
-                    initialColor: Colors.red, // TODO change on state
-                    onChange: (color) {}, // TODO implement onChange
+                    initialColor:
+                        settingsBloc.settings.card.profileCard.minColor,
+                    onChange: (color) {
+                      var settings = settingsBloc.settings.copyWith(
+                        card: settingsBloc.settings.card.copyWith(
+                          profileCard:
+                              settingsBloc.settings.card.profileCard.copyWith(
+                            minColor: color,
+                          ),
+                        ),
+                      );
+                      settingsBloc.add(UpdateSettingsEvent(settings: settings));
+                    },
                   ),
                   SettingsColorPickerComponent(
                     label: 'Color of Maximum Value',
-                    initialColor: Colors.green, // TODO change on state
-                    onChange: (color) {}, // TODO implement onChange
+                    initialColor:
+                        settingsBloc.settings.card.profileCard.maxColor,
+                    onChange: (color) {
+                      var settings = settingsBloc.settings.copyWith(
+                        card: settingsBloc.settings.card.copyWith(
+                          profileCard:
+                              settingsBloc.settings.card.profileCard.copyWith(
+                            maxColor: color,
+                          ),
+                        ),
+                      );
+                      settingsBloc.add(UpdateSettingsEvent(settings: settings));
+                    },
                   ),
                   FormBuilderDropdown<ProfileCardColorInterpolationField>(
                     name: '',
