@@ -44,6 +44,8 @@ class RumpusMapToTowerTrialConverter
       Map<String, dynamic> input, bool isFastestTime) async {
     _logger.d('Building records...');
 
+    if (input['records'] == null) return [];
+
     List<Map<String, dynamic>> recordsData = isFastestTime
         ? List.from(input['records']['FastestTime'])
         : List.from(input['records']['HighScore']);
