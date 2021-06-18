@@ -4,14 +4,66 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-//############################//
-// Default Filtering Settings //
-//############################//
 import 'package:flutter/material.dart';
 import 'package:tuple/tuple.dart';
 
 import 'package:levelheadbrowser/data/models/params/levels.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
+
+// ignore: non_constant_identifier_names
+final INITIAL_SETTINGS = Settings(
+  card: CardSettings(
+    profileCard: ProfileCardSettings(
+      noAliasDefault: '<no-alias>',
+      showJoined: true,
+      showSubscriberCount: true,
+      showFollowingCount: true,
+      colorInterpolationField:
+          ProfileCardColorInterpolationField.SubscriberCount,
+      minColor: Colors.red,
+      maxColor: Colors.green,
+      maxThreshold: 7500,
+    ),
+    levelCard: LevelCardSettings(
+      colorInterpolationField: LevelCardColorInterpolationField.ClearRate,
+      minColor: Colors.red,
+      maxColor: Colors.green,
+      maxThreshold: 1.0,
+    ),
+  ),
+  formAppearance: FormAppearanceSettings(
+    profileFormAppearance: ProfileFormAppearanceSettings(
+      enableSubscriberCountField: true,
+      enablePlaytimeSecondsField: true,
+    ),
+    levelFormAppearanceSettings: LevelFormAppearanceSettings(
+      enableLocationField: true,
+      enablePlaytimeSecondsField: true,
+      enableExposureBucksField: true,
+      enableReplayValueField: true,
+    ),
+  ),
+  defaultFiltering: DefaultFilteringSettings(
+    defaultProfilesPageFiltering: DefaultProfilesPageFilteringSettings(
+      subscriberCount: null,
+      playtimeSeconds: null,
+      sortBy: null,
+    ),
+    defaultLevelsPageFiltering: DefaultLevelsPageFilteringSettings(
+      inTower: null,
+      inMarketingDepartment: null,
+      inDailyBuild: null,
+      playtimeSeconds: null,
+      exposureBucks: null,
+      replayValue: null,
+      sortBy: null,
+    ),
+  ),
+);
+
+//############################//
+// Default Filtering Settings //
+//############################//
 
 class DefaultProfilesPageFilteringSettings {
   final Tuple2<int, int>? subscriberCount;

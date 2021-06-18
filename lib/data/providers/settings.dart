@@ -9,7 +9,7 @@ import 'package:levelheadbrowser/di.dart';
 import 'package:logger/logger.dart';
 
 abstract class SettingsProvider<ParamModel, Type> {
-  Future<Type> get(ParamModel params);
+  Future<Type?> get(ParamModel params);
   Future<void> update(Type instance);
 }
 
@@ -20,7 +20,7 @@ class HiveSettingsProvider
   final Future<Box> _box = getIt.getAsync(instanceName: 'hive.box.settings');
 
   @override
-  Future<Map<String, dynamic>> get(params) async {
+  Future<Map<String, dynamic>?> get(params) async {
     _logger.d('Getting settings using Hive Settings Provder...');
     return (await _box).get(BOX_KEY);
   }

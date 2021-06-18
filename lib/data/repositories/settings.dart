@@ -12,7 +12,7 @@ import 'package:levelheadbrowser/di.dart';
 import 'package:logger/logger.dart';
 
 abstract class SettingsRepository<ParamModel, LocalModel> {
-  Future<LocalModel> get(ParamModel params);
+  Future<LocalModel?> get(ParamModel params);
   Future<void> update(LocalModel instance);
 }
 
@@ -28,10 +28,10 @@ class HiveSettingsRepository implements SettingsRepository<dynamic, Settings> {
           instanceName: 'data.converters.settings.toHiveMap.fromSettings');
 
   @override
-  Future<Settings> get(params) async {
+  Future<Settings?> get(params) async {
     _logger.d('Getting settings using Hive Settings Repository...');
-    Map<String, dynamic> data = await _provider.get(params);
-    return _hiveMapToSettingsConverter.convert(data);
+    Map<String, dynamic>? data = await _provider.get(params);
+    return data == null ? null : _hiveMapToSettingsConverter.convert(data);
   }
 
   @override
