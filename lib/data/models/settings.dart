@@ -79,6 +79,18 @@ class DefaultProfilesPageFilteringSettings {
   @override
   String toString() =>
       'DefaultProfilesPageFilteringSettings(subscriberCount: $subscriberCount, playtimeSeconds: $playtimeSeconds, sortBy: $sortBy)';
+
+  DefaultProfilesPageFilteringSettings copyWith({
+    Tuple2<int, int>? subscriberCount,
+    Tuple2<int, int>? playtimeSeconds,
+    PlayersParamsSortField? sortBy,
+  }) {
+    return DefaultProfilesPageFilteringSettings(
+      subscriberCount: subscriberCount ?? this.subscriberCount,
+      playtimeSeconds: playtimeSeconds ?? this.playtimeSeconds,
+      sortBy: sortBy ?? this.sortBy,
+    );
+  }
 }
 
 class DefaultLevelsPageFilteringSettings {
@@ -104,6 +116,27 @@ class DefaultLevelsPageFilteringSettings {
   String toString() {
     return 'DefaultLevelsPageFilteringSettings(inTower: $inTower, inMarketingDepartment: $inMarketingDepartment, inDailyBuild: $inDailyBuild, playtimeSeconds: $playtimeSeconds, exposureBucks: $exposureBucks, replayValue: $replayValue, sortBy: $sortBy)';
   }
+
+  DefaultLevelsPageFilteringSettings copyWith({
+    bool? inTower,
+    bool? inMarketingDepartment,
+    bool? inDailyBuild,
+    Tuple2<int, int>? playtimeSeconds,
+    Tuple2<int, int>? exposureBucks,
+    Tuple2<int, int>? replayValue,
+    LevelsParamsSortField? sortBy,
+  }) {
+    return DefaultLevelsPageFilteringSettings(
+      inTower: inTower ?? this.inTower,
+      inMarketingDepartment:
+          inMarketingDepartment ?? this.inMarketingDepartment,
+      inDailyBuild: inDailyBuild ?? this.inDailyBuild,
+      playtimeSeconds: playtimeSeconds ?? this.playtimeSeconds,
+      exposureBucks: exposureBucks ?? this.exposureBucks,
+      replayValue: replayValue ?? this.replayValue,
+      sortBy: sortBy ?? this.sortBy,
+    );
+  }
 }
 
 class DefaultFilteringSettings {
@@ -118,6 +151,18 @@ class DefaultFilteringSettings {
   @override
   String toString() =>
       'DefaultFilteringSettings(defaultProfilesPageFiltering: $defaultProfilesPageFiltering, defaultLevelsPageFiltering: $defaultLevelsPageFiltering)';
+
+  DefaultFilteringSettings copyWith({
+    DefaultProfilesPageFilteringSettings? defaultProfilesPageFiltering,
+    DefaultLevelsPageFilteringSettings? defaultLevelsPageFiltering,
+  }) {
+    return DefaultFilteringSettings(
+      defaultProfilesPageFiltering:
+          defaultProfilesPageFiltering ?? this.defaultProfilesPageFiltering,
+      defaultLevelsPageFiltering:
+          defaultLevelsPageFiltering ?? this.defaultLevelsPageFiltering,
+    );
+  }
 }
 
 //##########################//
@@ -135,6 +180,18 @@ class ProfileFormAppearanceSettings {
   @override
   String toString() =>
       'ProfileFormAppearanceSettings(enableSubscriberCountField: $enableSubscriberCountField, enablePlaytimeSecondsField: $enablePlaytimeSecondsField)';
+
+  ProfileFormAppearanceSettings copyWith({
+    bool? enableSubscriberCountField,
+    bool? enablePlaytimeSecondsField,
+  }) {
+    return ProfileFormAppearanceSettings(
+      enableSubscriberCountField:
+          enableSubscriberCountField ?? this.enableSubscriberCountField,
+      enablePlaytimeSecondsField:
+          enablePlaytimeSecondsField ?? this.enablePlaytimeSecondsField,
+    );
+  }
 }
 
 class LevelFormAppearanceSettings {
@@ -154,6 +211,23 @@ class LevelFormAppearanceSettings {
   String toString() {
     return 'LevelFormAppearanceSettings(enableLocationField: $enableLocationField, enablePlaytimeSecondsField: $enablePlaytimeSecondsField, enableExposureBucksField: $enableExposureBucksField, enableReplayValueField: $enableReplayValueField)';
   }
+
+  LevelFormAppearanceSettings copyWith({
+    bool? enableLocationField,
+    bool? enablePlaytimeSecondsField,
+    bool? enableExposureBucksField,
+    bool? enableReplayValueField,
+  }) {
+    return LevelFormAppearanceSettings(
+      enableLocationField: enableLocationField ?? this.enableLocationField,
+      enablePlaytimeSecondsField:
+          enablePlaytimeSecondsField ?? this.enablePlaytimeSecondsField,
+      enableExposureBucksField:
+          enableExposureBucksField ?? this.enableExposureBucksField,
+      enableReplayValueField:
+          enableReplayValueField ?? this.enableReplayValueField,
+    );
+  }
 }
 
 class FormAppearanceSettings {
@@ -168,6 +242,18 @@ class FormAppearanceSettings {
   @override
   String toString() =>
       'FormAppearanceSettings(profileFormAppearance: $profileFormAppearance, levelFormAppearanceSettings: $levelFormAppearanceSettings)';
+
+  FormAppearanceSettings copyWith({
+    ProfileFormAppearanceSettings? profileFormAppearance,
+    LevelFormAppearanceSettings? levelFormAppearanceSettings,
+  }) {
+    return FormAppearanceSettings(
+      profileFormAppearance:
+          profileFormAppearance ?? this.profileFormAppearance,
+      levelFormAppearanceSettings:
+          levelFormAppearanceSettings ?? this.levelFormAppearanceSettings,
+    );
+  }
 }
 
 //###############//
@@ -253,6 +339,29 @@ class ProfileCardSettings {
   String toString() {
     return 'ProfileCardSettings(noAliasDefault: $noAliasDefault, showJoined: $showJoined, showSubscriberCount: $showSubscriberCount, showFollowingCount: $showFollowingCount, colorInterpolationField: $colorInterpolationField, minColor: $minColor, maxColor: $maxColor, maxThreshold: $maxThreshold)';
   }
+
+  ProfileCardSettings copyWith({
+    String? noAliasDefault,
+    bool? showJoined,
+    bool? showSubscriberCount,
+    bool? showFollowingCount,
+    ProfileCardColorInterpolationField? colorInterpolationField,
+    Color? minColor,
+    Color? maxColor,
+    num? maxThreshold,
+  }) {
+    return ProfileCardSettings(
+      noAliasDefault: noAliasDefault ?? this.noAliasDefault,
+      showJoined: showJoined ?? this.showJoined,
+      showSubscriberCount: showSubscriberCount ?? this.showSubscriberCount,
+      showFollowingCount: showFollowingCount ?? this.showFollowingCount,
+      colorInterpolationField:
+          colorInterpolationField ?? this.colorInterpolationField,
+      minColor: minColor ?? this.minColor,
+      maxColor: maxColor ?? this.maxColor,
+      maxThreshold: maxThreshold ?? this.maxThreshold,
+    );
+  }
 }
 
 enum LevelCardColorInterpolationField {
@@ -289,6 +398,21 @@ class LevelCardSettings {
   String toString() {
     return 'LevelCardSettings(colorInterpolationField: $colorInterpolationField, minColor: $minColor, maxColor: $maxColor, maxThreshold: $maxThreshold)';
   }
+
+  LevelCardSettings copyWith({
+    LevelCardColorInterpolationField? colorInterpolationField,
+    Color? minColor,
+    Color? maxColor,
+    num? maxThreshold,
+  }) {
+    return LevelCardSettings(
+      colorInterpolationField:
+          colorInterpolationField ?? this.colorInterpolationField,
+      minColor: minColor ?? this.minColor,
+      maxColor: maxColor ?? this.maxColor,
+      maxThreshold: maxThreshold ?? this.maxThreshold,
+    );
+  }
 }
 
 class CardSettings {
@@ -303,6 +427,16 @@ class CardSettings {
   @override
   String toString() =>
       'CardSettings(profileCard: $profileCard, levelCard: $levelCard)';
+
+  CardSettings copyWith({
+    ProfileCardSettings? profileCard,
+    LevelCardSettings? levelCard,
+  }) {
+    return CardSettings(
+      profileCard: profileCard ?? this.profileCard,
+      levelCard: levelCard ?? this.levelCard,
+    );
+  }
 }
 
 class Settings {
