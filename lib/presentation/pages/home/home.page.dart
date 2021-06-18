@@ -26,9 +26,6 @@ class HomePage extends StatelessWidget {
               LoadHomePageEvent(index: HomePageBottomNavbarTab.Profiles.index),
             ),
         ),
-        BlocProvider(
-          create: (_) => SettingsBloc()..add(LoadSettingsEvent()),
-        )
       ],
       child: Scaffold(
         appBar: AppBar(
