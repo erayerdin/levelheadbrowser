@@ -4,7 +4,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-part of 'settings.page.dart';
+part of '../../settings.page.dart';
 
 class _ProfileCardsAppearanceSettingsPage extends StatelessWidget {
   const _ProfileCardsAppearanceSettingsPage({Key? key}) : super(key: key);

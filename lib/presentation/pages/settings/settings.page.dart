@@ -13,7 +13,7 @@ import 'package:levelheadbrowser/presentation/components/colorpicker/colorpicker
 import 'package:settings_ui/settings_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-part 'profilecards.appearance.settings.page.dart';
+part 'cards/profile/profilecards.appearance.settings.page.dart';
 
 class _SettingsSection extends StatelessWidget {
   final String title;
