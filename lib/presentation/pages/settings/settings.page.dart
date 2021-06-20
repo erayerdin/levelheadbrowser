@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:levelheadbrowser/data/models/settings.dart';
 import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
-import 'package:levelheadbrowser/presentation/pages/settings/components/colorpicker.component.dart';
+import 'package:levelheadbrowser/presentation/components/colorpicker/colorpicker.component.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
