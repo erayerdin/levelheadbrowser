@@ -25,7 +25,17 @@ class _DisplayOptionsSection extends StatelessWidget {
               borderSide: BorderSide.none,
             ),
           ),
-          onChanged: (val) {}, // TODO impl onChanged
+          onChanged: (val) => settingsBloc.add(
+            UpdateSettingsEvent(
+              settings: settingsBloc.settings.copyWith(
+                card: settingsBloc.settings.card.copyWith(
+                  profileCard: settingsBloc.settings.card.profileCard.copyWith(
+                    showJoined: val,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ),
         FormBuilderSwitch(
           name: '',
@@ -37,7 +47,17 @@ class _DisplayOptionsSection extends StatelessWidget {
               borderSide: BorderSide.none,
             ),
           ),
-          onChanged: (val) {}, // TODO impl onChanged
+          onChanged: (val) => settingsBloc.add(
+            UpdateSettingsEvent(
+              settings: settingsBloc.settings.copyWith(
+                card: settingsBloc.settings.card.copyWith(
+                  profileCard: settingsBloc.settings.card.profileCard.copyWith(
+                    showSubscriberCount: val,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ),
         FormBuilderSwitch(
           name: '',
@@ -49,7 +69,17 @@ class _DisplayOptionsSection extends StatelessWidget {
               borderSide: BorderSide.none,
             ),
           ),
-          onChanged: (val) {}, // TODO impl onChanged
+          onChanged: (val) => settingsBloc.add(
+            UpdateSettingsEvent(
+              settings: settingsBloc.settings.copyWith(
+                card: settingsBloc.settings.card.copyWith(
+                  profileCard: settingsBloc.settings.card.profileCard.copyWith(
+                    showFollowingCount: val,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ),
       ],
     );
