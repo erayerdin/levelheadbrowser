@@ -4,6 +4,7 @@ import 'package:levelheadbrowser/di.dart';
 import 'package:levelheadbrowser/logic/observer.dart';
 import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
 import 'package:levelheadbrowser/presentation/pages/home/home.page.dart';
+import 'package:levelheadbrowser/presentation/pages/settings/pages/card/profile/profile.settings.page.dart';
 import 'package:levelheadbrowser/presentation/pages/settings/settings.page.dart';
 
 void main() async {
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (_) => HomePage(),
           '/settings': (_) => SettingsPage(),
+          '/settings/card/profile': (_) => ProfileCardSettingsPage(),
         },
         initialRoute: '/',
       ),

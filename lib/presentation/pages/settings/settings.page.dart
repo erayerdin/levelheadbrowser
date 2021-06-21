@@ -31,7 +31,10 @@ class SettingsPage extends StatelessWidget {
                     children: [
                       FullButtonComponent(
                         label: 'Profile Card',
-                        onTap: () {}, // TODO impl onTap
+                        onTap: () => Navigator.pushNamed(
+                          context,
+                          '/settings/card/profile',
+                        ),
                       ),
                       FullButtonComponent(
                         label: 'Level Card',
