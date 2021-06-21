@@ -8,32 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
 
-@protected
-class SettingsPageSection extends StatelessWidget {
-  final String title;
-  final List<Widget> children;
-
-  const SettingsPageSection({
-    Key? key,
-    required this.title,
-    required this.children,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          title,
-          style: Theme.of(context).textTheme.caption,
-        ),
-        Divider(),
-        ...children,
-      ],
-    );
-  }
-}
-
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
