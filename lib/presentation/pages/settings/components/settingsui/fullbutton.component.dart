@@ -8,10 +8,15 @@ import 'package:flutter/material.dart';
 
 class FullButtonComponent extends StatelessWidget {
   final String label;
+  final String? helpText;
   final Function() onTap;
 
-  FullButtonComponent({Key? key, required this.label, required this.onTap})
-      : super(key: key);
+  FullButtonComponent({
+    Key? key,
+    required this.label,
+    this.helpText,
+    required this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +27,17 @@ class FullButtonComponent extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(label),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(label),
+                if (helpText != null)
+                  Text(
+                    helpText!,
+                    style: Theme.of(context).textTheme.caption,
+                  )
+              ],
+            ),
             Icon(Icons.arrow_right),
           ],
         ),
