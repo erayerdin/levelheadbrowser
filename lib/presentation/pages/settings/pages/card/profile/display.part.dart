@@ -11,13 +11,15 @@ class _DisplayOptionsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SettingsBloc settingsBloc = BlocProvider.of(context);
+
     return SectionComponent(
       label: 'Information Display Options',
       children: [
         FormBuilderSwitch(
           name: '',
           title: Text('Show Joined'),
-          initialValue: false, // TODO get initial value
+          initialValue: settingsBloc.settings.card.profileCard.showJoined,
           decoration: InputDecoration(
             border: UnderlineInputBorder(
               borderSide: BorderSide.none,
@@ -28,7 +30,8 @@ class _DisplayOptionsSection extends StatelessWidget {
         FormBuilderSwitch(
           name: '',
           title: Text('Show Subscriber Count'),
-          initialValue: false, // TODO get initial value
+          initialValue:
+              settingsBloc.settings.card.profileCard.showSubscriberCount,
           decoration: InputDecoration(
             border: UnderlineInputBorder(
               borderSide: BorderSide.none,
@@ -39,7 +42,8 @@ class _DisplayOptionsSection extends StatelessWidget {
         FormBuilderSwitch(
           name: '',
           title: Text('Show Following Count'),
-          initialValue: false, // TODO get initial value
+          initialValue:
+              settingsBloc.settings.card.profileCard.showFollowingCount,
           decoration: InputDecoration(
             border: UnderlineInputBorder(
               borderSide: BorderSide.none,

@@ -5,8 +5,10 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:levelheadbrowser/data/models/settings.dart';
+import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
 import 'package:levelheadbrowser/presentation/pages/settings/components/colorpicker/colorpicker.component.dart';
 import 'package:levelheadbrowser/presentation/pages/settings/components/settingsui/section.component.dart';
 
