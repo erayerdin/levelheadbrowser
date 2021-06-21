@@ -5,19 +5,21 @@ class _ColorOptionsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SettingsBloc settingsBloc = BlocProvider.of(context);
+
     return SectionComponent(
       label: 'Coloring Options',
       children: [
         FormBuilderColorPicker(
           name: '',
           labelText: 'Minimum Color Value',
-          initialColor: Colors.red, // TODO change initial color
+          initialColor: settingsBloc.settings.card.profileCard.minColor,
           onChanged: (color) {}, // TODO impl onChanged
         ),
         FormBuilderColorPicker(
           name: '',
           labelText: 'Maximum Color Value',
-          initialColor: Colors.green, // TODO change initial color
+          initialColor: settingsBloc.settings.card.profileCard.maxColor,
           onChanged: (color) {}, // TODO impl onChanged
         ),
       ],
