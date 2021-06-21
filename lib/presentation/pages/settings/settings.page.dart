@@ -6,20 +6,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:levelheadbrowser/data/models/settings.dart';
 import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
-import 'package:levelheadbrowser/presentation/components/colorpicker/colorpicker.component.dart';
-import 'package:settings_ui/settings_ui.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-part 'cards/profile/profilecards.appearance.settings.page.dart';
-
-class _SettingsSection extends StatelessWidget {
+@protected
+class SettingsPageSection extends StatelessWidget {
   final String title;
   final List<Widget> children;
 
-  const _SettingsSection({
+  const SettingsPageSection({
     Key? key,
     required this.title,
     required this.children,
@@ -59,65 +53,10 @@ class SettingsPage extends StatelessWidget {
               );
             }
 
-            return SettingsList(
-              sections: [
-                SettingsSection(
-                  title: 'Cards Appearance',
-                  tiles: [
-                    SettingsTile(
-                      title: 'Profile Cards',
-                      onPressed: (_) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) =>
-                                _ProfileCardsAppearanceSettingsPage(),
-                          ),
-                        );
-                      },
-                    ),
-                    SettingsTile(title: 'Level Cards'),
-                  ],
-                ),
-                SettingsSection(
-                  title: 'Filter Forms Appearance',
-                  tiles: [
-                    SettingsTile(title: 'Profiles Filter Form'),
-                    SettingsTile(title: 'Levels Filter Form'),
-                  ],
-                ),
-                SettingsSection(
-                  title: 'Default Filtering',
-                  tiles: [
-                    SettingsTile(title: 'Profiles Page'),
-                    SettingsTile(title: 'Levels Page'),
-                  ],
-                ),
-                SettingsSection(
-                  title: 'Link Accounts',
-                  tiles: [
-                    SettingsTile(title: 'Log in with Rumpus'),
-                  ],
-                ),
-                SettingsSection(
-                  title: 'Misc',
-                  tiles: [
-                    SettingsTile(
-                      title: 'Source Code',
-                      onPressed: (_) async => await launch(
-                        'https://github.com/erayerdin/levelheadbrowser',
-                      ),
-                    ),
-                    SettingsTile(
-                      title: 'Issues',
-                      onPressed: (context) async => await launch(
-                        'https://github.com/erayerdin/levelheadbrowser/issues',
-                      ),
-                    ),
-                    SettingsTile(title: 'Donate'),
-                  ],
-                ),
-              ],
+            return Container(
+              child: Center(
+                child: Text('Settings page.'),
+              ),
             );
           },
         ));

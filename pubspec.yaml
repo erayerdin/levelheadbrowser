@@ -37,7 +37,6 @@ dependencies:
   logger: ^1.0.0
   package_info_plus: ^1.0.2
   path_provider: ^2.0.2
-  settings_ui: ^1.0.0
   sliding_up_panel: ^2.0.0+1
   timeago: ^3.0.2
   tuple: ^2.0.0
