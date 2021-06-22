@@ -5,6 +5,8 @@ class _InterpolationOptionsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SettingsBloc settingsBloc = BlocProvider.of(context);
+
     return SectionComponent(
       label: 'Color Interpolation Options',
       children: [
@@ -19,15 +21,24 @@ class _InterpolationOptionsSection extends StatelessWidget {
                 ),
               )
               .toList(),
-          initialValue: ProfileCardColorInterpolationField
-              .SubscriberCount, // TODO change initial value
+          initialValue:
+              settingsBloc.settings.card.profileCard.colorInterpolationField,
+          onChanged: (field) {}, // TODO impl onChanged
         ),
         FormBuilderSlider(
           name: '',
           decoration: InputDecoration(labelText: 'Interpolation Range'),
-          min: 0,
-          max: 100, // TODO change max
-          initialValue: 100, // TODO change initial value
+          min: settingsBloc.settings.card.profileCard.colorInterpolationField
+              .range()
+              .item1
+              .floorToDouble(),
+          max: settingsBloc.settings.card.profileCard.colorInterpolationField
+              .range()
+              .item2
+              .floorToDouble(),
+          initialValue: settingsBloc.settings.card.profileCard.maxThreshold
+              .floorToDouble(),
+          onChanged: (val) {}, // TODO impl onChanged
         ),
       ],
     );
