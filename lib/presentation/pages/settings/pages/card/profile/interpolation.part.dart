@@ -10,7 +10,7 @@ class _InterpolationOptionsSection extends StatelessWidget {
     return SectionComponent(
       label: 'Color Interpolation Options',
       children: [
-        FormBuilderDropdown(
+        FormBuilderDropdown<ProfileCardColorInterpolationField>(
           name: '',
           decoration: InputDecoration(labelText: 'Interpolation Field'),
           items: ProfileCardColorInterpolationField.values
@@ -23,7 +23,17 @@ class _InterpolationOptionsSection extends StatelessWidget {
               .toList(),
           initialValue:
               settingsBloc.settings.card.profileCard.colorInterpolationField,
-          onChanged: (field) {}, // TODO impl onChanged
+          onChanged: (field) => settingsBloc.add(
+            UpdateSettingsEvent(
+              settings: settingsBloc.settings.copyWith(
+                card: settingsBloc.settings.card.copyWith(
+                  profileCard: settingsBloc.settings.card.profileCard.copyWith(
+                    colorInterpolationField: field,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ),
         FormBuilderTextField(
           name: '',
@@ -41,6 +51,15 @@ class _InterpolationOptionsSection extends StatelessWidget {
                 return 'The value must be a valid number.';
               }
 
+              var max = settingsBloc
+                  .settings.card.profileCard.colorInterpolationField
+                  .range()
+                  .item2;
+
+              if (value > max) {
+                return 'The value must not exceed $max.';
+              }
+
               if (value < 0) {
                 return 'The value can only be a positive number.';
               }
@@ -48,9 +67,17 @@ class _InterpolationOptionsSection extends StatelessWidget {
               return null;
             },
           ]),
-          onSubmitted: (val) {
-            print(val);
-          },
+          onSubmitted: (val) => settingsBloc.add(
+            UpdateSettingsEvent(
+              settings: settingsBloc.settings.copyWith(
+                card: settingsBloc.settings.card.copyWith(
+                  profileCard: settingsBloc.settings.card.profileCard.copyWith(
+                    maxThreshold: double.parse(val),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ),
       ],
     );
