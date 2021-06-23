@@ -11,6 +11,10 @@ class _MiscOptionsSection extends StatelessWidget {
         FormBuilderTextField(
           name: '',
           initialValue: '<no-alias>',
+          autovalidateMode: AutovalidateMode.always,
+          validator: FormBuilderValidators.compose([
+            FormBuilderValidators.required(context),
+          ]),
         ),
       ],
     );
