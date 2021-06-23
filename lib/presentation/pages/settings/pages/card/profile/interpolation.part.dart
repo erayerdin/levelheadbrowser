@@ -25,20 +25,32 @@ class _InterpolationOptionsSection extends StatelessWidget {
               settingsBloc.settings.card.profileCard.colorInterpolationField,
           onChanged: (field) {}, // TODO impl onChanged
         ),
-        FormBuilderSlider(
+        FormBuilderTextField(
           name: '',
-          decoration: InputDecoration(labelText: 'Interpolation Range'),
-          min: settingsBloc.settings.card.profileCard.colorInterpolationField
-              .range()
-              .item1
-              .floorToDouble(),
-          max: settingsBloc.settings.card.profileCard.colorInterpolationField
-              .range()
-              .item2
-              .floorToDouble(),
-          initialValue: settingsBloc.settings.card.profileCard.maxThreshold
-              .floorToDouble(),
-          onChanged: (val) {}, // TODO impl onChanged
+          decoration: InputDecoration(labelText: 'Interpolation Maximum Value'),
+          initialValue:
+              settingsBloc.settings.card.profileCard.maxThreshold.toString(),
+          autovalidateMode: AutovalidateMode.always,
+          validator: FormBuilderValidators.compose([
+            FormBuilderValidators.numeric(context),
+            (val) {
+              double value;
+              try {
+                value = double.parse(val ?? '0');
+              } on FormatException {
+                return 'The value must be a valid number.';
+              }
+
+              if (value < 0) {
+                return 'The value can only be a positive number.';
+              }
+
+              return null;
+            },
+          ]),
+          onSubmitted: (val) {
+            print(val);
+          },
         ),
       ],
     );
