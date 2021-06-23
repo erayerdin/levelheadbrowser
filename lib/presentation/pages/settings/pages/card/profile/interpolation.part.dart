@@ -1,11 +1,23 @@
 part of 'profile.settings.page.dart';
 
-class _InterpolationOptionsSection extends StatelessWidget {
+class _InterpolationOptionsSection extends StatefulWidget {
   const _InterpolationOptionsSection({Key? key}) : super(key: key);
+
+  @override
+  __InterpolationOptionsSectionState createState() =>
+      __InterpolationOptionsSectionState();
+}
+
+class __InterpolationOptionsSectionState
+    extends State<_InterpolationOptionsSection> {
+  late num maxValue;
 
   @override
   Widget build(BuildContext context) {
     SettingsBloc settingsBloc = BlocProvider.of(context);
+    maxValue = settingsBloc.settings.card.profileCard.colorInterpolationField
+        .range()
+        .item2;
 
     return SectionComponent(
       label: 'Color Interpolation Options',
@@ -23,17 +35,24 @@ class _InterpolationOptionsSection extends StatelessWidget {
               .toList(),
           initialValue:
               settingsBloc.settings.card.profileCard.colorInterpolationField,
-          onChanged: (field) => settingsBloc.add(
-            UpdateSettingsEvent(
-              settings: settingsBloc.settings.copyWith(
-                card: settingsBloc.settings.card.copyWith(
-                  profileCard: settingsBloc.settings.card.profileCard.copyWith(
-                    colorInterpolationField: field,
+          onChanged: (field) {
+            settingsBloc.add(
+              UpdateSettingsEvent(
+                settings: settingsBloc.settings.copyWith(
+                  card: settingsBloc.settings.card.copyWith(
+                    profileCard:
+                        settingsBloc.settings.card.profileCard.copyWith(
+                      colorInterpolationField: field,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
+            );
+
+            setState(() {
+              maxValue = field?.range().item2 ?? 0;
+            });
+          },
         ),
         FormBuilderTextField(
           name: '',
@@ -51,13 +70,8 @@ class _InterpolationOptionsSection extends StatelessWidget {
                 return 'The value must be a valid number.';
               }
 
-              var max = settingsBloc
-                  .settings.card.profileCard.colorInterpolationField
-                  .range()
-                  .item2;
-
-              if (value > max) {
-                return 'The value must not exceed $max.';
+              if (value > maxValue) {
+                return 'The value must not exceed $maxValue.';
               }
 
               if (value < 0) {
