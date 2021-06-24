@@ -27,7 +27,6 @@ final INITIAL_SETTINGS = Settings(
       colorInterpolationField: LevelCardColorInterpolationField.ClearRate,
       minColor: Colors.red,
       maxColor: Colors.green,
-      maxThreshold: 1.0,
     ),
   ),
   formAppearance: FormAppearanceSettings(
@@ -402,18 +401,16 @@ class LevelCardSettings {
   final LevelCardColorInterpolationField colorInterpolationField;
   final Color minColor;
   final Color maxColor;
-  final num maxThreshold;
 
   LevelCardSettings({
     required this.colorInterpolationField,
     required this.minColor,
     required this.maxColor,
-    required this.maxThreshold,
   });
 
   @override
   String toString() {
-    return 'LevelCardSettings(colorInterpolationField: $colorInterpolationField, minColor: $minColor, maxColor: $maxColor, maxThreshold: $maxThreshold)';
+    return 'LevelCardSettings(colorInterpolationField: $colorInterpolationField, minColor: $minColor, maxColor: $maxColor)';
   }
 
   LevelCardSettings copyWith({
@@ -427,7 +424,6 @@ class LevelCardSettings {
           colorInterpolationField ?? this.colorInterpolationField,
       minColor: minColor ?? this.minColor,
       maxColor: maxColor ?? this.maxColor,
-      maxThreshold: maxThreshold ?? this.maxThreshold,
     );
   }
 }
