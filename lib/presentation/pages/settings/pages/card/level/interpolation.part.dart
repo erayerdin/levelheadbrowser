@@ -23,7 +23,17 @@ class _InterpolationOptionsSection extends StatelessWidget {
               .toList(),
           initialValue:
               settingsBloc.settings.card.levelCard.colorInterpolationField,
-          onChanged: (field) {}, // TODO impl onChanged
+          onChanged: (field) => settingsBloc.add(
+            UpdateSettingsEvent(
+              settings: settingsBloc.settings.copyWith(
+                card: settingsBloc.settings.card.copyWith(
+                  levelCard: settingsBloc.settings.card.levelCard.copyWith(
+                    colorInterpolationField: field,
+                  ),
+                ),
+              ),
+            ),
+          ),
         )
       ],
     );
