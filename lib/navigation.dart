@@ -5,6 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:levelheadbrowser/presentation/pages/home/home.page.dart';
+import 'package:levelheadbrowser/presentation/pages/settings/pages/card/level/level.settings.page.dart';
 import 'package:levelheadbrowser/presentation/pages/settings/pages/card/profile/profile.settings.page.dart';
 import 'package:levelheadbrowser/presentation/pages/settings/settings.page.dart';
 
@@ -13,4 +14,5 @@ final ROUTES = {
   '/': (_) => HomePage(),
   '/settings': (_) => SettingsPage(),
   '/settings/card/profile': (_) => ProfileCardSettingsPage(),
+  '/settings/card/level': (_) => LevelCardSettingsPage(),
 };
