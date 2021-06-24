@@ -58,8 +58,6 @@ const SORT_BY_DROPDOWN_ITEMS = [
 ];
 
 class LevelsPage extends StatelessWidget {
-  final LevelRepository<LevelsParams, Level> _repository =
-      getIt.get(instanceName: 'data.repositories.level.rumpus');
   final Converter<
       Map<String, FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>,
       LevelsParams> _formConverter = getIt.get(
