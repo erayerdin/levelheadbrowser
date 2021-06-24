@@ -22,7 +22,6 @@ final INITIAL_SETTINGS = Settings(
           ProfileCardColorInterpolationField.SubscriberCount,
       minColor: Colors.red,
       maxColor: Colors.green,
-      maxThreshold: 7500,
     ),
     levelCard: LevelCardSettings(
       colorInterpolationField: LevelCardColorInterpolationField.ClearRate,
@@ -344,9 +343,6 @@ class ProfileCardSettings {
   /// `maxThreshold` attribute.
   final Color maxColor;
 
-  /// The maximum threshold of `field`.
-  final num maxThreshold;
-
   ProfileCardSettings({
     required this.noAliasDefault,
     required this.showJoined,
@@ -355,12 +351,11 @@ class ProfileCardSettings {
     required this.colorInterpolationField,
     required this.minColor,
     required this.maxColor,
-    required this.maxThreshold,
   });
 
   @override
   String toString() {
-    return 'ProfileCardSettings(noAliasDefault: $noAliasDefault, showJoined: $showJoined, showSubscriberCount: $showSubscriberCount, showFollowingCount: $showFollowingCount, colorInterpolationField: $colorInterpolationField, minColor: $minColor, maxColor: $maxColor, maxThreshold: $maxThreshold)';
+    return 'ProfileCardSettings(noAliasDefault: $noAliasDefault, showJoined: $showJoined, showSubscriberCount: $showSubscriberCount, showFollowingCount: $showFollowingCount, colorInterpolationField: $colorInterpolationField, minColor: $minColor, maxColor: $maxColor)';
   }
 
   ProfileCardSettings copyWith({
@@ -382,7 +377,6 @@ class ProfileCardSettings {
           colorInterpolationField ?? this.colorInterpolationField,
       minColor: minColor ?? this.minColor,
       maxColor: maxColor ?? this.maxColor,
-      maxThreshold: maxThreshold ?? this.maxThreshold,
     );
   }
 }

@@ -16,8 +16,6 @@ import 'package:levelheadbrowser/presentation/pages/profiles/components/profiled
 import 'package:logger/logger.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-const _MAX_SUBS_LIMIT = 7500;
-
 num _getFieldValue(
     ProfileCardColorInterpolationField chosenField, Profile profile) {
   Logger _logger = getIt.get();
@@ -98,14 +96,13 @@ class ProfileCardComponent extends StatelessWidget {
               if (state is LoadedSettingsState) {
                 ProfileCardColorInterpolationField field =
                     state.settings.card.profileCard.colorInterpolationField;
-                num maxThreshold = state.settings.card.profileCard.maxThreshold;
                 num val = _getFieldValue(field, profile);
 
                 return Card(
                   color: Color.lerp(
                     state.settings.card.profileCard.minColor,
                     state.settings.card.profileCard.maxColor,
-                    val.toDouble() / maxThreshold,
+                    val.floorToDouble(),
                   ),
                   child: Container(
                     margin: _margin,

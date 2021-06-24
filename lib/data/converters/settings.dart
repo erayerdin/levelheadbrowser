@@ -53,7 +53,6 @@ class SettingsToHiveMapConverter
               input.card.profileCard.colorInterpolationField.index,
           'minColor': input.card.profileCard.minColor.toHex(),
           'maxColor': input.card.profileCard.maxColor.toHex(),
-          'maxThreshold': input.card.profileCard.maxThreshold,
         },
         'levelCard': {
           'colorInterpolationField':
@@ -141,7 +140,6 @@ class HiveMapToSettingsConverter
               .values[input['card']['profileCard']['colorInterpolationField']],
           minColor: HexColor.fromHex(input['card']['profileCard']['minColor']),
           maxColor: HexColor.fromHex(input['card']['profileCard']['maxColor']),
-          maxThreshold: input['card']['profileCard']['maxThreshold'],
         ),
         levelCard: LevelCardSettings(
           colorInterpolationField: LevelCardColorInterpolationField
