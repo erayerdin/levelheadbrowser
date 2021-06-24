@@ -5,6 +5,8 @@ class _InterpolationOptionsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SettingsBloc settingsBloc = BlocProvider.of(context);
+
     return SectionComponent(
       label: 'Color Interpolation Options',
       children: [
@@ -19,8 +21,8 @@ class _InterpolationOptionsSection extends StatelessWidget {
                 ),
               )
               .toList(),
-          initialValue: LevelCardColorInterpolationField
-              .ClearRate, // TODO impl initial value,
+          initialValue:
+              settingsBloc.settings.card.levelCard.colorInterpolationField,
           onChanged: (field) {}, // TODO impl onChanged
         )
       ],
