@@ -8,9 +8,51 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:levelheadbrowser/data/models/level.dart';
+import 'package:levelheadbrowser/data/models/settings.dart';
+import 'package:levelheadbrowser/di.dart';
 import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
 import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
 import 'package:levelheadbrowser/presentation/pages/levels/components/leveldialog/leveldialog.component.dart';
+import 'package:logger/logger.dart' show Logger;
+
+double _getInterpolationValue(
+    LevelCardColorInterpolationField field, Level level) {
+  Logger _logger = getIt.get();
+  _logger.d('Computing interpolation value for level...');
+  _logger.v('field: $field');
+  _logger.v('level: $level');
+
+  switch (field) {
+    case LevelCardColorInterpolationField.InTower:
+      return level.inTower ? 1 : 0 / field.max;
+    case LevelCardColorInterpolationField.InTowerTrial:
+      return level.inTowerTrial ? 1 : 0 / field.max;
+    case LevelCardColorInterpolationField.InDailyBuild:
+      return level.inDailyBuild ? 1 : 0 / field.max;
+    case LevelCardColorInterpolationField.RequiredPlayerCount:
+      return level.requiredPlayerCount / field.max;
+    case LevelCardColorInterpolationField.AttemptCount:
+      return level.stats.attemptCount / field.max;
+    case LevelCardColorInterpolationField.PlayerCount:
+      return level.stats.playerCount / field.max;
+    case LevelCardColorInterpolationField.SuccessCount:
+      return level.stats.successCount / field.max;
+    case LevelCardColorInterpolationField.ClearRate:
+      return level.stats.clearRate / field.max;
+    case LevelCardColorInterpolationField.FailureRate:
+      return level.stats.failureRate / field.max;
+    case LevelCardColorInterpolationField.FavoriteCount:
+      return (level.stats.favoriteCount ?? 0 / field.max).floorToDouble();
+    case LevelCardColorInterpolationField.LikeCount:
+      return (level.stats.likeCount ?? 0 / field.max).floorToDouble();
+    case LevelCardColorInterpolationField.PlaytimeSeconds:
+      return level.stats.playTimeSeconds / field.max;
+    case LevelCardColorInterpolationField.ReplayValue:
+      return level.stats.replayValue / field.max;
+    case LevelCardColorInterpolationField.ExposureBucks:
+      return level.stats.exposureBucks / field.max;
+  }
+}
 
 class LevelCardComponent extends StatelessWidget {
   final Level level;
@@ -57,7 +99,10 @@ class LevelCardComponent extends StatelessWidget {
                   color: Color.lerp(
                     state.settings.card.levelCard.minColor,
                     state.settings.card.levelCard.maxColor,
-                    level.stats.clearRate.toDouble(),
+                    _getInterpolationValue(
+                      state.settings.card.levelCard.colorInterpolationField,
+                      level,
+                    ),
                   ),
                   child: Container(
                     margin: EdgeInsets.all(10),

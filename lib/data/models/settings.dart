@@ -432,6 +432,39 @@ extension LevelCardColorInterpolationFieldExtension
         return 'Exposure Bucks';
     }
   }
+
+  int get max {
+    switch (this) {
+      case LevelCardColorInterpolationField.InTower:
+        return 1;
+      case LevelCardColorInterpolationField.InTowerTrial:
+        return 1;
+      case LevelCardColorInterpolationField.InDailyBuild:
+        return 1;
+      case LevelCardColorInterpolationField.RequiredPlayerCount:
+        return 4;
+      case LevelCardColorInterpolationField.AttemptCount:
+        return 20000;
+      case LevelCardColorInterpolationField.PlayerCount:
+        return 5000;
+      case LevelCardColorInterpolationField.SuccessCount:
+        return 5000;
+      case LevelCardColorInterpolationField.ClearRate:
+        return 1;
+      case LevelCardColorInterpolationField.FailureRate:
+        return 1;
+      case LevelCardColorInterpolationField.FavoriteCount:
+        return 500;
+      case LevelCardColorInterpolationField.LikeCount:
+        return 600;
+      case LevelCardColorInterpolationField.PlaytimeSeconds:
+        return 2000000;
+      case LevelCardColorInterpolationField.ReplayValue:
+        return 1000;
+      case LevelCardColorInterpolationField.ExposureBucks:
+        return 20000;
+    }
+  }
 }
 
 class LevelCardSettings {
