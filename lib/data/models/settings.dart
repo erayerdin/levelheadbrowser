@@ -295,6 +295,7 @@ extension ProfileCardColorInterpolationFieldExtension
   }
 
   Tuple2<int, int> range() {
+    // TODO change to max value
     switch (this) {
       case ProfileCardColorInterpolationField.SubscriberCount:
         return Tuple2(0, 10000);
@@ -395,6 +396,42 @@ enum LevelCardColorInterpolationField {
   PlaytimeSeconds,
   ReplayValue,
   ExposureBucks,
+}
+
+extension LevelCardColorInterpolationFieldExtension
+    on LevelCardColorInterpolationField {
+  String toRepr() {
+    switch (this) {
+      case LevelCardColorInterpolationField.InTower:
+        return 'In Tower';
+      case LevelCardColorInterpolationField.InTowerTrial:
+        return 'In Tower Trial';
+      case LevelCardColorInterpolationField.InDailyBuild:
+        return 'In Daily Build';
+      case LevelCardColorInterpolationField.RequiredPlayerCount:
+        return 'Required Players';
+      case LevelCardColorInterpolationField.AttemptCount:
+        return 'Attempts';
+      case LevelCardColorInterpolationField.PlayerCount:
+        return 'Players';
+      case LevelCardColorInterpolationField.SuccessCount:
+        return 'Success Count';
+      case LevelCardColorInterpolationField.ClearRate:
+        return 'Clear Rate';
+      case LevelCardColorInterpolationField.FailureRate:
+        return 'Failure Rate';
+      case LevelCardColorInterpolationField.FavoriteCount:
+        return 'Favorites';
+      case LevelCardColorInterpolationField.LikeCount:
+        return 'Likes';
+      case LevelCardColorInterpolationField.PlaytimeSeconds:
+        return 'Playtime';
+      case LevelCardColorInterpolationField.ReplayValue:
+        return 'Replays';
+      case LevelCardColorInterpolationField.ExposureBucks:
+        return 'Exposure Bucks';
+    }
+  }
 }
 
 class LevelCardSettings {

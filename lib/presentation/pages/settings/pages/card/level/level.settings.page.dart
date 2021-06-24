@@ -5,6 +5,15 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:levelheadbrowser/data/models/settings.dart';
+import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
+import 'package:levelheadbrowser/presentation/pages/settings/components/colorpicker/colorpicker.component.dart';
+import 'package:levelheadbrowser/presentation/pages/settings/components/settingsui/section.component.dart';
+
+part 'color.part.dart';
+part 'interpolation.part.dart';
 
 class LevelCardSettingsPage extends StatelessWidget {
   const LevelCardSettingsPage({Key? key}) : super(key: key);
@@ -16,8 +25,12 @@ class LevelCardSettingsPage extends StatelessWidget {
         title: Text('Level Card Settings'),
       ),
       body: Container(
-        child: Center(
-          child: Text('Level card settings'),
+        padding: EdgeInsets.all(20),
+        child: ListView(
+          children: [
+            _ColorOptionsSection(),
+            _InterpolationOptionsSection(),
+          ],
         ),
       ),
     );
