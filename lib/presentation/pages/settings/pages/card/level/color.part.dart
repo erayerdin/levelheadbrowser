@@ -14,13 +14,31 @@ class _ColorOptionsSection extends StatelessWidget {
           name: '',
           labelText: 'Minimum Color Value',
           initialColor: settingsBloc.settings.card.levelCard.minColor,
-          onChanged: (color) {}, // TODO impl onChanged
+          onChanged: (color) => settingsBloc.add(
+            UpdateSettingsEvent(
+              settings: settingsBloc.settings.copyWith(
+                card: settingsBloc.settings.card.copyWith(
+                  levelCard: settingsBloc.settings.card.levelCard
+                      .copyWith(minColor: color),
+                ),
+              ),
+            ),
+          ),
         ),
         FormBuilderColorPicker(
           name: '',
           labelText: 'Maximum Color Value',
           initialColor: settingsBloc.settings.card.levelCard.maxColor,
-          onChanged: (color) {}, // TODO impl onChanged
+          onChanged: (color) => settingsBloc.add(
+            UpdateSettingsEvent(
+              settings: settingsBloc.settings.copyWith(
+                card: settingsBloc.settings.card.copyWith(
+                  levelCard: settingsBloc.settings.card.levelCard
+                      .copyWith(maxColor: color),
+                ),
+              ),
+            ),
+          ),
         ),
       ],
     );
