@@ -45,6 +45,8 @@ class _BodyComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SettingsBloc settingsBloc = BlocProvider.of(context);
+
     return Theme(
       data: Theme.of(context).copyWith(
         textTheme: Theme.of(context).textTheme.copyWith(
@@ -70,7 +72,8 @@ class _BodyComponent extends StatelessWidget {
               Container(
                 margin: _TABLE_ROW_MARGIN,
                 child: LinkComponent(
-                  level.creator.alias ?? '<no-alias>',
+                  level.creator.alias ??
+                      settingsBloc.settings.card.profileCard.noAliasDefault,
                   onTap: () =>
                       _redirectToProfilesPage(context, level.creator.id),
                 ),
@@ -112,7 +115,8 @@ class _BodyComponent extends StatelessWidget {
                             Text('by '),
                             LinkComponent(
                               level.fastestTimeRecords[0].profile.alias ??
-                                  '<no-alias>',
+                                  settingsBloc
+                                      .settings.card.profileCard.noAliasDefault,
                               onTap: () => _redirectToProfilesPage(
                                 context,
                                 level.fastestTimeRecords[0].profile.id,
@@ -149,7 +153,8 @@ class _BodyComponent extends StatelessWidget {
                             Text('by '),
                             LinkComponent(
                               level.highScoreRecords[0].profile.alias ??
-                                  '<no-alias>',
+                                  settingsBloc
+                                      .settings.card.profileCard.noAliasDefault,
                               onTap: () => _redirectToProfilesPage(
                                 context,
                                 level.highScoreRecords[0].profile.id,

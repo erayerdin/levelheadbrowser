@@ -12,6 +12,7 @@ import 'package:levelheadbrowser/data/models/level.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
 import 'package:levelheadbrowser/di.dart';
 import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
+import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
 import 'package:levelheadbrowser/presentation/components/badge/badge.component.dart';
 import 'package:levelheadbrowser/presentation/components/link/link.component.dart';
 import 'package:levelheadbrowser/presentation/pages/home/home.page.dart';

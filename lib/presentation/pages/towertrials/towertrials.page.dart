@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
 
 import 'package:levelheadbrowser/data/models/towertrial.dart';
+import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
 import 'package:levelheadbrowser/logic/towertrials/towertrials_bloc.dart';
 import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
 import 'package:levelheadbrowser/presentation/components/filterpanel/filterpanel.component.dart';
@@ -28,6 +29,8 @@ class _RecordTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SettingsBloc settingsBloc = BlocProvider.of(context);
+
     return Container(
       margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
       child: Column(
@@ -60,7 +63,9 @@ class _RecordTable extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.all(5),
                       child: LinkComponent(
-                        e.profile.alias ?? '<no-alias>',
+                        e.profile.alias ??
+                            settingsBloc
+                                .settings.card.profileCard.noAliasDefault,
                         align: TextAlign.right,
                         onTap: () => BlocProvider.of<HomePageBloc>(context)
                           ..add(
