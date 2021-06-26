@@ -4,6 +4,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -50,7 +51,14 @@ class RumpusDelegationKeyDialog extends StatelessWidget {
                 child: Text('Take Me to My Account Page'),
               ),
               IconButton(
-                onPressed: () {}, // TODO impl onPressed
+                onPressed: () async {
+                  await FlutterClipboard.copy(_RUMPUS_KEY_URL);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Copied URL to clipboard.'),
+                    ),
+                  );
+                },
                 icon: Icon(Icons.copy),
               )
             ],
