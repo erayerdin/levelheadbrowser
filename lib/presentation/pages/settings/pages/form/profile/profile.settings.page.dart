@@ -27,14 +27,40 @@ class ProfileFormSettingsDialog extends StatelessWidget {
               title: Text('Display Subscriber Slider'),
               initialValue: settingsBloc.settings.formAppearance
                   .profileFormAppearance.enableSubscriberCountField,
-              onChanged: (val) {}, // TODO impl onChanged
+              onChanged: (val) => settingsBloc.add(
+                UpdateSettingsEvent(
+                  settings: settingsBloc.settings.copyWith(
+                    formAppearance:
+                        settingsBloc.settings.formAppearance.copyWith(
+                      profileFormAppearance: settingsBloc
+                          .settings.formAppearance.profileFormAppearance
+                          .copyWith(
+                        enableSubscriberCountField: val,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ),
             FormBuilderCheckbox(
               name: '',
               title: Text('Display Playtime Slider'),
               initialValue: settingsBloc.settings.formAppearance
                   .profileFormAppearance.enablePlaytimeSecondsField,
-              onChanged: (val) {}, // TODO impl onChanged
+              onChanged: (val) => settingsBloc.add(
+                UpdateSettingsEvent(
+                  settings: settingsBloc.settings.copyWith(
+                    formAppearance:
+                        settingsBloc.settings.formAppearance.copyWith(
+                      profileFormAppearance: settingsBloc
+                          .settings.formAppearance.profileFormAppearance
+                          .copyWith(
+                        enablePlaytimeSecondsField: val,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ),
           ],
         ),
