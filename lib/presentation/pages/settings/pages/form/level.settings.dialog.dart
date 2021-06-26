@@ -5,13 +5,17 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
 
 class LevelFormSettingsDialog extends StatelessWidget {
   const LevelFormSettingsDialog({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    SettingsBloc settingsBloc = BlocProvider.of(context);
+
     return AlertDialog(
       title: Text('Level Form Settings'),
       content: Column(
@@ -20,25 +24,29 @@ class LevelFormSettingsDialog extends StatelessWidget {
           FormBuilderCheckbox(
             name: '',
             title: Text('Display Location Checkboxes'),
-            initialValue: false, // TODO impl initial value
+            initialValue: settingsBloc.settings.formAppearance
+                .levelFormAppearanceSettings.enableLocationField,
             onChanged: (val) {}, // TODO impl onChanged
           ),
           FormBuilderCheckbox(
             name: '',
             title: Text('Display Playtime Slider'),
-            initialValue: false, // TODO impl initial value
+            initialValue: settingsBloc.settings.formAppearance
+                .levelFormAppearanceSettings.enablePlaytimeSecondsField,
             onChanged: (val) {}, // TODO impl onChanged
           ),
           FormBuilderCheckbox(
             name: '',
             title: Text('Display Exposure Bucks Slider'),
-            initialValue: false, // TODO impl initial value
+            initialValue: settingsBloc.settings.formAppearance
+                .levelFormAppearanceSettings.enableExposureBucksField,
             onChanged: (val) {}, // TODO impl onChanged
           ),
           FormBuilderCheckbox(
             name: '',
             title: Text('Display Replay Value Slider'),
-            initialValue: false, // TODO impl initial value
+            initialValue: settingsBloc.settings.formAppearance
+                .levelFormAppearanceSettings.enableReplayValueField,
             onChanged: (val) {}, // TODO impl onChanged
           ),
         ],
