@@ -9,11 +9,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:levelheadbrowser/data/models/level.dart';
 import 'package:levelheadbrowser/data/models/params/levels.dart';
-import 'package:levelheadbrowser/data/repositories/level.dart';
 import 'package:levelheadbrowser/di.dart';
 import 'package:levelheadbrowser/logic/levels/levels_bloc.dart';
+import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
 import 'package:levelheadbrowser/presentation/components/filterpanel/filterpanel.component.dart';
 import 'package:levelheadbrowser/presentation/pages/levels/components/levelcard.component.dart';
 import 'package:tuple/tuple.dart';
@@ -91,26 +90,41 @@ class LevelsPage extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline6,
               ),
               formChildren: [
-                Text(
-                  'Where Its Located',
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-                FormBuilderCheckboxGroup(
-                  name: 'locations',
-                  options: [
-                    FormBuilderFieldOption(
-                      value: 'inTower',
-                      child: Text('In Tower'),
-                    ),
-                    FormBuilderFieldOption(
-                      value: 'inMarketingDepartment',
-                      child: Text('In Marketing Department'),
-                    ),
-                    FormBuilderFieldOption(
-                      value: 'inDailyBuild',
-                      child: Text('In Daily Build'),
-                    ),
-                  ],
+                BlocBuilder<SettingsBloc, SettingsState>(
+                  builder: (context, state) {
+                    if (state is LoadedSettingsState &&
+                        state.settings.formAppearance
+                            .levelFormAppearanceSettings.enableLocationField) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Where Its Located',
+                            style: Theme.of(context).textTheme.headline6,
+                          ),
+                          FormBuilderCheckboxGroup(
+                            name: 'locations',
+                            options: [
+                              FormBuilderFieldOption(
+                                value: 'inTower',
+                                child: Text('In Tower'),
+                              ),
+                              FormBuilderFieldOption(
+                                value: 'inMarketingDepartment',
+                                child: Text('In Marketing Department'),
+                              ),
+                              FormBuilderFieldOption(
+                                value: 'inDailyBuild',
+                                child: Text('In Daily Build'),
+                              ),
+                            ],
+                          ),
+                        ],
+                      );
+                    }
+
+                    return SizedBox();
+                  },
                 ),
                 SizedBox(height: 20),
                 Text(
