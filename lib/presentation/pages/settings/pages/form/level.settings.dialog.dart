@@ -26,28 +26,76 @@ class LevelFormSettingsDialog extends StatelessWidget {
             title: Text('Display Location Checkboxes'),
             initialValue: settingsBloc.settings.formAppearance
                 .levelFormAppearanceSettings.enableLocationField,
-            onChanged: (val) {}, // TODO impl onChanged
+            onChanged: (val) => settingsBloc.add(
+              UpdateSettingsEvent(
+                settings: settingsBloc.settings.copyWith(
+                  formAppearance: settingsBloc.settings.formAppearance.copyWith(
+                    levelFormAppearanceSettings: settingsBloc
+                        .settings.formAppearance.levelFormAppearanceSettings
+                        .copyWith(
+                      enableLocationField: val,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ),
           FormBuilderCheckbox(
             name: '',
             title: Text('Display Playtime Slider'),
             initialValue: settingsBloc.settings.formAppearance
                 .levelFormAppearanceSettings.enablePlaytimeSecondsField,
-            onChanged: (val) {}, // TODO impl onChanged
+            onChanged: (val) => settingsBloc.add(
+              UpdateSettingsEvent(
+                settings: settingsBloc.settings.copyWith(
+                  formAppearance: settingsBloc.settings.formAppearance.copyWith(
+                    levelFormAppearanceSettings: settingsBloc
+                        .settings.formAppearance.levelFormAppearanceSettings
+                        .copyWith(
+                      enablePlaytimeSecondsField: val,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ),
           FormBuilderCheckbox(
             name: '',
             title: Text('Display Exposure Bucks Slider'),
             initialValue: settingsBloc.settings.formAppearance
                 .levelFormAppearanceSettings.enableExposureBucksField,
-            onChanged: (val) {}, // TODO impl onChanged
+            onChanged: (val) => settingsBloc.add(
+              UpdateSettingsEvent(
+                settings: settingsBloc.settings.copyWith(
+                  formAppearance: settingsBloc.settings.formAppearance.copyWith(
+                    levelFormAppearanceSettings: settingsBloc
+                        .settings.formAppearance.levelFormAppearanceSettings
+                        .copyWith(
+                      enableExposureBucksField: val,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ),
           FormBuilderCheckbox(
             name: '',
             title: Text('Display Replay Value Slider'),
             initialValue: settingsBloc.settings.formAppearance
                 .levelFormAppearanceSettings.enableReplayValueField,
-            onChanged: (val) {}, // TODO impl onChanged
+            onChanged: (val) => settingsBloc.add(
+              UpdateSettingsEvent(
+                settings: settingsBloc.settings.copyWith(
+                  formAppearance: settingsBloc.settings.formAppearance.copyWith(
+                    levelFormAppearanceSettings: settingsBloc
+                        .settings.formAppearance.levelFormAppearanceSettings
+                        .copyWith(
+                      enableReplayValueField: val,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ),
         ],
       ),
