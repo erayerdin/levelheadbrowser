@@ -7,6 +7,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+const _RUMPUS_KEY_URL =
+    'https://www.bscotch.net/account?delegationPermissions=rce-lh-read,rce-lh-manage-bookmarks,rce-lh-manage-following,rce-lh-report&delegationKeyName=levelheadbrowser';
 
 class RumpusDelegationKeyDialog extends StatelessWidget {
   final _formKey = GlobalKey<FormBuilderState>();
@@ -42,7 +46,7 @@ class RumpusDelegationKeyDialog extends StatelessWidget {
           Row(
             children: [
               ElevatedButton(
-                onPressed: () {}, // TODO impl onPressed
+                onPressed: () async => await launch(_RUMPUS_KEY_URL),
                 child: Text('Take Me to My Account Page'),
               ),
               IconButton(
