@@ -159,6 +159,17 @@ class LevelsPage extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: 20),
+                BlocBuilder<SettingsBloc, SettingsState>(
+                  builder: (context, state) {
+                    if (state is LoadedSettingsState &&
+                        state
+                            .settings
+                            .formAppearance
+                            .levelFormAppearanceSettings
+                            .enableExposureBucksField) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
                 Text(
                   'Bucks',
                   style: Theme.of(context).textTheme.headline6,
@@ -171,6 +182,13 @@ class LevelsPage extends StatelessWidget {
                     BUCKS.item1.toDouble(),
                     BUCKS.item2.toDouble(),
                   ),
+                ),
+                        ],
+                      );
+                    }
+
+                    return SizedBox();
+                  },
                 ),
                 SizedBox(height: 20),
                 Text(
