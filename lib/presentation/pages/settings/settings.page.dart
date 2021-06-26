@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
 import 'package:levelheadbrowser/presentation/pages/settings/components/settingsui/fullbutton.component.dart';
 import 'package:levelheadbrowser/presentation/pages/settings/components/settingsui/section.component.dart';
+import 'package:levelheadbrowser/presentation/pages/settings/pages/form/profile/profile.settings.page.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -50,7 +51,10 @@ class SettingsPage extends StatelessWidget {
                     children: [
                       FullButtonComponent(
                         label: 'Profile Form',
-                        onTap: () {}, // TODO impl onTap
+                        onTap: () => showDialog(
+                          context: context,
+                          builder: (_) => ProfileFormSettingsDialog(),
+                        ),
                       ),
                       FullButtonComponent(
                         label: 'Level Form',
