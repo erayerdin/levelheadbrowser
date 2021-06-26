@@ -13,6 +13,7 @@ import 'package:levelheadbrowser/data/models/params/players.dart';
 import 'package:levelheadbrowser/di.dart';
 import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
 import 'package:levelheadbrowser/logic/profiles/profiles_bloc.dart';
+import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
 import 'package:levelheadbrowser/presentation/components/filterpanel/filterpanel.component.dart';
 import 'package:levelheadbrowser/presentation/pages/profiles/components/profilecard.component.dart';
 import 'package:tuple/tuple.dart';
@@ -121,18 +122,33 @@ class ProfilesPage extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline6,
               ),
               formChildren: [
-                Text(
-                  'Subscribers',
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-                FormBuilderRangeSlider(
-                  name: 'subscriberCount',
-                  min: SUBS_COUNT.item1.toDouble(),
-                  max: SUBS_COUNT.item2.toDouble(),
-                  initialValue: RangeValues(
-                    SUBS_COUNT.item1.toDouble(),
-                    SUBS_COUNT.item2.toDouble(),
-                  ),
+                BlocBuilder<SettingsBloc, SettingsState>(
+                  builder: (context, state) {
+                    if (state is LoadedSettingsState &&
+                        state.settings.formAppearance.profileFormAppearance
+                            .enableSubscriberCountField) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Subscribers',
+                            style: Theme.of(context).textTheme.headline6,
+                          ),
+                          FormBuilderRangeSlider(
+                            name: 'subscriberCount',
+                            min: SUBS_COUNT.item1.toDouble(),
+                            max: SUBS_COUNT.item2.toDouble(),
+                            initialValue: RangeValues(
+                              SUBS_COUNT.item1.toDouble(),
+                              SUBS_COUNT.item2.toDouble(),
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+
+                    return SizedBox();
+                  },
                 ),
                 SizedBox(height: 20),
                 Text(
