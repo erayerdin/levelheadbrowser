@@ -97,7 +97,6 @@ void main() {
       );
       expect(settings.card.levelCard.minColor, Color(0xffffffff));
       expect(settings.card.levelCard.maxColor, Color(0xff000000));
-      expect(settings.card.levelCard.maxThreshold, 1);
       expect(
         settings
             .formAppearance.profileFormAppearance.enableSubscriberCountField,
