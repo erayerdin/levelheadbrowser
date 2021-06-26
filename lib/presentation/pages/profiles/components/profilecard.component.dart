@@ -20,7 +20,7 @@ num _getFieldValue(
     ProfileCardColorInterpolationField chosenField, Profile profile) {
   Logger _logger = getIt.get();
 
-  var maxVal = chosenField.range().item2;
+  var maxVal = chosenField.max;
   _logger.d('Getting the value of field...');
   _logger.v('chosen field: $chosenField');
   _logger.v('profile: $profile');

@@ -294,27 +294,27 @@ extension ProfileCardColorInterpolationFieldExtension
     }
   }
 
-  Tuple2<int, int> range() {
+  int get max {
     // TODO change to max value
     switch (this) {
       case ProfileCardColorInterpolationField.SubscriberCount:
-        return Tuple2(0, 10000);
+        return 10000;
       case ProfileCardColorInterpolationField.FollowingCount:
-        return Tuple2(0, 10000);
+        return 10000;
       case ProfileCardColorInterpolationField.CrownCount:
-        return Tuple2(0, 1000);
+        return 1000;
       case ProfileCardColorInterpolationField.ShoeCount:
-        return Tuple2(0, 1000);
+        return 1000;
       case ProfileCardColorInterpolationField.PlaytimeSeconds:
-        return Tuple2(0, 1000000);
+        return 1000000;
       case ProfileCardColorInterpolationField.HiddenGemCount:
-        return Tuple2(0, 1000000);
+        return 1000000;
       case ProfileCardColorInterpolationField.TrophyCount:
-        return Tuple2(0, 1000);
+        return 1000;
       case ProfileCardColorInterpolationField.CampaignProgress:
-        return Tuple2(0, 1000);
+        return 1000;
       case ProfileCardColorInterpolationField.TimeTrophyCount:
-        return Tuple2(0, 10000);
+        return 10000;
     }
   }
 }
