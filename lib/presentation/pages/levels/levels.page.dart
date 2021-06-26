@@ -127,18 +127,36 @@ class LevelsPage extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: 20),
-                Text(
-                  'Playtime',
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-                FormBuilderRangeSlider(
-                  name: 'playtimeSeconds',
-                  min: PLAYTIME_SECS.item1.toDouble(),
-                  max: PLAYTIME_SECS.item2.toDouble(),
-                  initialValue: RangeValues(
-                    PLAYTIME_SECS.item1.toDouble(),
-                    PLAYTIME_SECS.item2.toDouble(),
-                  ),
+                BlocBuilder<SettingsBloc, SettingsState>(
+                  builder: (context, state) {
+                    if (state is LoadedSettingsState &&
+                        state
+                            .settings
+                            .formAppearance
+                            .levelFormAppearanceSettings
+                            .enablePlaytimeSecondsField) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Playtime',
+                            style: Theme.of(context).textTheme.headline6,
+                          ),
+                          FormBuilderRangeSlider(
+                            name: 'playtimeSeconds',
+                            min: PLAYTIME_SECS.item1.toDouble(),
+                            max: PLAYTIME_SECS.item2.toDouble(),
+                            initialValue: RangeValues(
+                              PLAYTIME_SECS.item1.toDouble(),
+                              PLAYTIME_SECS.item2.toDouble(),
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+
+                    return SizedBox();
+                  },
                 ),
                 SizedBox(height: 20),
                 Text(
