@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
 import 'package:levelheadbrowser/presentation/pages/settings/components/settingsui/fullbutton.component.dart';
 import 'package:levelheadbrowser/presentation/pages/settings/components/settingsui/section.component.dart';
+import 'package:levelheadbrowser/presentation/pages/settings/pages/form/level.settings.dialog.dart';
 import 'package:levelheadbrowser/presentation/pages/settings/pages/form/profile/profile.settings.dialog.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -58,7 +59,10 @@ class SettingsPage extends StatelessWidget {
                       ),
                       FullButtonComponent(
                         label: 'Level Form',
-                        onTap: () {}, // TODO impl onTap
+                        onTap: () => showDialog(
+                          context: context,
+                          builder: (_) => LevelFormSettingsDialog(),
+                        ),
                       ),
                     ],
                   ),
