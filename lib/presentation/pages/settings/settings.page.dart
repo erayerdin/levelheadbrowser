@@ -11,6 +11,7 @@ import 'package:levelheadbrowser/presentation/pages/settings/components/settings
 import 'package:levelheadbrowser/presentation/pages/settings/components/settingsui/section.component.dart';
 import 'package:levelheadbrowser/presentation/pages/settings/pages/form/level.settings.dialog.dart';
 import 'package:levelheadbrowser/presentation/pages/settings/pages/form/profile/profile.settings.dialog.dart';
+import 'package:levelheadbrowser/presentation/pages/settings/pages/rumpuskey.dialog.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -84,8 +85,11 @@ class SettingsPage extends StatelessWidget {
                     children: [
                       FullButtonComponent(
                         label: 'Use Rumpus Delegation Key',
-                        helpText: 'Add levels to favorites.',
-                        onTap: () {}, // TODO impl onTap
+                        helpText: 'Add levels to favorites, follow people etc.',
+                        onTap: () => showDialog(
+                          context: context,
+                          builder: (_) => RumpusDelegationKeyDialog(),
+                        ),
                       )
                     ],
                   ),
