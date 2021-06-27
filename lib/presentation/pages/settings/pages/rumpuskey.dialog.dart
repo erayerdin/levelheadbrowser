@@ -6,8 +6,10 @@
 
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 const _RUMPUS_KEY_URL =
@@ -20,6 +22,8 @@ class RumpusDelegationKeyDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SettingsBloc settingsBloc = BlocProvider.of(context);
+
     return AlertDialog(
       title: Text('Add Rumpus Delegation Key'),
       content: Column(
@@ -69,13 +73,34 @@ class RumpusDelegationKeyDialog extends StatelessWidget {
             child: Column(
               children: [
                 FormBuilderTextField(
-                  name: '',
+                  name: 'delegationKey',
                   decoration:
                       InputDecoration(labelText: 'Rumpus Delegation Key'),
+                  initialValue: settingsBloc.settings.rumpusDelegationKey,
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(context),
+                  ]),
+                  autovalidateMode: AutovalidateMode.always,
                 ),
                 SizedBox(height: 10),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _formKey.currentState?.save();
+                    var vals = _formKey.currentState?.value;
+                    String? key = vals?['delegationKey'];
+                    settingsBloc.add(
+                      UpdateSettingsEvent(
+                        settings: settingsBloc.settings.copyWith(
+                          rumpusDelegationKey: key == '' ? null : key,
+                        ),
+                      ),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Saved Rumpus delegation key.'),
+                      ),
+                    );
+                  },
                   child: Text('Save'),
                 ),
               ],
