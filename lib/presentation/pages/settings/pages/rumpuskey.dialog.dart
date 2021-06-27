@@ -42,6 +42,7 @@ class RumpusDelegationKeyDialog extends StatelessWidget {
                 'stages of development, which means it can act in a way that it is '
                 'not supposed to act.\n\n'
                 'By adding your Rumpus Delegation Key, **you accept the risks**.',
+            onTapLink: (text, href, title) async => await launch(href!),
           ),
           SizedBox(height: 10),
           Row(
