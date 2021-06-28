@@ -21,6 +21,7 @@ import 'package:levelheadbrowser/data/converters/params/players.dart';
 import 'package:levelheadbrowser/data/converters/profile.dart';
 import 'package:levelheadbrowser/data/converters/settings.dart';
 import 'package:levelheadbrowser/data/converters/towertrial.dart';
+import 'package:levelheadbrowser/data/converters/utils/tuple2.dart';
 import 'package:levelheadbrowser/data/models/level.dart';
 import 'package:levelheadbrowser/data/models/params/levels.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
@@ -38,6 +39,7 @@ import 'package:levelheadbrowser/data/repositories/settings.dart';
 import 'package:levelheadbrowser/data/repositories/towertrial.dart';
 import 'package:logger/logger.dart' show Logger;
 import 'package:path_provider/path_provider.dart';
+import 'package:tuple/tuple.dart';
 
 final getIt = GetIt.instance;
 
@@ -84,6 +86,10 @@ Future<void> setUpDI() async {
   );
 
   // Converters
+  getIt.registerLazySingleton<Converter<Tuple2<num, num>, RangeValues>>(
+    () => Tuple2RangeValuesConverter(),
+    instanceName: 'data.converters.utils.toRangeValues.fromTuple2',
+  );
   getIt
       .registerLazySingleton<Converter<Settings, Future<Map<String, dynamic>>>>(
     () => SettingsToHiveMapConverter(),
