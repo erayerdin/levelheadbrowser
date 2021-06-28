@@ -7,6 +7,7 @@
 import 'package:levelheadbrowser/presentation/pages/home/home.page.dart';
 import 'package:levelheadbrowser/presentation/pages/settings/pages/card/level/level.settings.page.dart';
 import 'package:levelheadbrowser/presentation/pages/settings/pages/card/profile/profile.settings.page.dart';
+import 'package:levelheadbrowser/presentation/pages/settings/pages/filtering/profile/profile.settings.page.dart';
 import 'package:levelheadbrowser/presentation/pages/settings/settings.page.dart';
 
 // ignore: non_constant_identifier_names
@@ -15,4 +16,5 @@ final ROUTES = {
   '/settings': (_) => SettingsPage(),
   '/settings/card/profile': (_) => ProfileCardSettingsPage(),
   '/settings/card/level': (_) => LevelCardSettingsPage(),
+  '/settings/filtering/profile': (_) => DefaultProfileFilteringSettingsPage(),
 };

@@ -72,7 +72,10 @@ class SettingsPage extends StatelessWidget {
                     children: [
                       FullButtonComponent(
                         label: 'Profile Filtering',
-                        onTap: () {}, // TODO impl onTap
+                        onTap: () => Navigator.pushNamed(
+                          context,
+                          '/settings/filtering/profile',
+                        ),
                       ),
                       FullButtonComponent(
                         label: 'Level Filtering',
