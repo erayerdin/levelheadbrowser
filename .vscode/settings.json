@@ -18,7 +18,9 @@
         ".metadata": true,
         "build": true,
         "ios": true,
-        "linux": true
+        "linux": true,
+        ".dart_tool": true,
+        "**/generated_plugin_registrant.dart": true
     },
     "explorerExclude.backup": null,
     "licenser.license": "MPLv2",
