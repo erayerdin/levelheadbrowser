@@ -7,8 +7,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:levelheadbrowser/di.dart';
+import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
 import 'package:levelheadbrowser/presentation/pages/profiles/profiles.page.dart';
 import 'package:tuple/tuple.dart';
 
@@ -22,6 +24,8 @@ class DefaultProfileFilteringSettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SettingsBloc settingsBloc = BlocProvider.of(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Default Profile Filtering Settings'),
@@ -42,7 +46,8 @@ class DefaultProfileFilteringSettingsPage extends StatelessWidget {
                 name: 'sortBy',
                 decoration: InputDecoration(labelText: 'Default Sorting'),
                 items: SORT_BY_DROPDOWN_ITEMS,
-                // TODO impl initial value
+                initialValue: settingsBloc.settings.defaultFiltering
+                    .defaultProfilesPageFiltering.sortBy,
                 allowClear: true,
               ),
               FormBuilderRangeSlider(
@@ -50,16 +55,22 @@ class DefaultProfileFilteringSettingsPage extends StatelessWidget {
                 decoration: InputDecoration(labelText: 'Subscriber Count'),
                 min: SUBS_COUNT.item1.floorToDouble(),
                 max: SUBS_COUNT.item2.floorToDouble(),
-                initialValue: _tuple2RangeValuesConverter
-                    .convert(SUBS_COUNT), // TODO impl initial value
+                initialValue: _tuple2RangeValuesConverter.convert(
+                  settingsBloc.settings.defaultFiltering
+                          .defaultProfilesPageFiltering.subscriberCount ??
+                      SUBS_COUNT,
+                ),
               ),
               FormBuilderRangeSlider(
                 name: 'playtimeSeconds',
                 decoration: InputDecoration(labelText: 'Playtime'),
                 min: PLAYTIME_SECS.item1.floorToDouble(),
                 max: PLAYTIME_SECS.item2.floorToDouble(),
-                initialValue: _tuple2RangeValuesConverter
-                    .convert(PLAYTIME_SECS), // TODO impl initial value
+                initialValue: _tuple2RangeValuesConverter.convert(
+                  settingsBloc.settings.defaultFiltering
+                          .defaultProfilesPageFiltering.playtimeSeconds ??
+                      PLAYTIME_SECS,
+                ), // TODO impl initial value
               ),
             ],
           ),
