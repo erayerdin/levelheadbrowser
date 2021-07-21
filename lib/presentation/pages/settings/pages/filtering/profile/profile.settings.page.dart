@@ -14,13 +14,21 @@ import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
 import 'package:levelheadbrowser/presentation/pages/profiles/profiles.page.dart';
 import 'package:tuple/tuple.dart';
 
-class DefaultProfileFilteringSettingsPage extends StatelessWidget {
+class DefaultProfileFilteringSettingsPage extends StatefulWidget {
+  DefaultProfileFilteringSettingsPage({Key? key}) : super(key: key);
+
+  @override
+  _DefaultProfileFilteringSettingsPageState createState() =>
+      _DefaultProfileFilteringSettingsPageState();
+}
+
+class _DefaultProfileFilteringSettingsPageState
+    extends State<DefaultProfileFilteringSettingsPage> {
   final Converter<Tuple2<num, num>, RangeValues> _tuple2RangeValuesConverter =
       getIt.get(instanceName: 'data.converters.utils.toRangeValues.fromTuple2');
 
   final _formKey = GlobalKey<FormBuilderState>();
-
-  DefaultProfileFilteringSettingsPage({Key? key}) : super(key: key);
+  bool hasFormChanged = false;
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +39,18 @@ class DefaultProfileFilteringSettingsPage extends StatelessWidget {
         title: Text('Default Profile Filtering Settings'),
         actions: [
           IconButton(
-            onPressed: null,
+            onPressed: hasFormChanged ? () {} : null, // TODO impl save
             icon: Icon(Icons.save),
           ),
         ],
       ),
       body: FormBuilder(
         key: _formKey,
+        onChanged: () {
+          setState(() {
+            hasFormChanged = true;
+          });
+        },
         child: Container(
           padding: EdgeInsets.all(20),
           child: ListView(
