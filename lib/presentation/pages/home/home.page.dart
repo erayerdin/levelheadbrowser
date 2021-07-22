@@ -50,7 +50,11 @@ class HomePage extends StatelessWidget {
                           context: context,
                           applicationVersion: info.version,
                           applicationIcon: ClipRRect(
-                            child: Image.asset('assets/images/icons/icon.png'),
+                            child: Image.asset(
+                              'assets/images/icons/icon.png',
+                              width: 50,
+                              height: 50,
+                            ),
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           applicationLegalese:
