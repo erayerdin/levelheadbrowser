@@ -79,13 +79,16 @@ class ProfileCardComponent extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        CachedNetworkImage(
-                          imageUrl: profile.getAvatarURL(),
-                          placeholder: (context, url) =>
-                              CircularProgressIndicator(),
-                          errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
-                        )
+                        if (profile.getAvatarURL().contains('avatars/null'))
+                          Icon(Icons.error)
+                        else
+                          CachedNetworkImage(
+                            imageUrl: profile.getAvatarURL(),
+                            placeholder: (context, url) =>
+                                CircularProgressIndicator(),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
+                          )
                       ],
                     ),
                     Expanded(
