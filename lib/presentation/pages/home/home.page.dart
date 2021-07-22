@@ -6,6 +6,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:levelheadbrowser/logic/firstrun/firstrun_cubit.dart';
 import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
 import 'package:levelheadbrowser/presentation/pages/levels/levels.page.dart';
 import 'package:levelheadbrowser/presentation/pages/profiles/profiles.page.dart';
@@ -26,51 +27,56 @@ class HomePage extends StatelessWidget {
             ),
         ),
       ],
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Levelhead Browser'),
-          actions: [
-            PopupMenuButton(
-              itemBuilder: (context) => [
-                PopupMenuItem(
-                  child: Text('About'),
-                  value: 'about',
-                )
-              ],
-              onSelected: (item) {
-                switch (item) {
-                  case 'about':
-                    PackageInfo.fromPlatform().then((info) {
-                      showAboutDialog(
-                        context: context,
-                        applicationVersion: info.version,
-                        applicationIcon: ClipRRect(
-                          child: Image.asset('assets/images/icons/icon.png'),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        applicationLegalese:
-                            'An application to browser Levelhead world.',
-                      );
-                    });
-                }
-              },
-            )
-          ],
-        ),
-        body: BlocBuilder<HomePageBloc, HomePageState>(
-          builder: (context, state) {
-            if (state is HomePageProfilesTabState) {
-              return ProfilesPage();
-            } else if (state is HomePageTowerTrialTabState) {
-              return TowerTrialsPage();
-            } else if (state is HomePageLevelsTabState) {
-              return LevelsPage();
-            }
+      child: BlocListener<FirstRunCubit, bool>(
+        listener: (context, state) {
+          if (state) Navigator.pushNamed(context, "/intro");
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('Levelhead Browser'),
+            actions: [
+              PopupMenuButton(
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    child: Text('About'),
+                    value: 'about',
+                  )
+                ],
+                onSelected: (item) {
+                  switch (item) {
+                    case 'about':
+                      PackageInfo.fromPlatform().then((info) {
+                        showAboutDialog(
+                          context: context,
+                          applicationVersion: info.version,
+                          applicationIcon: ClipRRect(
+                            child: Image.asset('assets/images/icons/icon.png'),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          applicationLegalese:
+                              'An application to browser Levelhead world.',
+                        );
+                      });
+                  }
+                },
+              )
+            ],
+          ),
+          body: BlocBuilder<HomePageBloc, HomePageState>(
+            builder: (context, state) {
+              if (state is HomePageProfilesTabState) {
+                return ProfilesPage();
+              } else if (state is HomePageTowerTrialTabState) {
+                return TowerTrialsPage();
+              } else if (state is HomePageLevelsTabState) {
+                return LevelsPage();
+              }
 
-            return ProfilesPage();
-          },
+              return ProfilesPage();
+            },
+          ),
+          bottomNavigationBar: _BottomNavbarComponent(),
         ),
-        bottomNavigationBar: _BottomNavbarComponent(),
       ),
     );
   }

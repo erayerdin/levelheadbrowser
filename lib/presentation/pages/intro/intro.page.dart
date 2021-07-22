@@ -29,7 +29,7 @@ final _PAGES = [
         'And... this image stands for ... *random page-turn noises* ... well, '
         'I guess you will be the new intergalactic package carrier guy. If you '
         'don\'t want to be get deployed to a gas giant, neutron star or, the '
-        'worst, a black hole with your minimum wage, though, you can check '
+        'worst, a black hole with your minimum wage salary, though, you can check '
         'levels section.',
     image: Image.asset('assets/images/intro/levels.png'),
   ),
@@ -65,7 +65,7 @@ class IntroPage extends StatelessWidget {
       pages: _PAGES,
       done: Text('Done'),
       onDone: () {
-        Navigator.pushReplacementNamed(context, '/');
+        Navigator.popUntil(context, (route) => route.isFirst);
       },
       showNextButton: true,
       next: Icon(Icons.arrow_right),
