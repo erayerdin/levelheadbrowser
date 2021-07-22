@@ -15,7 +15,7 @@ Please remember that Levelhead Browser is still in preview stage and will not wo
 
 It is also possible to build Levelhead Browser as native Linux application. We cannot share Linux app as binary (see [#1](https://github.com/erayerdin/levelheadbrowser/issues/1)). So you can clone this repository and do `flutter run -d linux` to build and run the application.
 
-## Screenshots
+## Features
 
 ### Profiles Page
 
@@ -23,7 +23,7 @@ It is also possible to build Levelhead Browser as native Linux application. We c
 - Information dialog for each profile
 - Sliding up filter panel
 
-![](screenshots/profilespage.gif)
+![](screenshots/profiles.mp4)
 
 ### Levels Page
 
@@ -32,7 +32,7 @@ It is also possible to build Levelhead Browser as native Linux application. We c
   - Badges for informations such as exposure bucks, tags, required players etc.
 - Sliding up filter panel
 
-![](screenshots/levelspage.gif)
+![](screenshots/levels.mp4)
 
 ### Tower Trials Page
 
@@ -40,7 +40,7 @@ It is also possible to build Levelhead Browser as native Linux application. We c
  - Information dialog for each level such as exposure bucks, tags, required players, etc.
  - See fastest time and high score records on a separate slide-up panel.
 
-![](screenshots/towertrialspage.gif)
+![](screenshots/towertrial.mp4)
 
 ## License
 
