@@ -23,7 +23,7 @@ It is also possible to build Levelhead Browser as native Linux application. We c
 - Information dialog for each profile
 - Sliding up filter panel
 
-![](screenshots/profiles.mp4)
+https://user-images.githubusercontent.com/2399084/126715646-21457db0-67cc-4b94-b754-b22a0924e57d.mp4
 
 ### Levels Page
 
@@ -32,7 +32,7 @@ It is also possible to build Levelhead Browser as native Linux application. We c
   - Badges for informations such as exposure bucks, tags, required players etc.
 - Sliding up filter panel
 
-![](screenshots/levels.mp4)
+https://user-images.githubusercontent.com/2399084/126715696-f7622b55-0b61-4bbd-99ee-0fdd82ea1c1b.mp4
 
 ### Tower Trials Page
 
@@ -40,7 +40,7 @@ It is also possible to build Levelhead Browser as native Linux application. We c
  - Information dialog for each level such as exposure bucks, tags, required players, etc.
  - See fastest time and high score records on a separate slide-up panel.
 
-![](screenshots/towertrial.mp4)
+https://user-images.githubusercontent.com/2399084/126715738-30f9131d-7659-43be-8f3a-9dd931b492cb.mp4
 
 ## License
 
