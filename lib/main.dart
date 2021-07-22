@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:levelheadbrowser/di.dart';
 import 'package:levelheadbrowser/logic/observer.dart';
 import 'package:levelheadbrowser/presentation/pages/home/home.page.dart';
+import 'package:levelheadbrowser/presentation/pages/intro/intro.page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,8 +22,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      routes: {'/': (routeCtx) => HomePage()},
-      initialRoute: '/',
+      routes: {
+        '/': (routeCtx) => HomePage(),
+        '/intro': (routeCtx) => IntroPage(),
+      },
+      initialRoute: '/intro',
     );
   }
 }
