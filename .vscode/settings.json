@@ -9,7 +9,6 @@
         "**/*.iml": true,
         "**/gradlew": true,
         "**/gradlew.bat": true,
-        "**/*.properties": true,
         "android/gradle": true,
         ".packages": true,
         "**/*.lock": true,
@@ -17,7 +16,8 @@
         ".flutter-plugins-dependencies": true,
         ".metadata": true,
         "build": true,
-        "ios": true
+        "ios": true,
+        "**/.gradle": true
     },
     "explorerExclude.backup": null,
     "licenser.license": "MPLv2",
