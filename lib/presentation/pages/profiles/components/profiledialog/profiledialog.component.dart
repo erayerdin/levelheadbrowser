@@ -55,14 +55,18 @@ class ProfileDialog extends StatelessWidget {
               margin: _margin,
               child: Column(
                 children: [
-                  CachedNetworkImage(
-                    imageUrl: profile.getAvatarURL(),
-                    placeholder: (context, url) => CircularProgressIndicator(),
-                    errorWidget: (context, url, error) => Icon(
-                      Icons.error,
-                      color: Colors.black,
+                  if (profile.getAvatarURL().contains('avatars/null'))
+                    Icon(Icons.error, color: Colors.black)
+                  else
+                    CachedNetworkImage(
+                      imageUrl: profile.getAvatarURL(),
+                      placeholder: (context, url) =>
+                          CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => Icon(
+                        Icons.error,
+                        color: Colors.black,
+                      ),
                     ),
-                  ),
                   SizedBox(
                     height: 10,
                   ),
