@@ -89,15 +89,19 @@ class LevelCardComponent extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              IconButton(
-                                icon: Icon(Icons.favorite_border),
-                                onPressed: () {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text('Not Implement Yet'),
-                                    ),
-                                  );
-                                }, // TODO implement like button
+                              // IconButton(
+                              //   icon: Icon(Icons.favorite_border),
+                              //   onPressed: () {
+                              //     ScaffoldMessenger.of(context).showSnackBar(
+                              //       SnackBar(
+                              //         content: Text('Not Implement Yet'),
+                              //       ),
+                              //     );
+                              //   }, // TODO implement like button
+                              // ),
+                              Container(
+                                child: Icon(Icons.favorite),
+                                margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
                               ),
                               Text(
                                 level.stats.likeCount == null
@@ -108,15 +112,19 @@ class LevelCardComponent extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              IconButton(
-                                icon: Icon(Icons.star_outline_outlined),
-                                onPressed: () {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text('Not Implement Yet'),
-                                    ),
-                                  );
-                                }, // TODO implement favorite button
+                              // IconButton(
+                              //   icon: Icon(Icons.star_outline_outlined),
+                              //   onPressed: () {
+                              //     ScaffoldMessenger.of(context).showSnackBar(
+                              //       SnackBar(
+                              //         content: Text('Not Implement Yet'),
+                              //       ),
+                              //     );
+                              //   }, // TODO implement favorite button
+                              // ),
+                              Container(
+                                child: Icon(Icons.star),
+                                margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
                               ),
                               Text(
                                 level.stats.favoriteCount == null
