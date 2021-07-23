@@ -117,7 +117,7 @@ class ProfilesPage extends StatelessWidget {
           } else if (state is LoadedProfilesState) {
             return FilterPanel(
               formHeader: Text(
-                'Filter Levels',
+                'Filter Profiles',
                 style: Theme.of(context).textTheme.headline6,
               ),
               formChildren: [
