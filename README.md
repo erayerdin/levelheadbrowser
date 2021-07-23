@@ -3,17 +3,27 @@
 ![GitHub Workflow Build Status](https://img.shields.io/github/workflow/status/erayerdin/levelheadbrowser/build?style=flat-square&label=build)
 ![GitHub Workflow Test Status](https://img.shields.io/github/workflow/status/erayerdin/levelheadbrowser/test?style=flat-square&label=tests)
 
-An Android application to browse levels, profiles, daily build levels and tower trial levels etc.
+An Android app to explore Levelhead universe.
 
-Currently, the application is in preview stage. [There is a devlog](https://www.youtube.com/watch?v=P9ChYHl8gdE&list=PLbJe7nxsM6nXbQnq1gq8DCw878A6FA-zb) **in Turkish** if you are interested.
+ > ### ⚠️ Warning!
+ >
+ > This is not an official application by Butterscotch Shenanigans. I am not affiliated to them or working for them.
 
-## Downloads
+In this app, you can browse and filter profiles and levels. You can also check out tower trial and records as well.
 
-Please remember that Levelhead Browser is still in preview stage and will not work as intended. However, there are regular builds you can still enjoy.
+Currently, this app is in alpha stage. You might encounter some unexpected behavior.
 
-**Android APK:** [Click here](https://nightly.link/erayerdin/levelheadbrowser/workflows/build/master/android-apk.zip)
+## Get the App
 
-It is also possible to build Levelhead Browser as native Linux application. We cannot share Linux app as binary (see [#1](https://github.com/erayerdin/levelheadbrowser/issues/1)). So you can clone this repository and do `flutter run -d linux` to build and run the application.
+### Android
+
+See [releases](https://github.com/erayerdin/levelheadbrowser/releases) to get the latest APK.
+
+The app will be published on Google Play as open-testing stage soon.
+
+### Linux
+
+It is possible to build Levelhead Browser as native Linux application. We cannot share Linux app as binary (see [#1](https://github.com/erayerdin/levelheadbrowser/issues/1) and [flutter#85460](https://github.com/flutter/flutter/issues/85460) for details). So you can clone this repository and do `flutter run -d linux` to build and run the application.
 
 ## Features
 
