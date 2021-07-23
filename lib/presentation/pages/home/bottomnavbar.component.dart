@@ -20,11 +20,12 @@ extension HomePageBottomNavbarTabExtension on HomePageBottomNavbarTab {
 
   Icon toIconData() {
     switch (this) {
-      // TODO add icons for other tabs
       case HomePageBottomNavbarTab.Profiles:
         return Icon(Icons.person);
-      default:
-        return Icon(Icons.help);
+      case HomePageBottomNavbarTab.Levels:
+        return Icon(Icons.sports_esports);
+      case HomePageBottomNavbarTab.TowerTrial:
+        return Icon(Icons.emoji_events);
     }
   }
 
