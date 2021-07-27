@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
  - Added the ability to share profiles and levels with custom links. Use `lhbr://profile/id` to open up a single profile or `lhbr://level/id` to open up a single level.
  - Added copy link to clipboard and share functionality for profile detail dialog.
+ - Added copy link to clipboard and share functionality for level detail dialog.
 
 ### Changed
  - Fixed Levels page parameter bug

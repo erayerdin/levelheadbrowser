@@ -6,6 +6,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:levelheadbrowser/data/models/level.dart';
@@ -15,6 +16,7 @@ import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
 import 'package:levelheadbrowser/presentation/components/badge/badge.component.dart';
 import 'package:levelheadbrowser/presentation/components/link/link.component.dart';
 import 'package:levelheadbrowser/presentation/pages/home/home.page.dart';
+import 'package:share_plus/share_plus.dart';
 
 part 'header.component.dart';
 part 'body.component.dart';
@@ -43,11 +45,45 @@ class LevelDialog extends StatelessWidget {
                 margin: _margin,
                 child: Column(
                   children: [
-                    CachedNetworkImage(
-                      imageUrl: level.getAvatarURL(),
-                      placeholder: (context, url) =>
-                          CircularProgressIndicator(),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(width: 90),
+                        CachedNetworkImage(
+                          imageUrl: level.getAvatarURL(),
+                          placeholder: (context, url) =>
+                              CircularProgressIndicator(),
+                          errorWidget: (context, url, error) =>
+                              Icon(Icons.error),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            IconButton(
+                                onPressed: () {
+                                  Share.share('lhbr://level/${level.id}');
+                                },
+                                icon: Icon(
+                                  Icons.share,
+                                  color: Colors.black,
+                                )),
+                            IconButton(
+                                onPressed: () {
+                                  Clipboard.setData(
+                                    ClipboardData(
+                                        text: 'lhbr://level/${level.id}'),
+                                  );
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('Copied to clipboard.'),
+                                      behavior: SnackBarBehavior.floating,
+                                    ),
+                                  );
+                                },
+                                icon: Icon(Icons.copy, color: Colors.black)),
+                          ],
+                        ),
+                      ],
                     ),
                     SizedBox(height: 10),
                     Text(
