@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (blocCtx) => HomePageBloc()
+          create: (blocCtx) => HomePageBloc(BlocProvider.of(context))
             ..add(
               LoadHomePageEvent(index: HomePageBottomNavbarTab.Profiles.index),
             ),
