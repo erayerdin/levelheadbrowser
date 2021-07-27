@@ -13,6 +13,7 @@ import 'package:levelheadbrowser/data/models/level.dart';
 import 'package:levelheadbrowser/data/models/params/levels.dart';
 import 'package:levelheadbrowser/data/repositories/level.dart';
 import 'package:levelheadbrowser/di.dart';
+import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
 import 'package:levelheadbrowser/logic/levels/levels_bloc.dart';
 import 'package:levelheadbrowser/presentation/components/filterpanel/filterpanel.component.dart';
 import 'package:levelheadbrowser/presentation/pages/levels/components/levelcard.component.dart';
@@ -74,7 +75,8 @@ class LevelsPage extends StatelessWidget {
           create: (blocCtx) => LevelsBloc()
             ..add(
               LoadLevelsEvent(
-                params: LevelsParams(),
+                params: BlocProvider.of<HomePageBloc>(context).state.params ??
+                    LevelsParams(),
               ),
             ),
         ),

@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:levelheadbrowser/data/models/params/levels.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
+import 'package:levelheadbrowser/di.dart';
 import 'package:levelheadbrowser/logic/deeplink/deeplink_cubit.dart';
 import 'package:levelheadbrowser/presentation/pages/home/home.page.dart';
 
@@ -29,6 +31,11 @@ extension HomePageBottomNavbarTabBlocExtension on HomePageBottomNavbarTab {
 }
 
 class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
+  final Converter<Uri?, LoadHomePageEvent?> _uriToLoadHomePageEventConverter =
+      getIt.get(
+    instanceName: 'data.converters.uri.toLoadHomePageEventNull.fromUriNull',
+  );
+
   final DeepLinkCubit _deepLinkCubit;
   late StreamSubscription _deepLinkCubitSub;
 
@@ -36,7 +43,11 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     this._deepLinkCubit,
   ) : super(HomePageProfilesTabState(null)) {
     _deepLinkCubitSub = _deepLinkCubit.stream.listen((uri) {
-      // TODO implement URI to event converter
+      LoadHomePageEvent? event = _uriToLoadHomePageEventConverter.convert(uri);
+
+      if (event != null) {
+        add(event);
+      }
     });
   }
 
