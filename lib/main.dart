@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:levelheadbrowser/di.dart';
+import 'package:levelheadbrowser/logic/deeplink/deeplink_cubit.dart';
 import 'package:levelheadbrowser/logic/firstrun/firstrun_cubit.dart';
 import 'package:levelheadbrowser/logic/observer.dart';
 import 'package:levelheadbrowser/presentation/pages/home/home.page.dart';
@@ -20,7 +21,11 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<FirstRunCubit>(
-            create: (context) => FirstRunCubit()..checkIfFirstRun()),
+          create: (_) => FirstRunCubit()..checkIfFirstRun(),
+        ),
+        BlocProvider<DeepLinkCubit>(
+          create: (_) => DeepLinkCubit(),
+        ),
       ],
       child: MaterialApp(
         title: 'Levelhead Browser',
