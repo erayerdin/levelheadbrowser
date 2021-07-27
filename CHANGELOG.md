@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [v0.2.0-alpha] - 2020-07-27
 ### Added
  - Added the ability to share profiles and levels with custom links. Use `lhbr://profile/id` to open up a single profile or `lhbr://level/id` to open up a single level.
  - Added copy link to clipboard and share functionality for profile detail dialog.
