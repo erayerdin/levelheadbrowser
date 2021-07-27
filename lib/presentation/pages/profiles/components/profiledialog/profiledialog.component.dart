@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 
 import 'package:levelheadbrowser/data/models/profile.dart';
 import 'package:levelheadbrowser/di.dart';
+import 'package:share_plus/share_plus.dart';
 
 const _TABLE_ROW_MARGIN = EdgeInsets.fromLTRB(10, 5, 10, 5);
 
@@ -59,7 +60,8 @@ class ProfileDialog extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(width: 50),
+                      // some magic pixel value
+                      SizedBox(width: 90),
                       if (profile.getAvatarURL().contains('avatars/null'))
                         Icon(Icons.error, color: Colors.black)
                       else
@@ -72,20 +74,33 @@ class ProfileDialog extends StatelessWidget {
                             color: Colors.black,
                           ),
                         ),
-                      IconButton(
-                          onPressed: () {
-                            Clipboard.setData(
-                              ClipboardData(
-                                  text: 'lhbr://profile/${profile.id}'),
-                            );
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text('Copied to clipboard.'),
-                                behavior: SnackBarBehavior.floating,
-                              ),
-                            );
-                          },
-                          icon: Icon(Icons.copy, color: Colors.black)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                Share.share('lhbr://profile/${profile.id}');
+                              },
+                              icon: Icon(
+                                Icons.share,
+                                color: Colors.black,
+                              )),
+                          IconButton(
+                              onPressed: () {
+                                Clipboard.setData(
+                                  ClipboardData(
+                                      text: 'lhbr://profile/${profile.id}'),
+                                );
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Copied to clipboard.'),
+                                    behavior: SnackBarBehavior.floating,
+                                  ),
+                                );
+                              },
+                              icon: Icon(Icons.copy, color: Colors.black)),
+                        ],
+                      ),
                     ],
                   ),
                   SizedBox(
