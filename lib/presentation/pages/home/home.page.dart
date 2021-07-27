@@ -42,25 +42,24 @@ class HomePage extends StatelessWidget {
                     value: 'about',
                   )
                 ],
-                onSelected: (item) {
+                onSelected: (item) async {
                   switch (item) {
                     case 'about':
-                      PackageInfo.fromPlatform().then((info) {
-                        showAboutDialog(
-                          context: context,
-                          applicationVersion: info.version,
-                          applicationIcon: ClipRRect(
-                            child: Image.asset(
-                              'assets/images/icons/icon.png',
-                              width: 50,
-                              height: 50,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
+                      var info = await PackageInfo.fromPlatform();
+                      showAboutDialog(
+                        context: context,
+                        applicationVersion: info.version,
+                        applicationIcon: ClipRRect(
+                          child: Image.asset(
+                            'assets/images/icons/icon.png',
+                            width: 50,
+                            height: 50,
                           ),
-                          applicationLegalese:
-                              'An application to browser Levelhead world.',
-                        );
-                      });
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        applicationLegalese:
+                            'An application to browser Levelhead world.',
+                      );
                   }
                 },
               )
