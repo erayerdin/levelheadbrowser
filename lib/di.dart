@@ -18,6 +18,7 @@ import 'package:levelheadbrowser/data/converters/params/levels.dart';
 import 'package:levelheadbrowser/data/converters/params/players.dart';
 import 'package:levelheadbrowser/data/converters/profile.dart';
 import 'package:levelheadbrowser/data/converters/towertrial.dart';
+import 'package:levelheadbrowser/data/converters/uri.dart';
 import 'package:levelheadbrowser/data/models/level.dart';
 import 'package:levelheadbrowser/data/models/params/levels.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
@@ -30,6 +31,7 @@ import 'package:levelheadbrowser/data/providers/towertrial.dart';
 import 'package:levelheadbrowser/data/repositories/level.dart';
 import 'package:levelheadbrowser/data/repositories/profile.dart';
 import 'package:levelheadbrowser/data/repositories/towertrial.dart';
+import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
 import 'package:logger/logger.dart' show Logger;
 import 'package:path_provider/path_provider.dart';
 
@@ -106,6 +108,10 @@ Future<void> setUpDI() async {
           LevelsParams>>(
     () => LevelFilterFormToLevelsParamsConverter(),
     instanceName: 'data.converters.forms.fromLevelFilterForm.toLevelsParams',
+  );
+  getIt.registerLazySingleton<Converter<Uri?, LoadHomePageEvent?>>(
+    () => UriToLoadHomePageEventConverter(),
+    instanceName: 'data.converters.uri.toLoadHomePageEventNull.fromUriNull',
   );
 
   // Providers
