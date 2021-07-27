@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Changed
  - Updated intro screen
+ - Added social links to About dialog
 
 ## [v0.1.2-alpha] - 2020-07-23
 ### Changed

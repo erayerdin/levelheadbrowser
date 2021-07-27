@@ -6,12 +6,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:levelheadbrowser/logic/firstrun/firstrun_cubit.dart';
 import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
 import 'package:levelheadbrowser/presentation/pages/levels/levels.page.dart';
 import 'package:levelheadbrowser/presentation/pages/profiles/profiles.page.dart';
 import 'package:levelheadbrowser/presentation/pages/towertrials/towertrials.page.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 part 'bottomnavbar.component.dart';
 
@@ -47,19 +49,30 @@ class HomePage extends StatelessWidget {
                     case 'about':
                       var info = await PackageInfo.fromPlatform();
                       showAboutDialog(
-                        context: context,
-                        applicationVersion: info.version,
-                        applicationIcon: ClipRRect(
-                          child: Image.asset(
-                            'assets/images/icons/icon.png',
-                            width: 50,
-                            height: 50,
+                          context: context,
+                          applicationVersion: info.version,
+                          applicationIcon: ClipRRect(
+                            child: Image.asset(
+                              'assets/images/icons/icon.png',
+                              width: 50,
+                              height: 50,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        applicationLegalese:
-                            'An application to browser Levelhead world.',
-                      );
+                          applicationLegalese:
+                              'An application to browser Levelhead world.',
+                          children: [
+                            MarkdownBody(
+                              data:
+                                  'Follow me on [Twitter](https://twitter.com/_erayerdin), '
+                                  '[Github](https://github.com/erayerdin) or '
+                                  '[Telegram](https://t.me/erayerdin).',
+                              onTapLink: (_, href, __) async =>
+                                  await canLaunch(href!)
+                                      ? await launch(href)
+                                      : '',
+                            ),
+                          ]);
                   }
                 },
               )
