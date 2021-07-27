@@ -1,4 +1,4 @@
-package io.github.erayerdin.levelheadbrowser
+package com.erayerdin.levelheadbrowser
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 project(runner LANGUAGES CXX)
 
 set(BINARY_NAME "levelheadbrowser")
-set(APPLICATION_ID "io.github.erayerdin.levelheadbrowser")
+set(APPLICATION_ID "com.erayerdin.levelheadbrowser")
 
 cmake_policy(SET CMP0063 NEW)
 
