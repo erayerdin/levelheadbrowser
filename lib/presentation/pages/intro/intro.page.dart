@@ -11,46 +11,39 @@ import 'package:introduction_screen/introduction_screen.dart';
 final _PAGES = [
   PageViewModel(
     title: 'Welcome, employee!',
-    body:
-        'I don\'t even know what the purpose for the image above is but bear with me. '
-        'This app helps you browse Levelhead world.',
+    body: 'Levelhead Browser helps you explore Levelhead universe.',
     image: Image.asset('assets/images/intro/sarcasm.png'),
   ),
   PageViewModel(
-    title: 'Find your true love!',
-    body: 'What\'s with these images and titles, what? Ahem. Whatever. Well, '
-        'I suppose it means you can search for other players. As for love, '
-        'I think there are specific apps for that but this isn\'t the one.',
+    title: 'Find a colleague!',
+    body: 'You can search for profiles, filter and sort them.',
     image: Image.asset('assets/images/intro/profiles.png'),
   ),
   PageViewModel(
     title: 'Carry the package to many galaxies!',
     body:
-        'And... this image stands for ... *random page-turn noises* ... well, '
-        'I guess you will be the new intergalactic package carrier guy. If you '
-        'don\'t want to be get deployed to a gas giant, neutron star or, the '
-        'worst, a black hole with your minimum wage salary, though, you can check '
-        'levels section.',
+        'You can also explore new levels, filter and sort them, see the types '
+        'of the levels and view the records.',
     image: Image.asset('assets/images/intro/levels.png'),
   ),
   PageViewModel(
     title: 'Catch the daily challenge!',
-    body: 'If you love to carry packages around, for some reason, you can also '
-        'check out daily builds. In return, your name will be written to the '
-        'employee of the day board. And your wage still stays minimum. Guaranteed!',
-    image: Image.asset('assets/images/intro/dailybuild.png'),
+    body: 'In a competitive mood? Check out tower trial and see the current '
+        'time records and highest records.',
+    image: Image.asset('assets/images/intro/towertrial.png'),
   ),
   PageViewModel(
     title: 'No affiliations',
-    body: 'Okay, this is a bit serious. I\'m not associated with Butterscotch '
+    body: 'I\'m not associated with Butterscotch '
         'Shenanigans. I\'m not working for them. This is not an official app '
-        'from them. Well, out of my chest.',
+        'from them.',
     image: Image.asset('assets/images/intro/noaffiliation.png'),
   ),
   PageViewModel(
     title: 'Open Source',
-    body: 'This project is open source and licensed under the terms of Apache '
-        'License 2.0. You can look at the code, send enhancement proposals, whatever. ',
+    body: 'This project is open source and licensed under the terms of Mozilla '
+        'Public License 2.0. You can check out the code and send reports if '
+        'you have any issues with it or propose enhancement.',
     // TODO add no warranties in the future
     image: Image.asset('assets/images/intro/opensource.png'),
   ),
