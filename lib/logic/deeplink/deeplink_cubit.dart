@@ -16,6 +16,7 @@ class DeepLinkCubit extends Cubit<Uri?> {
     _deepLinkSub = uriLinkStream.listen((uri) {
       emit(uri);
     });
+    getInitialUri().then((uri) => emit(uri));
   }
 
   @override
