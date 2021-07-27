@@ -6,6 +6,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:levelheadbrowser/data/models/profile.dart';
 import 'package:levelheadbrowser/di.dart';
@@ -55,18 +56,38 @@ class ProfileDialog extends StatelessWidget {
               margin: _margin,
               child: Column(
                 children: [
-                  if (profile.getAvatarURL().contains('avatars/null'))
-                    Icon(Icons.error, color: Colors.black)
-                  else
-                    CachedNetworkImage(
-                      imageUrl: profile.getAvatarURL(),
-                      placeholder: (context, url) =>
-                          CircularProgressIndicator(),
-                      errorWidget: (context, url, error) => Icon(
-                        Icons.error,
-                        color: Colors.black,
-                      ),
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(width: 50),
+                      if (profile.getAvatarURL().contains('avatars/null'))
+                        Icon(Icons.error, color: Colors.black)
+                      else
+                        CachedNetworkImage(
+                          imageUrl: profile.getAvatarURL(),
+                          placeholder: (context, url) =>
+                              CircularProgressIndicator(),
+                          errorWidget: (context, url, error) => Icon(
+                            Icons.error,
+                            color: Colors.black,
+                          ),
+                        ),
+                      IconButton(
+                          onPressed: () {
+                            Clipboard.setData(
+                              ClipboardData(
+                                  text: 'lhbr://profile/${profile.id}'),
+                            );
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Copied to clipboard.'),
+                                behavior: SnackBarBehavior.floating,
+                              ),
+                            );
+                          },
+                          icon: Icon(Icons.copy, color: Colors.black)),
+                    ],
+                  ),
                   SizedBox(
                     height: 10,
                   ),
