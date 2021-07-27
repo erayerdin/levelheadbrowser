@@ -52,6 +52,22 @@ https://user-images.githubusercontent.com/2399084/126715696-f7622b55-0b61-4bbd-9
 
 https://user-images.githubusercontent.com/2399084/126715738-30f9131d-7659-43be-8f3a-9dd931b492cb.mp4
 
+### In-App Links
+
+You can share, copy and generate in-app links. The format for in-app link is:
+
+```plain
+// for profiles
+lhbr://profile/{id}
+
+// for levels
+lhbr://level/{id}
+```
+
+Clicking a link with `lhbr` scheme will launch Levelhead Browser and will take you to related level or profile.
+
+You can also share or copy the link of a specific level or profile in its detail dialog.
+
 ## License
 
 This project is licensed under [Mozilla Public License 2.0](https://www.mozilla.org/en-US/MPL/2.0/).
