@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 class NavDrawerTileComponent extends StatelessWidget {
   final Icon? icon;
   final String label;
-  final Function() onTap;
+  final Function()? onTap;
 
   const NavDrawerTileComponent({
     Key? key,
@@ -29,6 +29,7 @@ class NavDrawerTileComponent extends StatelessWidget {
           Text(label),
         ],
       ),
+      onTap: onTap,
     );
   }
 }
