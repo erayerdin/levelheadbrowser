@@ -13,6 +13,7 @@ import 'package:levelheadbrowser/data/models/level.dart';
 import 'package:levelheadbrowser/data/models/params/levels.dart';
 import 'package:levelheadbrowser/data/repositories/level.dart';
 import 'package:levelheadbrowser/di.dart';
+import 'package:levelheadbrowser/logic/appbar/appbar_cubit.dart';
 import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
 import 'package:levelheadbrowser/logic/levels/levels_bloc.dart';
 import 'package:levelheadbrowser/presentation/components/filterpanel/filterpanel.component.dart';
@@ -69,6 +70,7 @@ class LevelsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<AppBarCubit>(context).emit(AppBarState(title: 'Levels'));
     return MultiBlocProvider(
       providers: [
         BlocProvider(

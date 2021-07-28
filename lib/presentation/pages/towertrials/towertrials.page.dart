@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
 
 import 'package:levelheadbrowser/data/models/towertrial.dart';
+import 'package:levelheadbrowser/logic/appbar/appbar_cubit.dart';
 import 'package:levelheadbrowser/logic/towertrials/towertrials_bloc.dart';
 import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
 import 'package:levelheadbrowser/presentation/components/filterpanel/filterpanel.component.dart';
@@ -88,6 +89,9 @@ class _RecordTable extends StatelessWidget {
 class TowerTrialsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<AppBarCubit>(context).emit(
+      AppBarState(title: 'Tower Trial'),
+    );
     return MultiBlocProvider(
       providers: [
         BlocProvider(

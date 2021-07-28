@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
 import 'package:levelheadbrowser/di.dart';
+import 'package:levelheadbrowser/logic/appbar/appbar_cubit.dart';
 import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
 import 'package:levelheadbrowser/logic/profiles/profiles_bloc.dart';
 import 'package:levelheadbrowser/presentation/components/filterpanel/filterpanel.component.dart';
@@ -96,6 +97,7 @@ class ProfilesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<AppBarCubit>(context).emit(AppBarState(title: 'Profiles'));
     return MultiBlocProvider(
       providers: [
         BlocProvider(

@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:levelheadbrowser/logic/appbar/appbar_cubit.dart';
 import 'package:levelheadbrowser/logic/firstrun/firstrun_cubit.dart';
 import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
 import 'package:levelheadbrowser/presentation/components/navdrawer/section.component.dart';
@@ -28,6 +29,7 @@ class HomePage extends StatelessWidget {
               LoadHomePageEvent(index: 0),
             ),
         ),
+        BlocProvider(create: (context) => AppBarCubit()),
       ],
       child: Builder(
         builder: (context) => BlocListener<FirstRunCubit, bool>(
@@ -36,7 +38,11 @@ class HomePage extends StatelessWidget {
           },
           child: Scaffold(
             appBar: AppBar(
-              title: Text('Levelhead Browser'),
+              title: BlocBuilder<AppBarCubit, AppBarState?>(
+                builder: (context, state) {
+                  return Text(state?.title ?? 'Levelhead Browser');
+                },
+              ),
             ),
             drawer: Drawer(
               child: Column(
