@@ -10,7 +10,6 @@ import 'package:levelheadbrowser/data/models/params/levels.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
 import 'package:levelheadbrowser/di.dart';
 import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
-import 'package:levelheadbrowser/presentation/pages/home/home.page.dart';
 import 'package:logger/logger.dart';
 
 class UriToLoadHomePageEventConverter
@@ -43,13 +42,13 @@ class UriToLoadHomePageEventConverter
     switch (host) {
       case 'profile':
         event = LoadHomePageEvent(
-          index: HomePageBottomNavbarTab.Profiles.index,
+          index: 0,
           params: PlayersParams(ids: {id}),
         );
         break;
       case 'level':
         event = LoadHomePageEvent(
-          index: HomePageBottomNavbarTab.Levels.index,
+          index: 1,
           params: LevelsParams(ids: {id}),
         );
         break;

@@ -8,25 +8,24 @@ import 'package:levelheadbrowser/data/models/params/levels.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
 import 'package:levelheadbrowser/di.dart';
 import 'package:levelheadbrowser/logic/deeplink/deeplink_cubit.dart';
-import 'package:levelheadbrowser/presentation/pages/home/home.page.dart';
 
 part 'homepage_event.dart';
 part 'homepage_state.dart';
 
-extension HomePageBottomNavbarTabBlocExtension on HomePageBottomNavbarTab {
-  HomePageState toState<T>(T? params) {
-    switch (this) {
-      case HomePageBottomNavbarTab.Profiles:
-        return HomePageProfilesTabState(
-          params == null ? PlayersParams() : params as PlayersParams,
-        );
-      case HomePageBottomNavbarTab.Levels:
-        return HomePageLevelsTabState(
-          params == null ? LevelsParams() : params as LevelsParams,
-        );
-      case HomePageBottomNavbarTab.TowerTrial:
-        return HomePageTowerTrialTabState();
-    }
+HomePageState indexToState<T>(int index, T? params) {
+  switch (index) {
+    case 0:
+      return HomePageProfilesTabState(
+        params == null ? PlayersParams() : params as PlayersParams,
+      );
+    case 1:
+      return HomePageLevelsTabState(
+        params == null ? LevelsParams() : params as LevelsParams,
+      );
+    case 2:
+      return HomePageTowerTrialTabState();
+    default:
+      return HomePageProfilesTabState(PlayersParams());
   }
 }
 
@@ -56,7 +55,7 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     HomePageEvent event,
   ) async* {
     if (event is LoadHomePageEvent) {
-      yield HomePageBottomNavbarTab.values[event.index].toState(event.params);
+      yield indexToState(event.index, event.params);
     }
   }
 

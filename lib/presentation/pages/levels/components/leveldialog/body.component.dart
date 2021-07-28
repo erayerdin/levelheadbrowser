@@ -36,7 +36,7 @@ class _BodyComponent extends StatelessWidget {
   void _redirectToProfilesPage(BuildContext context, String id) {
     BlocProvider.of<HomePageBloc>(context).add(
       LoadHomePageEvent(
-        index: HomePageBottomNavbarTab.Profiles.index,
+        index: 0,
         params: PlayersParams(ids: {id}),
       ),
     );

@@ -14,7 +14,7 @@ abstract class HomePageState<T> extends Equatable {
 }
 
 class HomePageProfilesTabState implements HomePageState<PlayersParams> {
-  final int index = HomePageBottomNavbarTab.Profiles.index;
+  final int index = 0;
   final PlayersParams? params;
 
   HomePageProfilesTabState(this.params);
@@ -30,7 +30,7 @@ class HomePageProfilesTabState implements HomePageState<PlayersParams> {
 }
 
 class HomePageTowerTrialTabState implements HomePageState {
-  final int index = HomePageBottomNavbarTab.TowerTrial.index;
+  final int index = 2;
 
   @override
   List<Object> get props => [];
@@ -44,7 +44,7 @@ class HomePageTowerTrialTabState implements HomePageState {
 }
 
 class HomePageLevelsTabState implements HomePageState<LevelsParams> {
-  final int index = HomePageBottomNavbarTab.Levels.index;
+  final int index = 1;
   final LevelsParams? params;
 
   HomePageLevelsTabState(this.params);

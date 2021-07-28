@@ -17,8 +17,6 @@ import 'package:levelheadbrowser/presentation/pages/towertrials/towertrials.page
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-part 'bottomnavbar.component.dart';
-
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -27,7 +25,7 @@ class HomePage extends StatelessWidget {
         BlocProvider(
           create: (blocCtx) => HomePageBloc(BlocProvider.of(context))
             ..add(
-              LoadHomePageEvent(index: HomePageBottomNavbarTab.Profiles.index),
+              LoadHomePageEvent(index: 0),
             ),
         ),
       ],
@@ -105,7 +103,6 @@ class HomePage extends StatelessWidget {
                 return ProfilesPage();
               },
             ),
-            bottomNavigationBar: _BottomNavbarComponent(),
           ),
         ),
       ),

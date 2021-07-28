@@ -13,7 +13,6 @@ import 'package:levelheadbrowser/logic/towertrials/towertrials_bloc.dart';
 import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
 import 'package:levelheadbrowser/presentation/components/filterpanel/filterpanel.component.dart';
 import 'package:levelheadbrowser/presentation/components/link/link.component.dart';
-import 'package:levelheadbrowser/presentation/pages/home/home.page.dart';
 import 'package:levelheadbrowser/presentation/pages/levels/components/levelcard.component.dart';
 
 class _RecordTable extends StatelessWidget {
@@ -65,7 +64,7 @@ class _RecordTable extends StatelessWidget {
                         onTap: () => BlocProvider.of<HomePageBloc>(context)
                           ..add(
                             LoadHomePageEvent(
-                              index: HomePageBottomNavbarTab.Profiles.index,
+                              index: 0,
                               params: PlayersParams(ids: {e.profile.id}),
                             ),
                           ),
