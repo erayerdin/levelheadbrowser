@@ -9,6 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:levelheadbrowser/logic/firstrun/firstrun_cubit.dart';
 import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
+import 'package:levelheadbrowser/presentation/components/navdrawer/section.component.dart';
+import 'package:levelheadbrowser/presentation/components/navdrawer/tile.component.dart';
 import 'package:levelheadbrowser/presentation/pages/levels/levels.page.dart';
 import 'package:levelheadbrowser/presentation/pages/profiles/profiles.page.dart';
 import 'package:levelheadbrowser/presentation/pages/towertrials/towertrials.page.dart';
@@ -29,71 +31,110 @@ class HomePage extends StatelessWidget {
             ),
         ),
       ],
-      child: BlocListener<FirstRunCubit, bool>(
-        listener: (context, state) {
-          if (state) Navigator.pushNamed(context, "/intro");
-        },
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text('Levelhead Browser'),
-            actions: [
-              PopupMenuButton(
-                itemBuilder: (context) => [
-                  PopupMenuItem(
-                    child: Text('About'),
-                    value: 'about',
-                  )
-                ],
-                onSelected: (item) async {
-                  switch (item) {
-                    case 'about':
-                      var info = await PackageInfo.fromPlatform();
-                      showAboutDialog(
-                          context: context,
-                          applicationVersion: info.version,
-                          applicationIcon: ClipRRect(
-                            child: Image.asset(
-                              'assets/images/icons/icon.png',
-                              width: 50,
-                              height: 50,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          applicationLegalese:
-                              'An application to browser Levelhead world.',
+      child: Builder(
+        builder: (context) => BlocListener<FirstRunCubit, bool>(
+          listener: (context, state) {
+            if (state) Navigator.pushNamed(context, "/intro");
+          },
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text('Levelhead Browser'),
+            ),
+            drawer: Drawer(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  DrawerHeader(child: Text('Header')),
+                  Expanded(
+                    child: ListView(
+                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      children: [
+                        NavDrawerSectionComponent(
+                          title: 'Explore',
                           children: [
-                            MarkdownBody(
-                              data:
-                                  'Follow me on [Twitter](https://twitter.com/_erayerdin), '
-                                  '[Github](https://github.com/erayerdin) or '
-                                  '[Telegram](https://t.me/erayerdin).',
-                              onTapLink: (_, href, __) async =>
-                                  await canLaunch(href!)
-                                      ? await launch(href)
-                                      : '',
+                            NavDrawerTileComponent(
+                              label: 'Profiles',
+                              onTap: () {
+                                BlocProvider.of<HomePageBloc>(context)
+                                    .add(LoadHomePageEvent(index: 0));
+                                Navigator.pop(context);
+                              },
+                              icon: Icon(Icons.person),
                             ),
-                          ]);
-                  }
-                },
-              )
-            ],
-          ),
-          body: BlocBuilder<HomePageBloc, HomePageState>(
-            builder: (context, state) {
-              if (state is HomePageProfilesTabState) {
-                return ProfilesPage();
-              } else if (state is HomePageTowerTrialTabState) {
-                return TowerTrialsPage();
-              } else if (state is HomePageLevelsTabState) {
-                return LevelsPage();
-              }
+                            NavDrawerTileComponent(
+                              label: 'Levels',
+                              onTap: () {
+                                BlocProvider.of<HomePageBloc>(context)
+                                    .add(LoadHomePageEvent(index: 1));
+                                Navigator.pop(context);
+                              },
+                              icon: Icon(Icons.sports_esports),
+                            ),
+                            NavDrawerTileComponent(
+                              label: 'Tower Trial',
+                              onTap: () {
+                                BlocProvider.of<HomePageBloc>(context)
+                                    .add(LoadHomePageEvent(index: 2));
+                                Navigator.pop(context);
+                              },
+                              icon: Icon(Icons.emoji_events),
+                            ),
+                            Divider(),
+                            NavDrawerTileComponent(
+                              label: 'About',
+                              onTap: () async => _showAboutDialog(context),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            body: BlocBuilder<HomePageBloc, HomePageState>(
+              builder: (context, state) {
+                if (state is HomePageProfilesTabState) {
+                  return ProfilesPage();
+                } else if (state is HomePageTowerTrialTabState) {
+                  return TowerTrialsPage();
+                } else if (state is HomePageLevelsTabState) {
+                  return LevelsPage();
+                }
 
-              return ProfilesPage();
-            },
+                return ProfilesPage();
+              },
+            ),
+            bottomNavigationBar: _BottomNavbarComponent(),
           ),
-          bottomNavigationBar: _BottomNavbarComponent(),
         ),
       ),
+    );
+  }
+
+  Future _showAboutDialog(BuildContext context) async {
+    var info = await PackageInfo.fromPlatform();
+    showAboutDialog(
+      context: context,
+      applicationVersion: info.version,
+      applicationIcon: ClipRRect(
+        child: Image.asset(
+          'assets/images/icons/icon.png',
+          width: 50,
+          height: 50,
+        ),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      applicationLegalese: 'An application to browser Levelhead world.',
+      children: [
+        MarkdownBody(
+          data: 'Follow me on [Twitter](https://twitter.com/_erayerdin), '
+              '[Github](https://github.com/erayerdin) or '
+              '[Telegram](https://t.me/erayerdin).',
+          onTapLink: (_, href, __) async =>
+              await canLaunch(href!) ? await launch(href) : '',
+        ),
+      ],
     );
   }
 }
