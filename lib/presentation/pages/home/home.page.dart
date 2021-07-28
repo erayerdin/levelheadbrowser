@@ -7,9 +7,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:levelheadbrowser/data/constants.dart';
 import 'package:levelheadbrowser/logic/appbar/appbar_cubit.dart';
 import 'package:levelheadbrowser/logic/firstrun/firstrun_cubit.dart';
 import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
+import 'package:levelheadbrowser/presentation/components/link/link.component.dart';
 import 'package:levelheadbrowser/presentation/components/navdrawer/section.component.dart';
 import 'package:levelheadbrowser/presentation/components/navdrawer/tile.component.dart';
 import 'package:levelheadbrowser/presentation/pages/levels/levels.page.dart';
@@ -48,7 +50,75 @@ class HomePage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  DrawerHeader(child: Text('Header')),
+                  Theme(
+                    data: Theme.of(context).copyWith(
+                      textTheme: Theme.of(context).textTheme.copyWith(
+                            subtitle1:
+                                Theme.of(context).textTheme.subtitle1?.copyWith(
+                                      color: Colors.white,
+                                    ),
+                            subtitle2:
+                                Theme.of(context).textTheme.subtitle2?.copyWith(
+                                      color: Colors.white,
+                                    ),
+                          ),
+                    ),
+                    child: Builder(
+                      builder: (context) => DrawerHeader(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Image.asset(
+                              'assets/images/icons/icon.png',
+                              width: 50,
+                              height: 50,
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  'Levelhead Browser',
+                                  style: Theme.of(context).textTheme.subtitle1,
+                                ),
+                                FutureBuilder(
+                                  builder: (
+                                    context,
+                                    AsyncSnapshot<PackageInfo> snapshot,
+                                  ) {
+                                    switch (snapshot.connectionState) {
+                                      case ConnectionState.done:
+                                        return Text(
+                                          snapshot.data!.version,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .subtitle2,
+                                        );
+                                      default:
+                                        return Text('...');
+                                    }
+                                  },
+                                  future: PackageInfo.fromPlatform(),
+                                )
+                              ],
+                            ),
+                            Wrap(
+                              spacing: 10,
+                              children: SOCIAL_LINKS.keys
+                                  .map(
+                                    (key) => LinkComponent(
+                                      SOCIAL_LINKS[key]!.item1,
+                                      color: Colors.white,
+                                      onTap: () async =>
+                                          launch(SOCIAL_LINKS[key]!.item2),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                          ],
+                        ),
+                        decoration: BoxDecoration(color: Colors.blue),
+                      ),
+                    ),
+                  ),
                   Expanded(
                     child: ListView(
                       padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
