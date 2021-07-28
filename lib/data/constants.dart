@@ -4,10 +4,23 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tuple/tuple.dart';
 
 const SOCIAL_LINKS = {
-  'twitter': Tuple2('Twitter', 'https://twitter.com/_erayerdin'),
-  'telegram': Tuple2('Telegram', 'https://t.me/erayerdin'),
-  'github': Tuple2('Github', 'https://github.com/erayerdin/levelheadbrowser'),
+  'twitter': Tuple3(
+    'https://twitter.com/_erayerdin',
+    'Twitter',
+    FontAwesomeIcons.twitter,
+  ),
+  'telegram': Tuple3(
+    'https://t.me/erayerdin',
+    'Telegram',
+    FontAwesomeIcons.telegram,
+  ),
+  'github': Tuple3(
+    'https://github.com/erayerdin/levelheadbrowser',
+    'Github',
+    FontAwesomeIcons.github,
+  ),
 };

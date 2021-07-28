@@ -100,19 +100,6 @@ class HomePage extends StatelessWidget {
                                 )
                               ],
                             ),
-                            Wrap(
-                              spacing: 10,
-                              children: SOCIAL_LINKS.keys
-                                  .map(
-                                    (key) => LinkComponent(
-                                      SOCIAL_LINKS[key]!.item1,
-                                      color: Colors.white,
-                                      onTap: () async =>
-                                          launch(SOCIAL_LINKS[key]!.item2),
-                                    ),
-                                  )
-                                  .toList(),
-                            ),
                           ],
                         ),
                         decoration: BoxDecoration(color: Colors.blue),
@@ -162,6 +149,19 @@ class HomePage extends StatelessWidget {
                         ),
                       ],
                     ),
+                  ),
+                  Divider(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: SOCIAL_LINKS.keys
+                        .map(
+                          (k) => IconButton(
+                            onPressed: () async =>
+                                launch(SOCIAL_LINKS[k]!.item1),
+                            icon: Icon(SOCIAL_LINKS[k]!.item3),
+                          ),
+                        )
+                        .toList(),
                   ),
                 ],
               ),
