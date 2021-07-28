@@ -33,7 +33,7 @@ It is possible to build Levelhead Browser as native Linux application. We cannot
 - Information dialog for each profile
 - Sliding up filter panel
 
-https://user-images.githubusercontent.com/2399084/126715646-21457db0-67cc-4b94-b754-b22a0924e57d.mp4
+https://user-images.githubusercontent.com/2399084/127312639-24742ae8-4955-4e1b-9ad2-b1367a1e2285.mp4
 
 ### Levels Page
 
@@ -42,7 +42,7 @@ https://user-images.githubusercontent.com/2399084/126715646-21457db0-67cc-4b94-b
   - Badges for informations such as exposure bucks, tags, required players etc.
 - Sliding up filter panel
 
-https://user-images.githubusercontent.com/2399084/126715696-f7622b55-0b61-4bbd-99ee-0fdd82ea1c1b.mp4
+https://user-images.githubusercontent.com/2399084/127312688-8330d873-e392-4f27-890e-4a2345ce9a3a.mp4
 
 ### Tower Trials Page
 
@@ -50,7 +50,7 @@ https://user-images.githubusercontent.com/2399084/126715696-f7622b55-0b61-4bbd-9
  - Information dialog for each level such as exposure bucks, tags, required players, etc.
  - See fastest time and high score records on a separate slide-up panel.
 
-https://user-images.githubusercontent.com/2399084/126715738-30f9131d-7659-43be-8f3a-9dd931b492cb.mp4
+https://user-images.githubusercontent.com/2399084/127312715-383705f2-0a67-4eac-98b7-577cf01e5fc4.mp4
 
 ### In-App Links
 
