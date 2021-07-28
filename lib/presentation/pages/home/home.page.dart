@@ -198,16 +198,7 @@ class HomePage extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(8.0),
       ),
-      applicationLegalese: 'An application to browser Levelhead world.',
-      children: [
-        MarkdownBody(
-          data: 'Follow me on [Twitter](https://twitter.com/_erayerdin), '
-              '[Github](https://github.com/erayerdin) or '
-              '[Telegram](https://t.me/erayerdin).',
-          onTapLink: (_, href, __) async =>
-              await canLaunch(href!) ? await launch(href) : '',
-        ),
-      ],
+      applicationLegalese: 'An application to browse Levelhead universe.',
     );
   }
 }
