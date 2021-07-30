@@ -28,7 +28,6 @@ class FormBuilderColorPicker extends StatelessWidget {
       builder: (state) => InputDecorator(
         decoration: InputDecoration(
           labelText: labelText,
-          border: InputBorder.none,
         ),
         child: InkWell(
           onTap: () => showDialog(
@@ -43,22 +42,19 @@ class FormBuilderColorPicker extends StatelessWidget {
               ),
             ),
           ),
-          child: Container(
-            margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                // REF https://stackoverflow.com/a/50524531/2926992
-                Container(
-                  width: 25,
-                  height: 25,
-                  decoration: BoxDecoration(
-                    color: state.value ?? initialColor,
-                    shape: BoxShape.circle,
-                  ),
-                )
-              ],
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              // REF https://stackoverflow.com/a/50524531/2926992
+              Container(
+                width: 25,
+                height: 25,
+                decoration: BoxDecoration(
+                  color: state.value ?? initialColor,
+                  shape: BoxShape.circle,
+                ),
+              )
+            ],
           ),
         ),
       ),
