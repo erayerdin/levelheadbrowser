@@ -8,6 +8,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:levelheadbrowser/data/models/settings.dart';
+import 'package:levelheadbrowser/di.dart';
+import 'package:logger/logger.dart';
 
 // REF https://stackoverflow.com/a/50081214/2926992
 extension HexColor on Color {
@@ -28,8 +30,11 @@ extension HexColor on Color {
 }
 
 class SettingsToMapConverter extends Converter<Settings, Map> {
+  final Logger _logger = getIt.get();
+
   @override
   Map convert(Settings input) {
+    _logger.d('Converting Settings object to Map...');
     return {
       'appearance': {
         'profileCardMinColor': input.appearance.profileCardMinColor.toHex(),
@@ -42,8 +47,11 @@ class SettingsToMapConverter extends Converter<Settings, Map> {
 }
 
 class MapToSettingsConverter extends Converter<Map, Settings> {
+  final Logger _logger = getIt.get();
+
   @override
   Settings convert(Map input) {
+    _logger.d('Converting Map to Settings object...');
     return Settings(
       appearance: AppearanceSettings(
         profileCardMinColor:

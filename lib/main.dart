@@ -4,6 +4,7 @@ import 'package:levelheadbrowser/di.dart';
 import 'package:levelheadbrowser/logic/deeplink/deeplink_cubit.dart';
 import 'package:levelheadbrowser/logic/firstrun/firstrun_cubit.dart';
 import 'package:levelheadbrowser/logic/observer.dart';
+import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
 import 'package:levelheadbrowser/presentation/pages/home/home.page.dart';
 import 'package:levelheadbrowser/presentation/pages/intro/intro.page.dart';
 
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<DeepLinkCubit>(
           create: (_) => DeepLinkCubit(),
+        ),
+        BlocProvider<SettingsBloc>(
+          create: (_) => SettingsBloc()..add(LoadSettingsEvent()),
         ),
       ],
       child: MaterialApp(

@@ -16,6 +16,12 @@ class LoadSettingsEvent implements SettingsEvent {
 }
 
 class SaveSettingsEvent implements SettingsEvent {
+  final Settings settings;
+
+  SaveSettingsEvent({
+    required this.settings,
+  });
+
   @override
   List<Object> get props => [];
 

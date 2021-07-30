@@ -11,6 +11,8 @@ import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:levelheadbrowser/data/converters/forms/levelfilterform.dart';
 import 'package:levelheadbrowser/data/converters/forms/profilefilterform.dart';
 import 'package:levelheadbrowser/data/converters/level.dart';
@@ -41,6 +43,15 @@ final getIt = GetIt.instance;
 
 Future<void> setUpDI() async {
   getIt.registerLazySingleton(() => Logger());
+
+  // Hive
+  getIt.registerLazySingletonAsync<Box>(
+    () {
+      Hive.initFlutter();
+      return Hive.openBox('settings');
+    },
+    instanceName: 'hive.settings',
+  );
 
   // HTTP
   getIt.registerSingletonAsync<CacheStore>(
