@@ -31,6 +31,7 @@ import 'package:levelheadbrowser/data/models/settings.dart';
 import 'package:levelheadbrowser/data/models/towertrial.dart';
 import 'package:levelheadbrowser/data/providers/level.dart';
 import 'package:levelheadbrowser/data/providers/profile.dart';
+import 'package:levelheadbrowser/data/providers/settings.dart';
 import 'package:levelheadbrowser/data/providers/towertrial.dart';
 import 'package:levelheadbrowser/data/repositories/level.dart';
 import 'package:levelheadbrowser/data/repositories/profile.dart';
@@ -50,7 +51,7 @@ Future<void> setUpDI() async {
       Hive.initFlutter();
       return Hive.openBox('settings');
     },
-    instanceName: 'hive.settings',
+    instanceName: 'hive.boxes.settings',
   );
 
   // HTTP
@@ -128,11 +129,11 @@ Future<void> setUpDI() async {
   );
   getIt.registerLazySingleton<Converter<Settings, Map>>(
     () => SettingsToMapConverter(),
-    instanceName: 'data.converters.settings.toSettings.fromMap',
+    instanceName: 'data.converters.settings.toMap.fromSettings',
   );
   getIt.registerLazySingleton<Converter<Map, Settings>>(
     () => MapToSettingsConverter(),
-    instanceName: 'data.converters.settings.toMap.fromSettings',
+    instanceName: 'data.converters.settings.toSettings.fromMap',
   );
 
   // Providers
@@ -150,6 +151,10 @@ Future<void> setUpDI() async {
       TowerTrialProvider<TowerTrialsParams, Map<String, dynamic>>>(
     () => RumpusTowerTrialProvider(),
     instanceName: 'data.providers.towertrial.rumpus',
+  );
+  getIt.registerLazySingleton<SettingsProvider>(
+    () => LocalSettingsProvider(),
+    instanceName: 'data.providers.settings.local',
   );
 
   // Repositories
