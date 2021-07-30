@@ -7,6 +7,16 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
+// ignore: non_constant_identifier_names
+final DEFAULT_SETTINGS = Settings(
+  appearance: AppearanceSettings(
+    profileCardMinColor: Colors.red,
+    profileCardMaxColor: Colors.green,
+    levelCardMinColor: Colors.red,
+    levelCardMaxColor: Colors.green,
+  ),
+);
+
 class AppearanceSettings extends Equatable {
   final Color profileCardMinColor;
   final Color profileCardMaxColor;
