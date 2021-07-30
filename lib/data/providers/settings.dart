@@ -7,7 +7,6 @@
 import 'dart:convert';
 
 import 'package:hive/hive.dart';
-import 'package:levelheadbrowser/data/models/settings.dart';
 import 'package:levelheadbrowser/di.dart';
 import 'package:logger/logger.dart';
 
@@ -18,7 +17,7 @@ abstract class SettingsProvider {
 
 class LocalSettingsProvider implements SettingsProvider {
   final Logger _logger = getIt.get();
-  final Future<Box> _box = getIt.getAsync(instanceName: 'hive.settings');
+  final Future<Box> _box = getIt.getAsync(instanceName: 'hive.boxes.settings');
 
   @override
   Future<Map?> get settings async {
