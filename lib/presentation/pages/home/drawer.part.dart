@@ -103,6 +103,11 @@ class NavDrawer extends StatelessWidget {
                     ),
                     Divider(),
                     NavDrawerTileComponent(
+                      label: 'Settings',
+                      onTap: () => Navigator.of(context).pushNamed('/settings'),
+                      icon: Icon(Icons.settings),
+                    ),
+                    NavDrawerTileComponent(
                       label: 'About',
                       onTap: () async => _showAboutDialog(context),
                     ),

@@ -7,6 +7,7 @@ import 'package:levelheadbrowser/logic/observer.dart';
 import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
 import 'package:levelheadbrowser/presentation/pages/home/home.page.dart';
 import 'package:levelheadbrowser/presentation/pages/intro/intro.page.dart';
+import 'package:levelheadbrowser/presentation/pages/settings/settings.page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,8 +38,9 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         routes: {
-          '/': (routeCtx) => HomePage(),
-          '/intro': (routeCtx) => IntroPage(),
+          '/': (_) => HomePage(),
+          '/intro': (_) => IntroPage(),
+          '/settings': (_) => SettingsPage(),
         },
         initialRoute: '/',
       ),
