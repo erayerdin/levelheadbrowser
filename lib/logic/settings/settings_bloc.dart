@@ -41,6 +41,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       yield SavingSettingsState();
       _saveSettings(settings: event.settings);
       yield SavedSettingsState();
+      add(LoadSettingsEvent());
     }
   }
 
