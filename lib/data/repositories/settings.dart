@@ -13,6 +13,7 @@ import 'package:logger/logger.dart';
 
 abstract class SettingsRepository {
   Future<Settings> get settings;
+  set settings(Future<Settings> settings);
   Future save({required Settings settings});
 }
 
@@ -44,6 +45,11 @@ class LocalSettingsRepository implements SettingsRepository {
     }
 
     return _toSettingsConverter.convert(settingsData!);
+  }
+
+  @override
+  set settings(Future<Settings> settings) {
+    settings.then((value) => _settings = value);
   }
 
   @override

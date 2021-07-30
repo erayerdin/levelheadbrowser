@@ -1,24 +1,17 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hive/hive.dart';
 import 'package:levelheadbrowser/data/models/settings.dart';
+import 'package:levelheadbrowser/data/repositories/settings.dart';
 import 'package:levelheadbrowser/di.dart';
 
 part 'settings_event.dart';
 part 'settings_state.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
-  final Box _box = getIt.get(instanceName: 'hive.settings');
-  final Converter<Map, Settings> _fromMapToSettingsConverter =
-      getIt.get(instanceName: 'data.converters.settings.toSettings.fromMap');
-  final Converter<Settings, Map> _fromSettingsToMapConverter =
-      getIt.get(instanceName: 'data.converters.settings.toMap.fromSettings');
-
-  late Settings _settings;
-  Settings get settings => _settings;
+  final SettingsRepository _repository =
+      getIt.get(instanceName: 'data.repositories.settings.local');
 
   SettingsBloc() : super(LoadingSettingsState());
 
@@ -28,34 +21,17 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   ) async* {
     if (event is LoadSettingsEvent) {
       yield LoadingSettingsState();
-
-      Settings? s = await _loadSettings();
-
-      if (s == null) {
-        add(SaveSettingsEvent(settings: DEFAULT_SETTINGS));
-      } else {
-        _settings = s;
-        yield LoadedSettingsState(settings: s);
-      }
+      yield LoadedSettingsState(settings: await _repository.settings);
     } else if (event is SaveSettingsEvent) {
       yield SavingSettingsState();
-      _saveSettings(settings: event.settings);
+      _repository.settings = Future.value(event.settings);
       yield SavedSettingsState();
-      add(LoadSettingsEvent());
     }
-  }
-
-  Future<Settings?> _loadSettings() async {
-    return _fromMapToSettingsConverter.convert(_box.get('settings'));
-  }
-
-  Future _saveSettings({required Settings settings}) async {
-    _settings = settings;
   }
 
   @override
   Future<void> close() async {
-    _box.put('settings', _fromSettingsToMapConverter.convert(_settings));
+    _repository.save(settings: await _repository.settings);
     return super.close();
   }
 }

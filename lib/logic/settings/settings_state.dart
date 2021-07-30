@@ -9,14 +9,6 @@ abstract class SettingsState extends Equatable {
 
 class LoadingSettingsState extends SettingsState {}
 
-class FailedLoadingSettingsState extends SettingsState {
-  final String message;
-
-  FailedLoadingSettingsState({
-    required this.message,
-  });
-}
-
 class LoadedSettingsState extends SettingsState {
   final Settings settings;
 
@@ -25,14 +17,14 @@ class LoadedSettingsState extends SettingsState {
   });
 }
 
-class SavingSettingsState extends SettingsState {}
-
-class FailedSavingSettingsState extends SettingsState {
+class FailedSettingsState extends SettingsState {
   final String message;
 
-  FailedSavingSettingsState({
+  FailedSettingsState({
     required this.message,
   });
 }
+
+class SavingSettingsState extends SettingsState {}
 
 class SavedSettingsState extends SettingsState {}
