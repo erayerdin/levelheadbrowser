@@ -68,6 +68,8 @@ Clicking a link with `lhbr` scheme will launch Levelhead Browser and will take y
 
 You can also share or copy the link of a specific level or profile in its detail dialog.
 
+If you want to test this feature out, check this page on mobile. [Click this link](lhbr://profile/bscotch404) to view a profile and [click this link](lhbr://level/th73wtq) to view a level in the app.
+
 ## License
 
 This project is licensed under [Mozilla Public License 2.0](https://www.mozilla.org/en-US/MPL/2.0/).
