@@ -37,6 +37,23 @@ class AppearanceSettings extends Equatable {
         levelCardMinColor,
         levelCardMaxColor
       ];
+
+  @override
+  bool get stringify => true;
+
+  AppearanceSettings copyWith({
+    Color? profileCardMinColor,
+    Color? profileCardMaxColor,
+    Color? levelCardMinColor,
+    Color? levelCardMaxColor,
+  }) {
+    return AppearanceSettings(
+      profileCardMinColor: profileCardMinColor ?? this.profileCardMinColor,
+      profileCardMaxColor: profileCardMaxColor ?? this.profileCardMaxColor,
+      levelCardMinColor: levelCardMinColor ?? this.levelCardMinColor,
+      levelCardMaxColor: levelCardMaxColor ?? this.levelCardMaxColor,
+    );
+  }
 }
 
 class Settings extends Equatable {
@@ -47,4 +64,15 @@ class Settings extends Equatable {
 
   @override
   List<Object> get props => [appearance];
+
+  @override
+  bool get stringify => true;
+
+  Settings copyWith({
+    AppearanceSettings? appearance,
+  }) {
+    return Settings(
+      appearance: appearance ?? this.appearance,
+    );
+  }
 }
