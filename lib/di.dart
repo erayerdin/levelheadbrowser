@@ -35,6 +35,7 @@ import 'package:levelheadbrowser/data/providers/settings.dart';
 import 'package:levelheadbrowser/data/providers/towertrial.dart';
 import 'package:levelheadbrowser/data/repositories/level.dart';
 import 'package:levelheadbrowser/data/repositories/profile.dart';
+import 'package:levelheadbrowser/data/repositories/settings.dart';
 import 'package:levelheadbrowser/data/repositories/towertrial.dart';
 import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
 import 'package:logger/logger.dart' show Logger;
@@ -170,6 +171,11 @@ Future<void> setUpDI() async {
       TowerTrialRepository<TowerTrialsParams, TowerTrial>>(
     () => RumpusTowerTrialRepository(),
     instanceName: 'data.repositories.towertrial.rumpus',
+  );
+  getIt.registerLazySingleton<SettingsRepository>(
+    () => LocalSettingsRepository(),
+    instanceName: 'data.repositories.settings.local',
+    dispose: (o) async => o.save(settings: await o.settings),
   );
 
   // Styles

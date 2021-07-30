@@ -13,14 +13,12 @@ import 'package:logger/logger.dart';
 
 abstract class SettingsProvider {
   Future<Map?> get settings;
-  Future save({required Settings settings});
+  Future save({required Map data});
 }
 
 class LocalSettingsProvider implements SettingsProvider {
   final Logger _logger = getIt.get();
   final Future<Box> _box = getIt.getAsync(instanceName: 'hive.settings');
-  final Converter<Settings, Map> _converter =
-      getIt.get(instanceName: 'data.converters.settings.toMap.fromSettings');
 
   @override
   Future<Map?> get settings async {
@@ -30,10 +28,9 @@ class LocalSettingsProvider implements SettingsProvider {
   }
 
   @override
-  Future save({required Settings settings}) async {
+  Future save({required Map data}) async {
     _logger.d('Saving settings using LocalSettingsProvider...');
-    _logger.d('settings: $settings');
-    Map data = _converter.convert(settings);
+    _logger.d('data: $data');
     var box = await _box;
     box.put('settings', data);
   }
