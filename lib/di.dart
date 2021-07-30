@@ -17,6 +17,7 @@ import 'package:levelheadbrowser/data/converters/level.dart';
 import 'package:levelheadbrowser/data/converters/params/levels.dart';
 import 'package:levelheadbrowser/data/converters/params/players.dart';
 import 'package:levelheadbrowser/data/converters/profile.dart';
+import 'package:levelheadbrowser/data/converters/settings.dart';
 import 'package:levelheadbrowser/data/converters/towertrial.dart';
 import 'package:levelheadbrowser/data/converters/uri.dart';
 import 'package:levelheadbrowser/data/models/level.dart';
@@ -24,6 +25,7 @@ import 'package:levelheadbrowser/data/models/params/levels.dart';
 import 'package:levelheadbrowser/data/models/params/players.dart';
 import 'package:levelheadbrowser/data/models/params/towertrials.dart';
 import 'package:levelheadbrowser/data/models/profile.dart';
+import 'package:levelheadbrowser/data/models/settings.dart';
 import 'package:levelheadbrowser/data/models/towertrial.dart';
 import 'package:levelheadbrowser/data/providers/level.dart';
 import 'package:levelheadbrowser/data/providers/profile.dart';
@@ -112,6 +114,14 @@ Future<void> setUpDI() async {
   getIt.registerLazySingleton<Converter<Uri?, LoadHomePageEvent?>>(
     () => UriToLoadHomePageEventConverter(),
     instanceName: 'data.converters.uri.toLoadHomePageEventNull.fromUriNull',
+  );
+  getIt.registerLazySingleton<Converter<Settings, Map>>(
+    () => SettingsToMapConverter(),
+    instanceName: 'data.converters.settings.toSettings.fromMap',
+  );
+  getIt.registerLazySingleton<Converter<Map, Settings>>(
+    () => MapToSettingsConverter(),
+    instanceName: 'data.converters.settings.toMap.fromSettings',
   );
 
   // Providers
