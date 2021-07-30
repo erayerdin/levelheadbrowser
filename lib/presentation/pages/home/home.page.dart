@@ -6,12 +6,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:levelheadbrowser/data/constants.dart';
 import 'package:levelheadbrowser/logic/appbar/appbar_cubit.dart';
 import 'package:levelheadbrowser/logic/firstrun/firstrun_cubit.dart';
 import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
-import 'package:levelheadbrowser/presentation/components/link/link.component.dart';
 import 'package:levelheadbrowser/presentation/components/navdrawer/section.component.dart';
 import 'package:levelheadbrowser/presentation/components/navdrawer/tile.component.dart';
 import 'package:levelheadbrowser/presentation/pages/levels/levels.page.dart';
@@ -19,6 +17,8 @@ import 'package:levelheadbrowser/presentation/pages/profiles/profiles.page.dart'
 import 'package:levelheadbrowser/presentation/pages/towertrials/towertrials.page.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+part 'drawer.part.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -46,126 +46,7 @@ class HomePage extends StatelessWidget {
                 },
               ),
             ),
-            drawer: Drawer(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Theme(
-                    data: Theme.of(context).copyWith(
-                      textTheme: Theme.of(context).textTheme.copyWith(
-                            subtitle1:
-                                Theme.of(context).textTheme.subtitle1?.copyWith(
-                                      color: Colors.white,
-                                    ),
-                            subtitle2:
-                                Theme.of(context).textTheme.subtitle2?.copyWith(
-                                      color: Colors.white,
-                                    ),
-                          ),
-                    ),
-                    child: Builder(
-                      builder: (context) => DrawerHeader(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Image.asset(
-                              'assets/images/icons/icon.png',
-                              width: 50,
-                              height: 50,
-                            ),
-                            Column(
-                              children: [
-                                Text(
-                                  'Levelhead Browser',
-                                  style: Theme.of(context).textTheme.subtitle1,
-                                ),
-                                FutureBuilder(
-                                  builder: (
-                                    context,
-                                    AsyncSnapshot<PackageInfo> snapshot,
-                                  ) {
-                                    switch (snapshot.connectionState) {
-                                      case ConnectionState.done:
-                                        return Text(
-                                          snapshot.data!.version,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .subtitle2,
-                                        );
-                                      default:
-                                        return Text('...');
-                                    }
-                                  },
-                                  future: PackageInfo.fromPlatform(),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                        decoration: BoxDecoration(color: Colors.blue),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: ListView(
-                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      children: [
-                        NavDrawerSectionComponent(
-                          title: 'Explore',
-                          children: [
-                            NavDrawerTileComponent(
-                              label: 'Profiles',
-                              onTap: () {
-                                BlocProvider.of<HomePageBloc>(context)
-                                    .add(LoadHomePageEvent(index: 0));
-                                Navigator.pop(context);
-                              },
-                              icon: Icon(Icons.person),
-                            ),
-                            NavDrawerTileComponent(
-                              label: 'Levels',
-                              onTap: () {
-                                BlocProvider.of<HomePageBloc>(context)
-                                    .add(LoadHomePageEvent(index: 1));
-                                Navigator.pop(context);
-                              },
-                              icon: Icon(Icons.sports_esports),
-                            ),
-                            NavDrawerTileComponent(
-                              label: 'Tower Trial',
-                              onTap: () {
-                                BlocProvider.of<HomePageBloc>(context)
-                                    .add(LoadHomePageEvent(index: 2));
-                                Navigator.pop(context);
-                              },
-                              icon: Icon(Icons.emoji_events),
-                            ),
-                            Divider(),
-                            NavDrawerTileComponent(
-                              label: 'About',
-                              onTap: () async => _showAboutDialog(context),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Divider(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: SOCIAL_LINKS.keys
-                        .map(
-                          (k) => IconButton(
-                            onPressed: () async =>
-                                launch(SOCIAL_LINKS[k]!.item1),
-                            icon: Icon(SOCIAL_LINKS[k]!.item3),
-                          ),
-                        )
-                        .toList(),
-                  ),
-                ],
-              ),
-            ),
+            drawer: NavDrawer(),
             body: BlocBuilder<HomePageBloc, HomePageState>(
               builder: (context, state) {
                 if (state is HomePageProfilesTabState) {
@@ -182,23 +63,6 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  Future _showAboutDialog(BuildContext context) async {
-    var info = await PackageInfo.fromPlatform();
-    showAboutDialog(
-      context: context,
-      applicationVersion: info.version,
-      applicationIcon: ClipRRect(
-        child: Image.asset(
-          'assets/images/icons/icon.png',
-          width: 50,
-          height: 50,
-        ),
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      applicationLegalese: 'An application to browse Levelhead universe.',
     );
   }
 }
