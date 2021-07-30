@@ -54,7 +54,7 @@ const SORT_BY_DROPDOWN_ITEMS = [
     value: Tuple2(true, LevelsParamsSortField.ExposureBucks),
   ),
   DropdownMenuItem(
-    child: Text('Least Playtime'),
+    child: Text('Least Exposure Bucks'),
     value: Tuple2(false, LevelsParamsSortField.ExposureBucks),
   ),
 ];
