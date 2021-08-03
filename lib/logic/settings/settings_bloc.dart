@@ -26,6 +26,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       yield SavingSettingsState();
       _repository.settings = Future.value(event.settings);
       yield SavedSettingsState();
+      yield LoadedSettingsState(settings: await _repository.settings);
     }
   }
 

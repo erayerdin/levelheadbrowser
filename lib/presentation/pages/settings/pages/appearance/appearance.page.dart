@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:levelheadbrowser/data/models/settings.dart';
 import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
 import 'package:levelheadbrowser/presentation/components/colorpicker/colorpicker.component.dart';
 import 'package:levelheadbrowser/presentation/pages/settings/components/confirmation_dialog/confirmation_dialog.component.dart';
@@ -114,7 +115,31 @@ class AppearanceSettingsPage extends StatelessWidget {
     );
   }
 
-  Future _saveSettings(BuildContext context) async {}
+  Future _saveSettings(BuildContext context) async {
+    SettingsBloc settingsBloc = BlocProvider.of(context);
+    SettingsSaveCubit settingsSaveCubit = BlocProvider.of(context);
+
+    if (settingsBloc.state is LoadedSettingsState &&
+        _formKey.currentState != null) {
+      _formKey.currentState!.save();
+      LoadedSettingsState settingsState =
+          settingsBloc.state as LoadedSettingsState;
+      Settings settings = settingsState.settings.copyWith(
+        appearance: settingsState.settings.appearance.copyWith(
+          profileCardMinColor:
+              _formKey.currentState!.fields['profileMinColor']!.value,
+          profileCardMaxColor:
+              _formKey.currentState!.fields['profileMaxColor']!.value,
+          levelCardMinColor:
+              _formKey.currentState!.fields['levelMinColor']!.value,
+          levelCardMaxColor:
+              _formKey.currentState!.fields['levelMaxColor']!.value,
+        ),
+      );
+      settingsBloc.add(SaveSettingsEvent(settings: settings));
+      settingsSaveCubit.emit(null);
+    }
+  }
 
   Future<bool> _showConfirmationDialog(BuildContext context) async {
     showDialog<bool>(
