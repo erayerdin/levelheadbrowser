@@ -70,6 +70,10 @@ You can also share or copy the link of a specific level or profile in its detail
 
 If you want to test this feature out, check this page on mobile. [Click this link](lhbr://profile/bscotch404) to view a profile and [click this link](lhbr://level/th73wtq) to view a level in the app.
 
+### Settings
+
+You can customize the app to your needs. Currently, you can change the colors of the cards for profiles and levels.
+
 ## License
 
 This project is licensed under [Mozilla Public License 2.0](https://www.mozilla.org/en-US/MPL/2.0/).
