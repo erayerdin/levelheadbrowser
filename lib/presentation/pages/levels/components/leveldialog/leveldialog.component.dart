@@ -15,7 +15,6 @@ import 'package:levelheadbrowser/di.dart';
 import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
 import 'package:levelheadbrowser/presentation/components/badge/badge.component.dart';
 import 'package:levelheadbrowser/presentation/components/link/link.component.dart';
-import 'package:levelheadbrowser/presentation/pages/home/home.page.dart';
 import 'package:share_plus/share_plus.dart';
 
 part 'header.component.dart';

@@ -9,9 +9,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:levelheadbrowser/data/models/level.dart';
 import 'package:levelheadbrowser/data/models/params/levels.dart';
-import 'package:levelheadbrowser/data/repositories/level.dart';
 import 'package:levelheadbrowser/di.dart';
 import 'package:levelheadbrowser/logic/appbar/appbar_cubit.dart';
 import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
@@ -60,8 +58,6 @@ const SORT_BY_DROPDOWN_ITEMS = [
 ];
 
 class LevelsPage extends StatelessWidget {
-  final LevelRepository<LevelsParams, Level> _repository =
-      getIt.get(instanceName: 'data.repositories.level.rumpus');
   final Converter<
       Map<String, FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>,
       LevelsParams> _formConverter = getIt.get(

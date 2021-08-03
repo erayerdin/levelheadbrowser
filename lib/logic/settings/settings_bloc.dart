@@ -21,18 +21,12 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   ) async* {
     if (event is LoadSettingsEvent) {
       yield LoadingSettingsState();
-      yield LoadedSettingsState(settings: await _repository.settings);
+      yield LoadedSettingsState(settings: await _repository.load());
     } else if (event is SaveSettingsEvent) {
       yield SavingSettingsState();
-      _repository.settings = Future.value(event.settings);
+      _repository.save(event.settings);
       yield SavedSettingsState();
-      yield LoadedSettingsState(settings: await _repository.settings);
+      yield LoadedSettingsState(settings: await _repository.load());
     }
-  }
-
-  @override
-  Future<void> close() async {
-    _repository.save(settings: await _repository.settings);
-    return super.close();
   }
 }

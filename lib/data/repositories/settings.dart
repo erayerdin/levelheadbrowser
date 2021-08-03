@@ -12,14 +12,13 @@ import 'package:levelheadbrowser/di.dart';
 import 'package:logger/logger.dart';
 
 abstract class SettingsRepository {
-  Future<Settings> get settings;
-  set settings(Future<Settings> settings);
-  Future save({required Settings settings});
+  Future<Settings> load();
+  Future save(Settings settings);
 }
 
-class LocalSettingsRepository implements SettingsRepository {
+class LocalSettingsRepository extends SettingsRepository {
   final Logger _logger = getIt.get();
-  final SettingsProvider _provider =
+  final SettingsProvider<Map?> _provider =
       getIt.get(instanceName: 'data.providers.settings.local');
   final Converter<Settings, Map> _toMapConverter =
       getIt.get(instanceName: 'data.converters.settings.toMap.fromSettings');
@@ -29,31 +28,68 @@ class LocalSettingsRepository implements SettingsRepository {
   Settings? _settings;
 
   @override
-  Future<Settings> get settings async {
-    _logger.d('Getting settings using LocalSettingsRepository...');
+  Future<Settings> load() async {
+    _logger.d('Loading settings using LocalSettingsRepository...');
 
     if (_settings != null) {
-      _logger.d('Getting settings from memory...');
+      _logger.d('Loading settings from cache...');
       return _settings!;
     }
 
-    var settingsData = await _provider.settings;
+    var settingsData = await _provider.load();
     if (settingsData == null) {
-      _logger.w('Creating new default settings...');
-      await save(settings: DEFAULT_SETTINGS);
-      settingsData = await _provider.settings;
+      _logger.w('Creating new settings with defaults...');
+      await save(DEFAULT_SETTINGS);
+      settingsData = await _provider.load();
     }
 
     return _toSettingsConverter.convert(settingsData!);
   }
 
   @override
-  set settings(Future<Settings> settings) {
-    settings.then((value) => _settings = value);
-  }
-
-  @override
-  Future save({required Settings settings}) async {
-    _provider.save(data: _toMapConverter.convert(settings));
+  Future save(Settings settings) async {
+    _settings = null;
+    await _provider.save(_toMapConverter.convert(settings));
   }
 }
+
+// class LocalSettingsRepository implements SettingsRepository {
+//   final Logger _logger = getIt.get();
+//   final SettingsProvider _provider =
+//       getIt.get(instanceName: 'data.providers.settings.local');
+//   final Converter<Settings, Map> _toMapConverter =
+//       getIt.get(instanceName: 'data.converters.settings.toMap.fromSettings');
+//   final Converter<Map, Settings> _toSettingsConverter =
+//       getIt.get(instanceName: 'data.converters.settings.toSettings.fromMap');
+
+//   Settings? _settings;
+
+//   @override
+//   Future<Settings> get settings async {
+//     _logger.d('Getting settings using LocalSettingsRepository...');
+
+//     if (_settings != null) {
+//       _logger.d('Getting settings from memory...');
+//       return _settings!;
+//     }
+
+//     var settingsData = await _provider.settings;
+//     if (settingsData == null) {
+//       _logger.w('Creating new default settings...');
+//       await save(settings: DEFAULT_SETTINGS);
+//       settingsData = await _provider.settings;
+//     }
+
+//     return _toSettingsConverter.convert(settingsData!);
+//   }
+
+//   @override
+//   set settings(Future<Settings> settings) {
+//     settings.then((value) => _settings = value);
+//   }
+
+//   @override
+//   Future save({required Settings settings}) async {
+//     await _provider.save(data: _toMapConverter.convert(settings));
+//   }
+// }

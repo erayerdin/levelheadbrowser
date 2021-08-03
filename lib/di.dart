@@ -153,7 +153,7 @@ Future<void> setUpDI() async {
     () => RumpusTowerTrialProvider(),
     instanceName: 'data.providers.towertrial.rumpus',
   );
-  getIt.registerLazySingleton<SettingsProvider>(
+  getIt.registerLazySingleton<SettingsProvider<Map?>>(
     () => LocalSettingsProvider(),
     instanceName: 'data.providers.settings.local',
   );
@@ -175,7 +175,6 @@ Future<void> setUpDI() async {
   getIt.registerLazySingleton<SettingsRepository>(
     () => LocalSettingsRepository(),
     instanceName: 'data.repositories.settings.local',
-    dispose: (o) async => o.save(settings: await o.settings),
   );
 
   // Styles
