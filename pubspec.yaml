@@ -27,8 +27,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   dio: ^4.0.0
   dio_cache_interceptor: ^2.3.1
-  equatable: ^2.0.2
-  flutter_bloc: ^7.0.0
+  equatable: ^2.0.3
+  flutter_bloc: ^7.1.0
   # see https://github.com/mchome/flutter_colorpicker/issues/49
   flutter_colorpicker: <0.5.0
   flutter_form_builder: ^6.0.1
