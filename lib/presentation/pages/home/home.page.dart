@@ -12,6 +12,7 @@ import 'package:levelheadbrowser/logic/firstrun/firstrun_cubit.dart';
 import 'package:levelheadbrowser/logic/homepage/homepage_bloc.dart';
 import 'package:levelheadbrowser/presentation/components/navdrawer/section.component.dart';
 import 'package:levelheadbrowser/presentation/components/navdrawer/tile.component.dart';
+import 'package:levelheadbrowser/presentation/pages/home/components/btg/btgdialog.component.dart';
 import 'package:levelheadbrowser/presentation/pages/levels/levels.page.dart';
 import 'package:levelheadbrowser/presentation/pages/profiles/profiles.page.dart';
 import 'package:levelheadbrowser/presentation/pages/towertrials/towertrials.page.dart';

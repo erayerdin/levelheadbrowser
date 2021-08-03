@@ -103,6 +103,13 @@ class NavDrawer extends StatelessWidget {
                     ),
                     Divider(),
                     NavDrawerTileComponent(
+                      label: 'Buy the game',
+                      onTap: () => showDialog(
+                        context: context,
+                        builder: (_) => BuyTheGameDialog(),
+                      ),
+                    ),
+                    NavDrawerTileComponent(
                       label: 'Settings',
                       onTap: () => Navigator.of(context).pushNamed('/settings'),
                       icon: Icon(Icons.settings),
