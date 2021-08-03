@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:levelheadbrowser/logic/settings/settings_bloc.dart';
 import 'package:levelheadbrowser/presentation/components/colorpicker/colorpicker.component.dart';
+import 'package:levelheadbrowser/presentation/pages/settings/logic/settings_save/settings_save_cubit.dart';
 
 class AppearanceSettingsPage extends StatelessWidget {
   final _formKey = GlobalKey<FormBuilderState>();
@@ -17,62 +18,91 @@ class AppearanceSettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilder(
-      key: _formKey,
-      autovalidateMode: AutovalidateMode.always,
-      onChanged: () {},
-      child: BlocBuilder<SettingsBloc, SettingsState>(
-        builder: (context, state) {
-          if (state is LoadedSettingsState) {
-            return Scaffold(
-              appBar: AppBar(
-                title: Text('Appearance Settings'),
-                actions: [
-                  IconButton(
-                    onPressed: null, // TODO activate depending on state
-                    icon: Icon(Icons.save),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => SettingsSaveCubit()),
+      ],
+      child: Builder(
+        builder: (context) => FormBuilder(
+          key: _formKey,
+          autovalidateMode: AutovalidateMode.always,
+          onChanged: () {},
+          child: BlocBuilder<SettingsBloc, SettingsState>(
+            builder: (context, state) {
+              if (state is LoadedSettingsState) {
+                return Scaffold(
+                  appBar: AppBar(
+                    title: Text('Appearance Settings'),
+                    actions: [
+                      BlocBuilder<SettingsSaveCubit, Function()?>(
+                        builder: (context, state) {
+                          return IconButton(
+                            onPressed: state,
+                            icon: Icon(Icons.save),
+                          );
+                        },
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              body: ListView(
-                padding: EdgeInsets.all(10),
-                children: [
-                  FormBuilderColorPicker(
-                    labelText: 'Profile Card Minimum Color',
-                    initialColor: state.settings.appearance.profileCardMinColor,
-                    onChanged: (color) {}, // TODO change saveable state
-                    name: 'profileMinColor',
+                  body: ListView(
+                    padding: EdgeInsets.all(10),
+                    children: [
+                      FormBuilderColorPicker(
+                        labelText: 'Profile Card Minimum Color',
+                        initialColor:
+                            state.settings.appearance.profileCardMinColor,
+                        onChanged: (_) =>
+                            BlocProvider.of<SettingsSaveCubit>(context).emit(
+                          () => _saveSettings(context),
+                        ),
+                        name: 'profileMinColor',
+                      ),
+                      FormBuilderColorPicker(
+                        labelText: 'Profile Card Maximum Color',
+                        initialColor:
+                            state.settings.appearance.profileCardMaxColor,
+                        onChanged: (_) =>
+                            BlocProvider.of<SettingsSaveCubit>(context).emit(
+                          () => _saveSettings(context),
+                        ),
+                        name: 'profileMaxColor',
+                      ),
+                      FormBuilderColorPicker(
+                        labelText: 'Level Card Minimum Color',
+                        initialColor:
+                            state.settings.appearance.levelCardMinColor,
+                        onChanged: (_) =>
+                            BlocProvider.of<SettingsSaveCubit>(context).emit(
+                          () => _saveSettings(context),
+                        ),
+                        name: 'levelMinColor',
+                      ),
+                      FormBuilderColorPicker(
+                        labelText: 'Level Card Maximum Color',
+                        initialColor:
+                            state.settings.appearance.levelCardMaxColor,
+                        name: 'levelMaxColor',
+                        onChanged: (_) =>
+                            BlocProvider.of<SettingsSaveCubit>(context).emit(
+                          () => _saveSettings(context),
+                        ),
+                      ),
+                    ],
                   ),
-                  FormBuilderColorPicker(
-                    labelText: 'Profile Card Maximum Color',
-                    initialColor: state.settings.appearance.profileCardMaxColor,
-                    onChanged: (color) {}, // TODO change saveable state
-                    name: 'profileMaxColor',
-                  ),
-                  FormBuilderColorPicker(
-                    labelText: 'Level Card Minimum Color',
-                    initialColor: state.settings.appearance.levelCardMinColor,
-                    onChanged: (color) {}, // TODO change saveable state
-                    name: 'levelMinColor',
-                  ),
-                  FormBuilderColorPicker(
-                    labelText: 'Level Card Maximum Color',
-                    initialColor: state.settings.appearance.levelCardMaxColor,
-                    name: 'levelMaxColor',
-                    onChanged: (color) {}, // TODO change saveable state
-                  ),
-                ],
-              ),
-            );
-          }
+                );
+              }
 
-          return Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        },
+              return Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            },
+          ),
+        ),
       ),
     );
   }
+
+  Future _saveSettings(BuildContext context) async {}
 }
