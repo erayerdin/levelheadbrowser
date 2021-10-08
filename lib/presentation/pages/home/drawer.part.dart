@@ -63,7 +63,16 @@ class NavDrawer extends StatelessWidget {
                     ),
                   ],
                 ),
-                decoration: BoxDecoration(color: Colors.blue),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.red,
+                      Colors.blue,
+                    ],
+                    begin: Alignment.bottomRight,
+                    end: Alignment.topLeft,
+                  ),
+                ),
               ),
             ),
           ),
