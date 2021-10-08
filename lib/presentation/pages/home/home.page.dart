@@ -46,6 +46,18 @@ class HomePage extends StatelessWidget {
                   return Text(state?.title ?? 'Levelhead Browser');
                 },
               ),
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.red,
+                      Colors.blue,
+                    ],
+                    begin: Alignment.bottomRight,
+                    end: Alignment.topLeft,
+                  ),
+                ),
+              ),
             ),
             drawer: NavDrawer(),
             body: BlocBuilder<HomePageBloc, HomePageState>(
